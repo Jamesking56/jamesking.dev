@@ -1,0 +1,19 @@
+.scrollimation.d5 {
+    transition-delay:.10s;
+}
+.scrollimation.d6 {
+    transition-delay:.12s;
+}
+.scrollimation.d7 {
+    transition-delay:.14s;
+}
+.scrollimation.d8 {
+    transition-delay:.16s;
+}
+
+.skills h2 {
+    margin: 0;
+}
+.skills.last {
+    margin-bottom: 80px;
+}

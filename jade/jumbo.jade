@@ -1,13 +1,15 @@
 header#home.jumbotron
     .container
         .row
+            //.col-sm-7.text-col
             .col-sm-7.text-col
                 h1 Hi, I'm James King
                 p a Full Stack Web Developer
+            // Old iMac frame.
             .col-sm-5
                 .imac-frame
                     img.img-responsive.img-center(src="../assets/imac.png", alt="")
-                    .imac-screen.flexslider
+                    .imac-screen.flexslider(style="display: none;")
                         ul.slides
                             li
                                 img(src="../assets/placeholder-450x270.jpg", alt="")

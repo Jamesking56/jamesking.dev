@@ -7,27 +7,10 @@ section#services.white-bg.padding-top-bottom
                 br
                 | Aenean purus felis, condimentum et tempor in, commodo id nibh. Fusce a lacus arcu.
         .row.services
-            .col-md-3.col-sm-6.item.scrollimation.fade-up
-                .icon
-                    img.img-responsive.img-center(src="../assets/service1.png", alt="")
-                h2 Web &#38; App Design
-                p
-                    | Donec quam velit, aliquam at tempor quis, blandit quis nisi. Proin orci enim, dictum vel leo eu, blandit vulputate turpis.
-            .col-md-3.col-sm-6.item.scrollimation.fade-up.d1
-                .icon
-                    img.img-responsive.img-center(src="../assets/service2.png", alt="")
-                h2 Web Development
-                p
-                    | Donec quam velit, aliquam at tempor quis, blandit quis nisi. Proin orci enim, dictum vel leo eu, blandit vulputate turpis.
-            .col-md-3.col-sm-6.item.scrollimation.fade-up.d2
-                .icon
-                    img.img-responsive.img-center(src="../assets/service3.png", alt="")
-                h2 SEO Content
-                p
-                    | Donec quam velit, aliquam at tempor quis, blandit quis nisi. Proin orci enim, dictum vel leo eu, blandit vulputate turpis.
-            .col-md-3.col-sm-6.item.scrollimation.fade-up.d3
-                .icon
-                    img.img-responsive.img-center(src="../assets/service4.png", alt="")
-                h2 Mail Campaigns
-                p
-                    | Donec quam velit, aliquam at tempor quis, blandit quis nisi. Proin orci enim, dictum vel leo eu, blandit vulputate turpis.
+            include services/web-design
+            include services/web-development
+            include services/existing-support
+            include services/server-maintenance
+        .row.services
+            include services/consultancy
+            include services/support
