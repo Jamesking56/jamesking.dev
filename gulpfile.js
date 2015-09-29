@@ -3,6 +3,7 @@ var gulp = require('gulp'),
     jade = require('gulp-jade'),
     copy = require('gulp-copy'),
     minifyCss = require('gulp-minify-css'),
+    uglify = require('gulp-uglify'),
     paths = {
         scripts: [
             'js/**/*.js'
@@ -14,16 +15,38 @@ var gulp = require('gulp'),
             'jade/index.jade'
         ],
         extras: [
-
+            'contact.php'
         ],
         dist: './dist/'
     },
-    clean = require('gulp-clean');
+    clean = require('gulp-clean'),
+    environments = require('gulp-environments'),
+    development = environments.development,
+    production = environments.production;
+
+var config = {
+    gravatar: "//gravatar.com/avatar/18272084a145b66c6b118b38a2fe7c23",
+    trustpilot: {
+        enabled: false, // Disabled until I have some reviews.
+        script: "//widget.trustpilot.com/bootstrap/v5/tp.widget.sync.bootstrap.min.js",
+        templateId: "5419b6a8b0d04a076446a9ad",
+        businessId: "560a7f0d0000ff000583d56a",
+        url: "https://uk.trustpilot.com/review/jamesking56.uk"
+    },
+    ga: {
+        enabled: production(),
+        code: "UA-3000159-38"
+    }
+};
 
 gulp.task('clean', function() {
     'use strict';
 
-    return gulp.src(paths.dist + "*")
+    return gulp.src([
+            paths.dist + "*",
+            "!" + paths.dist + "index.html",
+            "!" + paths.dist + "contact.php"
+        ])
         .pipe(clean({ force: true }));
 });
 
@@ -32,6 +55,7 @@ gulp.task('scripts', function() {
 
     return gulp.src(paths.scripts)
         .pipe(concat('app.min.js'))
+        .pipe(production(uglify()))
         .pipe(gulp.dest(paths.dist));
 });
 
@@ -40,7 +64,7 @@ gulp.task('styles', function() {
 
     return gulp.src(paths.styles)
         .pipe(concat('app.min.css'))
-        .pipe(minifyCss())
+        .pipe(production(minifyCss()))
         .pipe(gulp.dest(paths.dist));
 });
 
@@ -49,7 +73,8 @@ gulp.task('jade', function() {
 
     return gulp.src(paths.jade)
         .pipe(jade({
-            pretty: true
+            pretty: development(),
+            locals: config
         }))
         .pipe(gulp.dest(paths.dist));
 });
@@ -58,7 +83,7 @@ gulp.task('copy', function() {
     'use strict';
 
     return gulp.src(paths.extras)
-        .pipe(copy(paths.dist));
+        .pipe(gulp.dest(paths.dist));
 });
 
 gulp.task('watch', function() {

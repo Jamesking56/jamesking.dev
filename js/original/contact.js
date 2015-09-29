@@ -39,6 +39,7 @@ $(document).ready(function() {
 			$('#contact-form button').html('<i class="fa fa-spinner fa-spin"></i>'+sendingMessage);
 			
 			var formInput = $(this).serialize();
+            console.log(formInput, $(this).attr('action'));
 			$.post($(this).attr('action'),formInput, function(data){
 				$('#contact-form button').html('<i class="fa fa-check"></i>'+okMessage);
 				
