@@ -11,9 +11,19 @@
     transition-delay:.16s;
 }
 
+.skills {
+    margin-top: 80px;
+}
+.skills.no-top {
+    margin-top: 0;
+}
 .skills h2 {
     margin: 0;
+    margin-bottom: 40px;
 }
 .skills.last {
     margin-bottom: 80px;
+}
+.skills .col-md-3 {
+    height: auto;
 }
