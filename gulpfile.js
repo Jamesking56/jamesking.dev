@@ -6,16 +6,36 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     paths = {
         scripts: [
-            'js/**/*.js'
+            "*js/libs/modernizr.min.js",
+            "*js/libs/jquery-1.9.1.min.js",
+            "*js/libs/bootstrap.min.js",
+            "*js/jquery.easing.1.3.min.js",
+            "*js/jquery.scrollto.js",
+            "*js/jquery.fittext.js",
+            "*js/jquery.flexslider.min.js",
+            "*js/jquery.masonry.js",
+            "*js/waypoints.min.js",
+            "*js/jquery.label_better.min.js",
+            "*js/jquery.easypiechart.js",
+            "*js/contact.js",
+            "*js/meflat.js"
         ],
         styles: [
-            'css/meflat-grass.css'
+            '*css/bootstrap.min.css',
+            '*css/font-awesome.min.css',
+            '*css/flexslider.css',
+            '*css/meflat-light-green.css',
+            '*css/overrides.css'
         ],
         jade: [
             'jade/index.jade'
         ],
         extras: [
-            'contact.php'
+            'contact.php',
+            '*fonts/*',
+            'assets/imac.png',
+            'assets/loader.gif',
+            'assets/placeholder-450x270.jpg'
         ],
         dist: './dist/'
     },
@@ -43,9 +63,9 @@ gulp.task('clean', function() {
     'use strict';
 
     return gulp.src([
-            paths.dist + "*",
-            "!" + paths.dist + "index.html",
-            "!" + paths.dist + "contact.php"
+            //paths.dist + "*",
+            //"!" + paths.dist + "index.html",
+            //"!" + paths.dist + "contact.php"
         ])
         .pipe(clean({ force: true }));
 });
@@ -54,18 +74,24 @@ gulp.task('scripts', function() {
     'use strict';
 
     return gulp.src(paths.scripts)
-        .pipe(concat('app.min.js'))
-        .pipe(production(uglify()))
         .pipe(gulp.dest(paths.dist));
+
+    //return gulp.src(paths.scripts)
+    //    .pipe(concat('app.min.js'))
+    //    .pipe(production(uglify()))
+    //    .pipe(gulp.dest(paths.dist));
 });
 
 gulp.task('styles', function() {
     'use strict';
 
     return gulp.src(paths.styles)
-        .pipe(concat('app.min.css'))
-        .pipe(production(minifyCss()))
         .pipe(gulp.dest(paths.dist));
+
+    //return gulp.src(paths.styles)
+    //    .pipe(concat('app.min.css'))
+    //    .pipe(production(minifyCss()))
+    //    .pipe(gulp.dest(paths.dist));
 });
 
 gulp.task('jade', function() {
