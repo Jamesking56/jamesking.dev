@@ -15,7 +15,7 @@ var gulp = require('gulp'),
             "*js/jquery.masonry.js",
             "*js/waypoints.min.js",
             "*js/jquery.label_better.min.js",
-            "*js/jquery.easypiechart.js",
+            //"*js/jquery.easypiechart.js",
             "*js/contact.js",
             "*js/meflat.js"
         ],
@@ -36,7 +36,8 @@ var gulp = require('gulp'),
             'assets/loader.gif',
             'assets/placeholder-450x270.jpg',
             'assets/robots.txt',
-            'assets/sitemap.xml'
+            'assets/sitemap.xml',
+            'js/libs/modernizr.min.js'
         ],
         dist: './dist/'
     },
@@ -74,9 +75,6 @@ gulp.task('clean', function() {
 gulp.task('scripts', function() {
     'use strict';
 
-    //return gulp.src(paths.scripts)
-    //    .pipe(gulp.dest(paths.dist));
-
     return gulp.src(paths.scripts)
         .pipe(concat('app.min.js'))
         .pipe(production(uglify()))
@@ -85,9 +83,6 @@ gulp.task('scripts', function() {
 
 gulp.task('styles', function() {
     'use strict';
-
-    //return gulp.src(paths.styles)
-    //    .pipe(gulp.dest(paths.dist));
 
     return gulp.src(paths.styles)
         .pipe(concat('app.min.css'))
@@ -119,4 +114,4 @@ gulp.task('watch', function() {
     //gulp.watch()
 });
 
-gulp.task('default', ['clean', 'scripts', 'styles', 'jade', 'copy']);
+gulp.task('default', ['clean', 'copy', 'scripts', 'styles', 'jade']);
