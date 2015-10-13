@@ -6,7 +6,6 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     paths = {
         scripts: [
-            "*js/libs/modernizr.min.js",
             "*js/libs/jquery-1.9.1.min.js",
             "*js/libs/bootstrap.min.js",
             "*js/jquery.easing.1.3.min.js",
@@ -75,8 +74,8 @@ gulp.task('clean', function() {
 gulp.task('scripts', function() {
     'use strict';
 
-    return gulp.src(paths.scripts)
-        .pipe(gulp.dest(paths.dist));
+    //return gulp.src(paths.scripts)
+    //    .pipe(gulp.dest(paths.dist));
 
     return gulp.src(paths.scripts)
         .pipe(concat('app.min.js'))
@@ -87,8 +86,8 @@ gulp.task('scripts', function() {
 gulp.task('styles', function() {
     'use strict';
 
-    return gulp.src(paths.styles)
-        .pipe(gulp.dest(paths.dist));
+    //return gulp.src(paths.styles)
+    //    .pipe(gulp.dest(paths.dist));
 
     return gulp.src(paths.styles)
         .pipe(concat('app.min.css'))
