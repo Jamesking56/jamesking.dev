@@ -27,3 +27,7 @@
 .skills .col-md-3 {
     height: auto;
 }
+
+.imac-screen.flexslider {
+    display: none;
+}

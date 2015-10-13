@@ -35,7 +35,9 @@ var gulp = require('gulp'),
             '*fonts/*',
             'assets/imac.png',
             'assets/loader.gif',
-            'assets/placeholder-450x270.jpg'
+            'assets/placeholder-450x270.jpg',
+            'assets/robots.txt',
+            'assets/sitemap.xml'
         ],
         dist: './dist/'
     },
@@ -76,10 +78,10 @@ gulp.task('scripts', function() {
     return gulp.src(paths.scripts)
         .pipe(gulp.dest(paths.dist));
 
-    //return gulp.src(paths.scripts)
-    //    .pipe(concat('app.min.js'))
-    //    .pipe(production(uglify()))
-    //    .pipe(gulp.dest(paths.dist));
+    return gulp.src(paths.scripts)
+        .pipe(concat('app.min.js'))
+        .pipe(production(uglify()))
+        .pipe(gulp.dest(paths.dist));
 });
 
 gulp.task('styles', function() {
@@ -88,10 +90,10 @@ gulp.task('styles', function() {
     return gulp.src(paths.styles)
         .pipe(gulp.dest(paths.dist));
 
-    //return gulp.src(paths.styles)
-    //    .pipe(concat('app.min.css'))
-    //    .pipe(production(minifyCss()))
-    //    .pipe(gulp.dest(paths.dist));
+    return gulp.src(paths.styles)
+        .pipe(concat('app.min.css'))
+        .pipe(production(minifyCss()))
+        .pipe(gulp.dest(paths.dist));
 });
 
 gulp.task('jade', function() {
