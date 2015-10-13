@@ -4,25 +4,47 @@ var gulp = require('gulp'),
     copy = require('gulp-copy'),
     minifyCss = require('gulp-minify-css'),
     uglify = require('gulp-uglify'),
+    clean = require('gulp-clean'),
+    environments = require('gulp-environments'),
+    development = environments.development,
+    production = environments.production,
     paths = {
         scripts: [
-            'js/**/*.js'
+            "*js/libs/jquery-1.9.1.min.js",
+            "*js/libs/bootstrap.min.js",
+            "*js/jquery.easing.1.3.min.js",
+            "*js/jquery.scrollto.js",
+            "*js/jquery.fittext.js",
+            "*js/jquery.flexslider.min.js",
+            "*js/jquery.masonry.js",
+            "*js/waypoints.min.js",
+            "*js/jquery.label_better.min.js",
+            "*js/contact.js",
+            "*js/meflat.js"
         ],
         styles: [
-            'css/meflat-grass.css'
+            '*css/bootstrap.min.css',
+            '*css/font-awesome.min.css',
+            '*css/flexslider.css',
+            '*css/meflat-light-green.css',
+            '*css/overrides.css'
         ],
         jade: [
             'jade/index.jade'
         ],
         extras: [
-            'contact.php'
+            'contact.php',
+            '*fonts/*',
+            'assets/imac.png',
+            'assets/loader.gif',
+            'assets/placeholder-450x270.jpg',
+            'assets/robots.txt',
+            'assets/sitemap.xml',
+            'js/libs/modernizr.min.js',
+            production() ? 'assets/.htaccess' : 'none'
         ],
         dist: './dist/'
-    },
-    clean = require('gulp-clean'),
-    environments = require('gulp-environments'),
-    development = environments.development,
-    production = environments.production;
+    };
 
 var config = {
     gravatar: "//gravatar.com/avatar/18272084a145b66c6b118b38a2fe7c23",
@@ -39,14 +61,12 @@ var config = {
     }
 };
 
+console.log(production(), development());
+
 gulp.task('clean', function() {
     'use strict';
 
-    return gulp.src([
-            paths.dist + "*",
-            "!" + paths.dist + "index.html",
-            "!" + paths.dist + "contact.php"
-        ])
+    return gulp.src([])
         .pipe(clean({ force: true }));
 });
 
@@ -86,10 +106,4 @@ gulp.task('copy', function() {
         .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('watch', function() {
-    'use strict';
-
-    //gulp.watch()
-});
-
-gulp.task('default', ['clean', 'scripts', 'styles', 'jade', 'copy']);
+gulp.task('default', ['clean', 'copy', 'scripts', 'styles', 'jade']);

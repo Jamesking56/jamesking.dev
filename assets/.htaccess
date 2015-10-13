@@ -1,0 +1,16 @@
+# Rewrite Rules
+Options -Indexes
+RewriteEngine On
+RewriteBase /
+
+# Force www
+RewriteEngine On
+RewriteCond %{HTTP_HOST} !^www.jamesking56.uk$
+RewriteRule ^(.*)$ http://www.jamesking56.uk/$1 [R=301]
+
+# PHP Settings
+SetEnv TZ Europe/London
+
+# 404 -> Home
+ErrorDocument 404 http://www.jamesking56.uk
+ErrorDocument 403 http://www.jamesking56.uk
