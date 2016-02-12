@@ -47,10 +47,10 @@ var gulp = require('gulp'),
     };
 
 var config = {
-    gravatar: "//gravatar.com/avatar/18272084a145b66c6b118b38a2fe7c23",
+    gravatar: "https://gravatar.com/avatar/18272084a145b66c6b118b38a2fe7c23",
     trustpilot: {
         enabled: false, // Disabled until I have some reviews.
-        script: "//widget.trustpilot.com/bootstrap/v5/tp.widget.sync.bootstrap.min.js",
+        script: "https://widget.trustpilot.com/bootstrap/v5/tp.widget.sync.bootstrap.min.js",
         templateId: "5419b6a8b0d04a076446a9ad",
         businessId: "560a7f0d0000ff000583d56a",
         url: "https://uk.trustpilot.com/review/jamesking56.uk"
