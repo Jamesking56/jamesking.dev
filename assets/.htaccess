@@ -6,7 +6,12 @@ RewriteBase /
 # Force www
 RewriteEngine On
 RewriteCond %{HTTP_HOST} !^www.jamesking56.uk$
-RewriteRule ^(.*)$ http://www.jamesking56.uk/$1 [R=301]
+RewriteRule ^(.*)$ https://www.jamesking56.uk/$1 [R=301]
+RewriteCond %{SERVER_PORT} 80 
+RewriteRule ^(.*)$ https://www.jamesking56.uk/$1 [R,L]
+
+# Subdomain Redirects
+RedirectMatch 301 ^/blog/(.*)$ http://blog.jamesking56.uk/$1
 
 # PHP Settings
 SetEnv TZ Europe/London
@@ -14,3 +19,10 @@ SetEnv TZ Europe/London
 # 404 -> Home
 ErrorDocument 404 http://www.jamesking56.uk
 ErrorDocument 403 http://www.jamesking56.uk
+
+# Security Headers
+<IfModule mod_headers.c>
+  Header set X-Frame-Options: SAMEORIGIN
+  Header set X-XSS-Protection: "1; mode=block"
+  Header set X-Content-Type-Options: nosniff
+</IfModule>
