@@ -31,3 +31,12 @@
 .imac-screen.flexslider {
     display: none;
 }
+
+.g-recaptcha div {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#contact-form .field-wrap {
+    margin-bottom: 40px;
+}

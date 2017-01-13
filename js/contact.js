@@ -43,7 +43,11 @@ $(document).ready(function() {
 				$('#contact-form button').html('<i class="fa fa-check"></i>'+okMessage);
 				
 				$('#contact-form')[0].reset();
-				
+
+				if (grecaptcha) {
+                    grecaptcha.reset();
+                }
+
 				setTimeout(function(){
 					$('#contact-form button').html(buttonCopy);
 					$('#contact-form button').width('auto');
