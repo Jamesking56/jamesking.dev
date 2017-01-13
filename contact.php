@@ -7,7 +7,22 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
     $email = filter_input(INPUT_POST, "email");
     $message = filter_input(INPUT_POST, "message");
 
-    if (!empty($name) && !empty($email) && !empty($message)) {
+    // Captcha validation
+    $postData = [
+        'secret' => '6Ld7wBEUAAAAAL25Db70AENf7a8hGnH5XqB9cIEJ',
+        'response' => filter_input(INPUT_POST, "g-recaptcha-response"),
+        'remoteip' => $_SERVER['REMOTE_ADDR']
+    ];
+    $curl = curl_init();
+    curl_setopt_array($curl, [
+        CURLOPT_URL => 'https://www.google.com/recaptcha/api/siteverify',
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => http_build_query($postData),
+        CURLOPT_RETURNTRANSFER => 1
+    ]);
+    $response = json_decode(curl_exec($curl), true);
+
+    if (!empty($name) && !empty($email) && !empty($message) && $response['success']) {
         $newMessage = "There has been a contact form submission made on " . date("d/m/Y") . " from " . filter_input(INPUT_SERVER, "REMOTE_ADDR") . ":\n";
         $newMessage .= "\n";
         $newMessage .= "Name: " . $name;
