@@ -61,8 +61,6 @@ var config = {
     }
 };
 
-console.log(production(), development());
-
 gulp.task('clean', function() {
     'use strict';
 
