@@ -1,5 +1,12 @@
 footer#main-footer.dark-bg.light-typo
     .container
+        .row
+            .col-sm-12.text-center
+                | <!-- Google Analytics -->
+                script(async='', src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')
+                ins.adsbygoogle(style='display:inline-block;width:728px;height:90px', data-ad-client='ca-pub-3500793750829481', data-ad-slot='7008426711')
+                script.
+                    (adsbygoogle = window.adsbygoogle || []).push({});
         hr
         .row
             .col-sm-6
@@ -22,4 +29,23 @@ footer#main-footer.dark-bg.light-typo
             .col-sm-6.text-right
                 p
                     | &copy; 2016 James King, all rights reserved.
+<!--Start of HappyFox Live Chat Script-->
+script.
+    window.HFCHAT_CONFIG = {
+        EMBED_TOKEN: "2353ff30-2d27-11e5-bd39-df93b816f38c",
+        ACCESS_TOKEN: "4fae865830904ae89cf9dfe797cbc380",
+        HOST_URL: "https://happyfoxchat.com",
+        ASSETS_URL: "https://d1l7z5ofrj6ab8.cloudfront.net/visitor"
+    };
+
+    (function() {
+        var scriptTag = document.createElement('script');
+        scriptTag.type = 'text/javascript';
+        scriptTag.async = true;
+        scriptTag.src = window.HFCHAT_CONFIG.ASSETS_URL + '/js/widget-loader.js';
+
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(scriptTag, s);
+    })();
+<!--End of HappyFox Live Chat Script-->
 script(src="app.min.js")
