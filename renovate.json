@@ -6,6 +6,7 @@
         ":automergeDigest",
         ":automergePatch",
         ":pinSkipCi",
+        ":masterIssueApproval",
         ":assignAndReview(Jamesking56)"
     ],
     "ignoreDeps": ["laravel/*"]
