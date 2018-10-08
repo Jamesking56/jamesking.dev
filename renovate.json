@@ -1,0 +1,12 @@
+{
+    "extends": [
+        "config:base",
+        ":rebaseStalePrs",
+        ":prNotPending",
+        ":automergeDigest",
+        ":automergePatch",
+        ":pinSkipCi",
+        ":assignAndReview(Jamesking56)"
+    ],
+    "ignoreDeps": ["laravel/*"]
+}
