@@ -10,7 +10,7 @@ var gulp = require('gulp'),
     production = environments.production,
     paths = {
         scripts: [
-            "node_modules/jquery/jquery.min.js",
+            "node_modules/jquery/dist/jquery.min.js",
             "node_modules/bootstrap/dist/js/bootstrap.js",
             "node_modules/jquery.easing/jquery.easing.min.js",
             "*js/jquery.scrollto.js",
