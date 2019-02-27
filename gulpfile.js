@@ -10,9 +10,9 @@ var gulp = require('gulp'),
     production = environments.production,
     paths = {
         scripts: [
-            "*js/libs/jquery-1.9.1.min.js",
-            "*js/libs/bootstrap.min.js",
-            "*js/jquery.easing.1.3.min.js",
+            "node_modules/jquery/jquery.min.js",
+            "node_modules/bootstrap/dist/js/bootstrap.js",
+            "node_modules/jquery.easing/jquery.easing.min.js",
             "*js/jquery.scrollto.js",
             "*js/jquery.fittext.js",
             "*js/jquery.flexslider.min.js",
@@ -23,7 +23,7 @@ var gulp = require('gulp'),
             "*js/meflat.js"
         ],
         styles: [
-            '*css/bootstrap.min.css',
+            'node_modules/bootstrap/dist/css/bootstrap.min.css',
             '*css/font-awesome.min.css',
             '*css/flexslider.css',
             '*css/meflat-light-green.css',
