@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/Jamesking56/Jamesking56.uk#readme",
   "dependencies": {
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^3.4.1",
     "easy-pie-chart": "^2.1.7",
     "fittext.js": "^1.2.0",
     "flexslider": "^2.6.3",
@@ -25,7 +25,7 @@
     "jquery": "3.0.0",
     "jquery.easing": "^1.4.1",
     "jquery.scrollto": "^2.1.2",
-    "modernizr": "^3.5.0",
+    "modernizr": "^3.7.0",
     "respond.js": "^1.4.2",
     "waypoints": "^4.0.1"
   },
