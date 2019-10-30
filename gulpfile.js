@@ -4,7 +4,7 @@ var gulp = require('gulp'),
     copy = require('gulp-copy'),
     minifyCss = require('gulp-minify-css'),
     uglify = require('gulp-uglify'),
-    clean = require('gulp-clean'),
+    // clean = require('gulp-clean'),
     environments = require('gulp-environments'),
     development = environments.development,
     production = environments.production,
@@ -40,11 +40,14 @@ var gulp = require('gulp'),
             'assets/placeholder-450x270.jpg',
             'assets/robots.txt',
             'assets/sitemap.xml',
-            'js/libs/modernizr.min.js',
-            production() ? 'assets/.htaccess' : 'none'
+            'js/libs/modernizr.min.js'
         ],
         dist: './dist/'
     };
+
+if (production()) {
+    paths.extras.push('assets/.htaccess');
+}
 
 var config = {
     gravatar: "https://gravatar.com/avatar/18272084a145b66c6b118b38a2fe7c23",
@@ -60,13 +63,6 @@ var config = {
         code: "UA-3000159-38"
     }
 };
-
-gulp.task('clean', function() {
-    'use strict';
-
-    return gulp.src([])
-        .pipe(clean({ force: true }));
-});
 
 gulp.task('scripts', function() {
     'use strict';
@@ -104,4 +100,4 @@ gulp.task('copy', function() {
         .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('default', ['clean', 'copy', 'scripts', 'styles', 'jade']);
+gulp.task('default', gulp.series(['copy', 'scripts', 'styles', 'jade']));
