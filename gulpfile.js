@@ -1,6 +1,6 @@
 var gulp = require('gulp'),
     concat = require('gulp-concat'),
-    jade = require('gulp-jade'),
+    pug = require('gulp-pug'),
     copy = require('gulp-copy'),
     minifyCss = require('gulp-minify-css'),
     uglify = require('gulp-uglify'),
@@ -28,8 +28,8 @@ var gulp = require('gulp'),
             '*css/meflat-light-green.css',
             '*css/overrides.css'
         ],
-        jade: [
-            'jade/index.jade'
+        pug: [
+            'pug/index.pug'
         ],
         extras: [
             'contact.php',
@@ -81,16 +81,16 @@ gulp.task('styles', function() {
         .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('jade', function() {
+gulp.task('pug', function() {
     'use strict';
 
-    return gulp.src(paths.jade)
-        .pipe(jade({
+    return gulp.src(paths.pug)
+        .pipe(pug({
             pretty: development(),
             locals: config
         }))
         .pipe(gulp.dest(paths.dist));
-});
+})
 
 gulp.task('copy', function() {
     'use strict';
@@ -99,4 +99,4 @@ gulp.task('copy', function() {
         .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('default', gulp.series(['copy', 'scripts', 'styles', 'jade']));
+gulp.task('default', gulp.series(['copy', 'scripts', 'styles', 'pug']));
