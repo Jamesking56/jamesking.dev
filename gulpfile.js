@@ -1,10 +1,9 @@
 var gulp = require('gulp'),
     concat = require('gulp-concat'),
-    jade = require('gulp-jade'),
+    pug = require('gulp-pug'),
     copy = require('gulp-copy'),
-    minifyCss = require('gulp-minify-css'),
+    cleanCss = require('gulp-clean-css'),
     uglify = require('gulp-uglify'),
-    clean = require('gulp-clean'),
     environments = require('gulp-environments'),
     development = environments.development,
     production = environments.production,
@@ -29,8 +28,8 @@ var gulp = require('gulp'),
             '*css/meflat-light-green.css',
             '*css/overrides.css'
         ],
-        jade: [
-            'jade/index.jade'
+        pug: [
+            'pug/index.pug'
         ],
         extras: [
             'contact.php',
@@ -40,11 +39,14 @@ var gulp = require('gulp'),
             'assets/placeholder-450x270.jpg',
             'assets/robots.txt',
             'assets/sitemap.xml',
-            'js/libs/modernizr.min.js',
-            production() ? 'assets/.htaccess' : 'none'
+            'js/libs/modernizr.min.js'
         ],
         dist: './dist/'
     };
+
+if (production()) {
+    paths.extras.push('assets/.htaccess');
+}
 
 var config = {
     gravatar: "https://gravatar.com/avatar/18272084a145b66c6b118b38a2fe7c23",
@@ -61,13 +63,6 @@ var config = {
     }
 };
 
-gulp.task('clean', function() {
-    'use strict';
-
-    return gulp.src([])
-        .pipe(clean({ force: true }));
-});
-
 gulp.task('scripts', function() {
     'use strict';
 
@@ -82,20 +77,20 @@ gulp.task('styles', function() {
 
     return gulp.src(paths.styles)
         .pipe(concat('app.min.css'))
-        .pipe(production(minifyCss()))
+        .pipe(production(cleanCss()))
         .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('jade', function() {
+gulp.task('pug', function() {
     'use strict';
 
-    return gulp.src(paths.jade)
-        .pipe(jade({
+    return gulp.src(paths.pug)
+        .pipe(pug({
             pretty: development(),
             locals: config
         }))
         .pipe(gulp.dest(paths.dist));
-});
+})
 
 gulp.task('copy', function() {
     'use strict';
@@ -104,4 +99,4 @@ gulp.task('copy', function() {
         .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('default', ['clean', 'copy', 'scripts', 'styles', 'jade']);
+gulp.task('default', gulp.series(['copy', 'scripts', 'styles', 'pug']));

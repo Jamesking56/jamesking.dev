@@ -38,7 +38,7 @@ $(document).ready(function() {
 	$("#home .text-col h1").fitText(0.9, { minFontSize: '38px', maxFontSize: '63px' });
 	$("#home .text-col p").fitText(1.2, { minFontSize: '18px', maxFontSize: '32px' });
 	
-	$('.imac-screen img').load(function(){
+	$('.imac-screen img').on('load', function(){
 		$('#home .text-col h1, #home .text-col p, #home .imac-frame').addClass('in');
 	});
 	
@@ -64,7 +64,7 @@ $(document).ready(function() {
 	/*============================================
 	Project thumbs - Masonry
 	==============================================*/
-	$(window).load(function(){
+	$(window).on('load', function(){
 
 		$('#projects-container').css({visibility:'visible'});
 
