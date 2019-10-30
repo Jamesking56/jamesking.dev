@@ -32,7 +32,6 @@ var gulp = require('gulp'),
             'pug/index.pug'
         ],
         extras: [
-            'contact.php',
             '*fonts/*',
             'assets/imac.png',
             'assets/loader.gif',

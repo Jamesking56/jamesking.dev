@@ -4,7 +4,7 @@ section#contact.dark-bg.light-typo.padding-top
             h1.scrollimation.scale-in Drop Me a Line
             p
                 | Tell me about your cool project
-        form#contact-form.bl_form.text-center(action="contact.php", method="post", novalidate="")
+        form#contact-form.bl_form.text-center(name="contact", method="post", data-netlify=true)
             span.field-wrap.scrollimation.fade-right
                 label.control-label(for="contact-name") Name
                 input#contact-name.label_better.requiredField(type="text", name="name", data-new-placeholder="Name", placeholder="Name", data-error-empty="*Enter your name")
@@ -14,7 +14,6 @@ section#contact.dark-bg.light-typo.padding-top
             span.field-wrap.scrollimation.fade-right
                 label.control-label(for="contact-message") Message
                 textarea#contact-message.label_better.requiredField(name="message", rows="1", data-new-placeholder="Message", placeholder="Message", data-error-empty="*Enter your message")
-            div.g-recaptcha(data-sitekey="6Ld7wBEUAAAAACjxAOthifNX6f_rjIv6IzKbH10f")
             p.text-center
                 button.btn.btn-meflat.icon-left(name="submit", type="submit", data-error-message="Error!", data-sending-message="Sending...", data-ok-message="Message Sent")
                     i.fa.fa-paper-plane

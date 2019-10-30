@@ -44,10 +44,6 @@ $(document).ready(function() {
 				
 				$('#contact-form')[0].reset();
 
-				if (grecaptcha) {
-                    grecaptcha.reset();
-                }
-
 				setTimeout(function(){
 					$('#contact-form button').html(buttonCopy);
 					$('#contact-form button').width('auto');
