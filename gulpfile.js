@@ -2,7 +2,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     pug = require('gulp-pug'),
     copy = require('gulp-copy'),
-    minifyCss = require('gulp-minify-css'),
+    cleanCss = require('gulp-clean-css'),
     uglify = require('gulp-uglify'),
     environments = require('gulp-environments'),
     development = environments.development,
@@ -77,7 +77,7 @@ gulp.task('styles', function() {
 
     return gulp.src(paths.styles)
         .pipe(concat('app.min.css'))
-        .pipe(production(minifyCss()))
+        .pipe(production(cleanCss()))
         .pipe(gulp.dest(paths.dist));
 });
 
