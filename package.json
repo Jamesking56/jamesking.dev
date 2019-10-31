@@ -4,6 +4,8 @@
   "description": "My personal website",
   "main": "index.js",
   "scripts": {
+    "cs": "prettier --write '{js/**/*.js,css/**/*.css}'",
+    "cstest": "prettier --check '{js/**/*.js,css/**/*.css}'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -36,6 +38,7 @@
     "gulp-pug": "^4.0.1",
     "gulp-uglify": "3.0.2",
     "jquery-migrate": "^3.1.0",
+    "prettier": "1.18.2",
     "rimraf": "3.0.0",
     "semver": "6.3.0",
     "uglify-save-license": "0.4.1"
