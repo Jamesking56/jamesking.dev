@@ -1,4 +1,4 @@
-name: Lint Prettier
+name: Percy Visual Testing
 
 on: [push]
 
@@ -14,9 +14,13 @@ jobs:
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-            - name: lint prettier
+            - name: generate HTML
               run: |
                   npm ci
-                  npm run cstest
+                  gulp
+            - name: run percy
+              run: |
+                  npx percy snapshot dist/
               env:
                   CI: true
+                  PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
