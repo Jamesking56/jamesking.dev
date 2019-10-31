@@ -9,12 +9,12 @@ var gulp = require('gulp'),
     production = environments.production,
     paths = {
         scripts: [
-            "node_modules/jquery/dist/jquery.min.js",
-            "node_modules/bootstrap/dist/js/bootstrap.js",
-            "node_modules/jquery.easing/jquery.easing.min.js",
+            'node_modules/jquery/dist/jquery.js',
+            'node_modules/bootstrap/dist/js/bootstrap.js',
+            'node_modules/jquery.easing/jquery.easing.js',
             "*js/jquery.scrollto.js",
             "*js/jquery.fittext.js",
-            "*js/jquery.flexslider.min.js",
+            'node_modules/flexslider/jquery.flexslider.js',
             "*js/jquery.masonry.js",
             "*js/waypoints.min.js",
             "*js/jquery.label_better.min.js",
@@ -23,8 +23,8 @@ var gulp = require('gulp'),
         ],
         styles: [
             'node_modules/bootstrap/dist/css/bootstrap.min.css',
-            '*css/font-awesome.min.css',
-            '*css/flexslider.css',
+            'node_modules/font-awesome/css/font-awesome.css',
+            'node_modules/flexslider/flexslider.css',
             '*css/meflat-light-green.css',
             '*css/overrides.css'
         ],
@@ -45,6 +45,8 @@ var gulp = require('gulp'),
 
 if (production()) {
     paths.extras.push('assets/.htaccess');
+} else {
+    paths.scripts.splice(1, 0, 'node_modules/jquery-migrate/dist/jquery-migrate.js');
 }
 
 var config = {

@@ -1,5 +1,12 @@
 $(document).ready(function() {
 	$('#contact-form').submit(function() {
+		
+		if($('#contact-form').hasClass('clicked')){
+            return false;
+        }
+		
+		$('#contact-form').addClass('clicked');
+		
 		var buttonWidth=$('#contact-form button').width();
 		
 		var buttonCopy = $('#contact-form button').html(),
@@ -18,7 +25,7 @@ $(document).ready(function() {
 				$(this).addClass('inputError');
 				hasError = true;
 			} else if($(this).is("input[type='email']") || $(this).attr('name')==='email') {
-				var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+				var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,10})?$/;
 				if(!emailReg.test($.trim($(this).val()))) {
 					var invalidEmail = $(this).data('error-invalid');
 					$(this).parents('.field-wrap').append('<span class="error-message" style="display:none;">'+invalidEmail+'.</span>').find('.error-message').fadeIn('fast');
@@ -33,6 +40,7 @@ $(document).ready(function() {
 			setTimeout(function(){
 				$('#contact-form button').html(buttonCopy);
 				$('#contact-form button').width('auto');
+				$('#contact-form').removeClass('clicked');
 			},2000);
 		}
 		else {
@@ -41,12 +49,11 @@ $(document).ready(function() {
 			var formInput = $(this).serialize();
 			$.post($(this).attr('action'),formInput, function(data){
 				$('#contact-form button').html('<i class="fa fa-check"></i>'+okMessage);
-				
 				$('#contact-form')[0].reset();
-
 				setTimeout(function(){
 					$('#contact-form button').html(buttonCopy);
 					$('#contact-form button').width('auto');
+					$('#contact-form').removeClass('clicked');
 				},2000);
 				
 			});
