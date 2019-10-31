@@ -42,7 +42,7 @@ $(document).ready(function() {
     });
 
     if ($('#home .imac-screen').length) {
-        $('.imac-screen img').load(function() {
+        $('.imac-screen img').on('load', function() {
             $(
                 '#home .text-col h1, #home .text-col p, #home .imac-frame'
             ).addClass('in');
@@ -75,7 +75,7 @@ $(document).ready(function() {
     /*============================================
 	Project thumbs - Masonry
 	==============================================*/
-    $(window).load(function() {
+    $(window).on('load', function() {
         $('#projects-container').css({ visibility: 'visible' });
 
         $('#projects-container').masonry({

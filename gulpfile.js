@@ -10,6 +10,7 @@ const gulp = require('gulp'),
 let paths = {
     scripts: [
         'node_modules/jquery/dist/jquery.js',
+        production() ? 'node_modules/jquery-migrate/dist/jquery-migrate.min.js' : 'node_modules/jquery-migrate/dist/jquery-migrate.js',
         'node_modules/bootstrap/dist/js/bootstrap.js',
         'node_modules/jquery.easing/jquery.easing.js',
         "*js/jquery.scrollto.js",
@@ -45,8 +46,6 @@ let paths = {
 
 if (production()) {
     paths.extras.push('assets/.htaccess');
-} else {
-    paths.scripts.splice(1, 0, 'node_modules/jquery-migrate/dist/jquery-migrate.js');
 }
 
 const config = {
