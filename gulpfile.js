@@ -1,53 +1,55 @@
-var gulp = require('gulp'),
+const gulp = require('gulp'),
     concat = require('gulp-concat'),
     pug = require('gulp-pug'),
-    copy = require('gulp-copy'),
     cleanCss = require('gulp-clean-css'),
     uglify = require('gulp-uglify'),
     environments = require('gulp-environments'),
     development = environments.development,
-    production = environments.production,
-    paths = {
-        scripts: [
-            "node_modules/jquery/dist/jquery.min.js",
-            "node_modules/bootstrap/dist/js/bootstrap.js",
-            "node_modules/jquery.easing/jquery.easing.min.js",
-            "*js/jquery.scrollto.js",
-            "*js/jquery.fittext.js",
-            "*js/jquery.flexslider.min.js",
-            "*js/jquery.masonry.js",
-            "*js/waypoints.min.js",
-            "*js/jquery.label_better.min.js",
-            "*js/contact.js",
-            "*js/meflat.js"
-        ],
-        styles: [
-            'node_modules/bootstrap/dist/css/bootstrap.min.css',
-            '*css/font-awesome.min.css',
-            '*css/flexslider.css',
-            '*css/meflat-light-green.css',
-            '*css/overrides.css'
-        ],
-        pug: [
-            'pug/index.pug'
-        ],
-        extras: [
-            '*fonts/*',
-            'assets/imac.png',
-            'assets/loader.gif',
-            'assets/placeholder-450x270.jpg',
-            'assets/robots.txt',
-            'assets/sitemap.xml',
-            'js/libs/modernizr.min.js'
-        ],
-        dist: './dist/'
-    };
+    production = environments.production;
+
+let paths = {
+    scripts: [
+        'node_modules/jquery/dist/jquery.js',
+        'node_modules/bootstrap/dist/js/bootstrap.js',
+        'node_modules/jquery.easing/jquery.easing.js',
+        "*js/jquery.scrollto.js",
+        "*js/jquery.fittext.js",
+        'node_modules/flexslider/jquery.flexslider.js',
+        "*js/jquery.masonry.js",
+        "*js/waypoints.js",
+        "*js/jquery.label_better.js",
+        "*js/contact.js",
+        "*js/meflat.js"
+    ],
+    styles: [
+        'node_modules/bootstrap/dist/css/bootstrap.min.css',
+        'node_modules/font-awesome/css/font-awesome.css',
+        'node_modules/flexslider/flexslider.css',
+        '*css/meflat-light-green.css',
+        '*css/overrides.css'
+    ],
+    pug: [
+        'pug/index.pug'
+    ],
+    extras: [
+        'node_modules/font-awesome/*fonts/*',
+        'assets/imac.png',
+        'assets/loader.gif',
+        'assets/placeholder-450x270.jpg',
+        'assets/robots.txt',
+        'assets/sitemap.xml',
+        'js/libs/modernizr.min.js'
+    ],
+    dist: './dist/'
+};
 
 if (production()) {
     paths.extras.push('assets/.htaccess');
+} else {
+    paths.scripts.splice(1, 0, 'node_modules/jquery-migrate/dist/jquery-migrate.js');
 }
 
-var config = {
+const config = {
     gravatar: "https://gravatar.com/avatar/18272084a145b66c6b118b38a2fe7c23"
 };
 

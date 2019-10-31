@@ -11,493 +11,506 @@
 /*jshint browser: true, curly: true, eqeqeq: true, forin: false, immed: false, newcap: true, noempty: true, strict: true, undef: true */
 /*global jQuery: false */
 
-(function( window, $, undefined ){
+(function(window, $, undefined) {
+    'use strict';
 
-  'use strict';
+    /*
+     * smartresize: debounced resize event for jQuery
+     *
+     * latest version and complete README available on Github:
+     * https://github.com/louisremi/jquery.smartresize.js
+     *
+     * Copyright 2011 @louis_remi
+     * Licensed under the MIT license.
+     */
 
-  /*
-   * smartresize: debounced resize event for jQuery
-   *
-   * latest version and complete README available on Github:
-   * https://github.com/louisremi/jquery.smartresize.js
-   *
-   * Copyright 2011 @louis_remi
-   * Licensed under the MIT license.
-   */
+    var $event = $.event,
+        dispatchMethod = $.event.handle ? 'handle' : 'dispatch',
+        resizeTimeout;
 
-  var $event = $.event,
-      dispatchMethod = $.event.handle ? 'handle' : 'dispatch',
-      resizeTimeout;
+    $event.special.smartresize = {
+        setup: function() {
+            $(this).bind('resize', $event.special.smartresize.handler);
+        },
+        teardown: function() {
+            $(this).unbind('resize', $event.special.smartresize.handler);
+        },
+        handler: function(event, execAsap) {
+            // Save the context
+            var context = this,
+                args = arguments;
 
-  $event.special.smartresize = {
-    setup: function() {
-      $(this).bind( "resize", $event.special.smartresize.handler );
-    },
-    teardown: function() {
-      $(this).unbind( "resize", $event.special.smartresize.handler );
-    },
-    handler: function( event, execAsap ) {
-      // Save the context
-      var context = this,
-          args = arguments;
+            // set correct event type
+            event.type = 'smartresize';
 
-      // set correct event type
-      event.type = "smartresize";
+            if (resizeTimeout) {
+                clearTimeout(resizeTimeout);
+            }
+            resizeTimeout = setTimeout(
+                function() {
+                    $event[dispatchMethod].apply(context, args);
+                },
+                execAsap === 'execAsap' ? 0 : 100
+            );
+        },
+    };
 
-      if ( resizeTimeout ) { clearTimeout( resizeTimeout ); }
-      resizeTimeout = setTimeout(function() {
-        $event[ dispatchMethod ].apply( context, args );
+    $.fn.smartresize = function(fn) {
+        return fn
+            ? this.bind('smartresize', fn)
+            : this.trigger('smartresize', ['execAsap']);
+    };
 
-      }, execAsap === "execAsap"? 0 : 100 );
-    }
-  };
+    // ========================= Masonry ===============================
 
-  $.fn.smartresize = function( fn ) {
-    return fn ? this.bind( "smartresize", fn ) : this.trigger( "smartresize", ["execAsap"] );
-  };
+    // our "Widget" object constructor
+    $.Mason = function(options, element) {
+        this.element = $(element);
 
+        this._create(options);
+        this._init();
+    };
 
+    $.Mason.settings = {
+        isResizable: true,
+        isAnimated: false,
+        animationOptions: {
+            queue: false,
+            duration: 500,
+        },
+        gutterWidth: 0,
+        isRTL: false,
+        isFitWidth: false,
+        containerStyle: {
+            position: 'relative',
+        },
+    };
 
-// ========================= Masonry ===============================
+    $.Mason.prototype = {
+        _filterFindBricks: function($elems) {
+            var selector = this.options.itemSelector;
+            // if there is a selector
+            // filter/find appropriate item elements
+            return !selector
+                ? $elems
+                : $elems.filter(selector).add($elems.find(selector));
+        },
 
+        _getBricks: function($elems) {
+            var $bricks = this._filterFindBricks($elems)
+                .css({ position: 'absolute' })
+                .addClass('masonry-brick');
+            return $bricks;
+        },
 
-  // our "Widget" object constructor
-  $.Mason = function( options, element ){
-    this.element = $( element );
+        // sets up widget
+        _create: function(options) {
+            this.options = $.extend(true, {}, $.Mason.settings, options);
+            this.styleQueue = [];
 
-    this._create( options );
-    this._init();
-  };
+            // get original styles in case we re-apply them in .destroy()
+            var elemStyle = this.element[0].style;
+            this.originalStyle = {
+                // get height
+                height: elemStyle.height || '',
+            };
+            // get other styles that will be overwritten
+            var containerStyle = this.options.containerStyle;
+            for (var prop in containerStyle) {
+                this.originalStyle[prop] = elemStyle[prop] || '';
+            }
 
-  $.Mason.settings = {
-    isResizable: true,
-    isAnimated: false,
-    animationOptions: {
-      queue: false,
-      duration: 500
-    },
-    gutterWidth: 0,
-    isRTL: false,
-    isFitWidth: false,
-    containerStyle: {
-      position: 'relative'
-    }
-  };
+            this.element.css(containerStyle);
 
-  $.Mason.prototype = {
+            this.horizontalDirection = this.options.isRTL ? 'right' : 'left';
 
-    _filterFindBricks: function( $elems ) {
-      var selector = this.options.itemSelector;
-      // if there is a selector
-      // filter/find appropriate item elements
-      return !selector ? $elems : $elems.filter( selector ).add( $elems.find( selector ) );
-    },
+            var x = this.element.css('padding-' + this.horizontalDirection);
+            var y = this.element.css('padding-top');
+            this.offset = {
+                x: x ? parseInt(x, 10) : 0,
+                y: y ? parseInt(y, 10) : 0,
+            };
 
-    _getBricks: function( $elems ) {
-      var $bricks = this._filterFindBricks( $elems )
-        .css({ position: 'absolute' })
-        .addClass('masonry-brick');
-      return $bricks;
-    },
-    
-    // sets up widget
-    _create : function( options ) {
-      
-      this.options = $.extend( true, {}, $.Mason.settings, options );
-      this.styleQueue = [];
+            this.isFluid =
+                this.options.columnWidth &&
+                typeof this.options.columnWidth === 'function';
 
-      // get original styles in case we re-apply them in .destroy()
-      var elemStyle = this.element[0].style;
-      this.originalStyle = {
-        // get height
-        height: elemStyle.height || ''
-      };
-      // get other styles that will be overwritten
-      var containerStyle = this.options.containerStyle;
-      for ( var prop in containerStyle ) {
-        this.originalStyle[ prop ] = elemStyle[ prop ] || '';
-      }
+            // add masonry class first time around
+            var instance = this;
+            setTimeout(function() {
+                instance.element.addClass('masonry');
+            }, 0);
 
-      this.element.css( containerStyle );
+            // bind resize method
+            if (this.options.isResizable) {
+                $(window).bind('smartresize.masonry', function() {
+                    instance.resize();
+                });
+            }
 
-      this.horizontalDirection = this.options.isRTL ? 'right' : 'left';
+            // need to get bricks
+            this.reloadItems();
+        },
 
-      var x = this.element.css( 'padding-' + this.horizontalDirection );
-      var y = this.element.css( 'padding-top' );
-      this.offset = {
-        x: x ? parseInt( x, 10 ) : 0,
-        y: y ? parseInt( y, 10 ) : 0
-      };
-      
-      this.isFluid = this.options.columnWidth && typeof this.options.columnWidth === 'function';
+        // _init fires when instance is first created
+        // and when instance is triggered again -> $el.masonry();
+        _init: function(callback) {
+            this._getColumns();
+            this._reLayout(callback);
+        },
 
-      // add masonry class first time around
-      var instance = this;
-      setTimeout( function() {
-        instance.element.addClass('masonry');
-      }, 0 );
-      
-      // bind resize method
-      if ( this.options.isResizable ) {
-        $(window).bind( 'smartresize.masonry', function() { 
-          instance.resize();
-        });
-      }
+        option: function(key, value) {
+            // set options AFTER initialization:
+            // signature: $('#foo').bar({ cool:false });
+            if ($.isPlainObject(key)) {
+                this.options = $.extend(true, this.options, key);
+            }
+        },
 
+        // ====================== General Layout ======================
 
-      // need to get bricks
-      this.reloadItems();
+        // used on collection of atoms (should be filtered, and sorted before )
+        // accepts atoms-to-be-laid-out to start with
+        layout: function($bricks, callback) {
+            // place each brick
+            for (var i = 0, len = $bricks.length; i < len; i++) {
+                this._placeBrick($bricks[i]);
+            }
 
-    },
-  
-    // _init fires when instance is first created
-    // and when instance is triggered again -> $el.masonry();
-    _init : function( callback ) {
-      this._getColumns();
-      this._reLayout( callback );
-    },
+            // set the size of the container
+            var containerSize = {};
+            containerSize.height = Math.max.apply(Math, this.colYs);
+            if (this.options.isFitWidth) {
+                var unusedCols = 0;
+                i = this.cols;
+                // count unused columns
+                while (--i) {
+                    if (this.colYs[i] !== 0) {
+                        break;
+                    }
+                    unusedCols++;
+                }
+                // fit container to columns that have been used;
+                containerSize.width =
+                    (this.cols - unusedCols) * this.columnWidth -
+                    this.options.gutterWidth;
+            }
+            this.styleQueue.push({ $el: this.element, style: containerSize });
 
-    option: function( key, value ){
-      // set options AFTER initialization:
-      // signature: $('#foo').bar({ cool:false });
-      if ( $.isPlainObject( key ) ){
-        this.options = $.extend(true, this.options, key);
-      } 
-    },
-    
-    // ====================== General Layout ======================
+            // are we animating the layout arrangement?
+            // use plugin-ish syntax for css or animate
+            var styleFn = !this.isLaidOut
+                    ? 'css'
+                    : this.options.isAnimated
+                    ? 'animate'
+                    : 'css',
+                animOpts = this.options.animationOptions;
 
-    // used on collection of atoms (should be filtered, and sorted before )
-    // accepts atoms-to-be-laid-out to start with
-    layout : function( $bricks, callback ) {
+            // process styleQueue
+            var obj;
+            for (i = 0, len = this.styleQueue.length; i < len; i++) {
+                obj = this.styleQueue[i];
+                obj.$el[styleFn](obj.style, animOpts);
+            }
 
-      // place each brick
-      for (var i=0, len = $bricks.length; i < len; i++) {
-        this._placeBrick( $bricks[i] );
-      }
-      
-      // set the size of the container
-      var containerSize = {};
-      containerSize.height = Math.max.apply( Math, this.colYs );
-      if ( this.options.isFitWidth ) {
-        var unusedCols = 0;
-        i = this.cols;
-        // count unused columns
-        while ( --i ) {
-          if ( this.colYs[i] !== 0 ) {
-            break;
-          }
-          unusedCols++;
+            // clear out queue for next time
+            this.styleQueue = [];
+
+            // provide $elems as context for the callback
+            if (callback) {
+                callback.call($bricks);
+            }
+
+            this.isLaidOut = true;
+        },
+
+        // calculates number of columns
+        // i.e. this.columnWidth = 200
+        _getColumns: function() {
+            var container = this.options.isFitWidth
+                    ? this.element.parent()
+                    : this.element,
+                containerWidth = container.width();
+
+            // use fluid columnWidth function if there
+            this.columnWidth = this.isFluid
+                ? this.options.columnWidth(containerWidth)
+                : // if not, how about the explicitly set option?
+                  this.options.columnWidth ||
+                  // or use the size of the first item
+                  this.$bricks.outerWidth(true) ||
+                  // if there's no items, use size of container
+                  containerWidth;
+
+            this.columnWidth += this.options.gutterWidth;
+
+            this.cols = Math.floor(
+                (containerWidth + this.options.gutterWidth) / this.columnWidth
+            );
+            this.cols = Math.max(this.cols, 1);
+        },
+
+        // layout logic
+        _placeBrick: function(brick) {
+            var $brick = $(brick),
+                colSpan,
+                groupCount,
+                groupY,
+                groupColY,
+                j;
+
+            //how many columns does this brick span
+            colSpan = Math.ceil($brick.outerWidth(true) / this.columnWidth);
+            colSpan = Math.min(colSpan, this.cols);
+
+            if (colSpan === 1) {
+                // if brick spans only one column, just like singleMode
+                groupY = this.colYs;
+            } else {
+                // brick spans more than one column
+                // how many different places could this brick fit horizontally
+                groupCount = this.cols + 1 - colSpan;
+                groupY = [];
+
+                // for each group potential horizontal position
+                for (j = 0; j < groupCount; j++) {
+                    // make an array of colY values for that one group
+                    groupColY = this.colYs.slice(j, j + colSpan);
+                    // and get the max value of the array
+                    groupY[j] = Math.max.apply(Math, groupColY);
+                }
+            }
+
+            // get the minimum Y value from the columns
+            var minimumY = Math.min.apply(Math, groupY),
+                shortCol = 0;
+
+            // Find index of short column, the first from the left
+            for (var i = 0, len = groupY.length; i < len; i++) {
+                if (groupY[i] === minimumY) {
+                    shortCol = i;
+                    break;
+                }
+            }
+
+            // position the brick
+            var position = {
+                top: minimumY + this.offset.y,
+            };
+            // position.left or position.right
+            position[this.horizontalDirection] =
+                this.columnWidth * shortCol + this.offset.x;
+            this.styleQueue.push({ $el: $brick, style: position });
+
+            // apply setHeight to necessary columns
+            var setHeight = minimumY + $brick.outerHeight(true),
+                setSpan = this.cols + 1 - len;
+            for (i = 0; i < setSpan; i++) {
+                this.colYs[shortCol + i] = setHeight;
+            }
+        },
+
+        resize: function() {
+            var prevColCount = this.cols;
+            // get updated colCount
+            this._getColumns();
+            if (this.isFluid || this.cols !== prevColCount) {
+                // if column count has changed, trigger new layout
+                this._reLayout();
+            }
+        },
+
+        _reLayout: function(callback) {
+            // reset columns
+            var i = this.cols;
+            this.colYs = [];
+            while (i--) {
+                this.colYs.push(0);
+            }
+            // apply layout logic to all bricks
+            this.layout(this.$bricks, callback);
+        },
+
+        // ====================== Convenience methods ======================
+
+        // goes through all children again and gets bricks in proper order
+        reloadItems: function() {
+            this.$bricks = this._getBricks(this.element.children());
+        },
+
+        reload: function(callback) {
+            this.reloadItems();
+            this._init(callback);
+        },
+
+        // convienence method for working with Infinite Scroll
+        appended: function($content, isAnimatedFromBottom, callback) {
+            if (isAnimatedFromBottom) {
+                // set new stuff to the bottom
+                this._filterFindBricks($content).css({
+                    top: this.element.height(),
+                });
+                var instance = this;
+                setTimeout(function() {
+                    instance._appended($content, callback);
+                }, 1);
+            } else {
+                this._appended($content, callback);
+            }
+        },
+
+        _appended: function($content, callback) {
+            var $newBricks = this._getBricks($content);
+            // add new bricks to brick pool
+            this.$bricks = this.$bricks.add($newBricks);
+            this.layout($newBricks, callback);
+        },
+
+        // removes elements from Masonry widget
+        remove: function($content) {
+            this.$bricks = this.$bricks.not($content);
+            $content.remove();
+        },
+
+        // destroys widget, returns elements and container back (close) to original style
+        destroy: function() {
+            this.$bricks.removeClass('masonry-brick').each(function() {
+                this.style.position = '';
+                this.style.top = '';
+                this.style.left = '';
+            });
+
+            // re-apply saved container styles
+            var elemStyle = this.element[0].style;
+            for (var prop in this.originalStyle) {
+                elemStyle[prop] = this.originalStyle[prop];
+            }
+
+            this.element
+                .unbind('.masonry')
+                .removeClass('masonry')
+                .removeData('masonry');
+
+            $(window).unbind('.masonry');
+        },
+    };
+
+    // ======================= imagesLoaded Plugin ===============================
+    /*!
+     * jQuery imagesLoaded plugin v1.1.0
+     * http://github.com/desandro/imagesloaded
+     *
+     * MIT License. by Paul Irish et al.
+     */
+
+    // $('#my-container').imagesLoaded(myFunction)
+    // or
+    // $('img').imagesLoaded(myFunction)
+
+    // execute a callback when all images have loaded.
+    // needed because .load() doesn't work on cached images
+
+    // callback function gets image collection as argument
+    //  `this` is the container
+
+    $.fn.imagesLoaded = function(callback) {
+        var $this = this,
+            $images = $this.find('img').add($this.filter('img')),
+            len = $images.length,
+            blank =
+                'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==',
+            loaded = [];
+
+        function triggerCallback() {
+            callback.call($this, $images);
         }
-        // fit container to columns that have been used;
-        containerSize.width = (this.cols - unusedCols) * this.columnWidth - this.options.gutterWidth;
-      }
-      this.styleQueue.push({ $el: this.element, style: containerSize });
 
-      // are we animating the layout arrangement?
-      // use plugin-ish syntax for css or animate
-      var styleFn = !this.isLaidOut ? 'css' : (
-            this.options.isAnimated ? 'animate' : 'css'
-          ),
-          animOpts = this.options.animationOptions;
-
-      // process styleQueue
-      var obj;
-      for (i=0, len = this.styleQueue.length; i < len; i++) {
-        obj = this.styleQueue[i];
-        obj.$el[ styleFn ]( obj.style, animOpts );
-      }
-
-      // clear out queue for next time
-      this.styleQueue = [];
-
-      // provide $elems as context for the callback
-      if ( callback ) {
-        callback.call( $bricks );
-      }
-      
-      this.isLaidOut = true;
-    },
-    
-    // calculates number of columns
-    // i.e. this.columnWidth = 200
-    _getColumns : function() {
-      var container = this.options.isFitWidth ? this.element.parent() : this.element,
-          containerWidth = container.width();
-
-                         // use fluid columnWidth function if there
-      this.columnWidth = this.isFluid ? this.options.columnWidth( containerWidth ) :
-                    // if not, how about the explicitly set option?
-                    this.options.columnWidth ||
-                    // or use the size of the first item
-                    this.$bricks.outerWidth(true) ||
-                    // if there's no items, use size of container
-                    containerWidth;
-
-      this.columnWidth += this.options.gutterWidth;
-
-      this.cols = Math.floor( ( containerWidth + this.options.gutterWidth ) / this.columnWidth );
-      this.cols = Math.max( this.cols, 1 );
-
-    },
-
-    // layout logic
-    _placeBrick: function( brick ) {
-      var $brick = $(brick),
-          colSpan, groupCount, groupY, groupColY, j;
-
-      //how many columns does this brick span
-      colSpan = Math.ceil( $brick.outerWidth(true) / this.columnWidth );
-      colSpan = Math.min( colSpan, this.cols );
-
-      if ( colSpan === 1 ) {
-        // if brick spans only one column, just like singleMode
-        groupY = this.colYs;
-      } else {
-        // brick spans more than one column
-        // how many different places could this brick fit horizontally
-        groupCount = this.cols + 1 - colSpan;
-        groupY = [];
-
-        // for each group potential horizontal position
-        for ( j=0; j < groupCount; j++ ) {
-          // make an array of colY values for that one group
-          groupColY = this.colYs.slice( j, j+colSpan );
-          // and get the max value of the array
-          groupY[j] = Math.max.apply( Math, groupColY );
+        function imgLoaded(event) {
+            var img = event.target;
+            if (img.src !== blank && $.inArray(img, loaded) === -1) {
+                loaded.push(img);
+                if (--len <= 0) {
+                    setTimeout(triggerCallback);
+                    $images.unbind('.imagesLoaded', imgLoaded);
+                }
+            }
         }
 
-      }
-
-      // get the minimum Y value from the columns
-      var minimumY = Math.min.apply( Math, groupY ),
-          shortCol = 0;
-      
-      // Find index of short column, the first from the left
-      for (var i=0, len = groupY.length; i < len; i++) {
-        if ( groupY[i] === minimumY ) {
-          shortCol = i;
-          break;
+        // if no images, trigger immediately
+        if (!len) {
+            triggerCallback();
         }
-      }
 
-      // position the brick
-      var position = {
-        top: minimumY + this.offset.y
-      };
-      // position.left or position.right
-      position[ this.horizontalDirection ] = this.columnWidth * shortCol + this.offset.x;
-      this.styleQueue.push({ $el: $brick, style: position });
+        $images
+            .bind('load.imagesLoaded error.imagesLoaded', imgLoaded)
+            .each(function() {
+                // cached images don't fire load sometimes, so we reset src.
+                var src = this.src;
+                // webkit hack from http://groups.google.com/group/jquery-dev/browse_thread/thread/eee6ab7b2da50e1f
+                // data uri bypasses webkit log warning (thx doug jones)
+                this.src = blank;
+                this.src = src;
+            });
 
-      // apply setHeight to necessary columns
-      var setHeight = minimumY + $brick.outerHeight(true),
-          setSpan = this.cols + 1 - len;
-      for ( i=0; i < setSpan; i++ ) {
-        this.colYs[ shortCol + i ] = setHeight;
-      }
+        return $this;
+    };
 
-    },
-    
-    
-    resize: function() {
-      var prevColCount = this.cols;
-      // get updated colCount
-      this._getColumns();
-      if ( this.isFluid || this.cols !== prevColCount ) {
-        // if column count has changed, trigger new layout
-        this._reLayout();
-      }
-    },
-    
-    
-    _reLayout : function( callback ) {
-      // reset columns
-      var i = this.cols;
-      this.colYs = [];
-      while (i--) {
-        this.colYs.push( 0 );
-      }
-      // apply layout logic to all bricks
-      this.layout( this.$bricks, callback );
-    },
-    
-    // ====================== Convenience methods ======================
-    
-    // goes through all children again and gets bricks in proper order
-    reloadItems : function() {
-      this.$bricks = this._getBricks( this.element.children() );
-    },
-    
-    
-    reload : function( callback ) {
-      this.reloadItems();
-      this._init( callback );
-    },
-    
-
-    // convienence method for working with Infinite Scroll
-    appended : function( $content, isAnimatedFromBottom, callback ) {
-      if ( isAnimatedFromBottom ) {
-        // set new stuff to the bottom
-        this._filterFindBricks( $content ).css({ top: this.element.height() });
-        var instance = this;
-        setTimeout( function(){
-          instance._appended( $content, callback );
-        }, 1 );
-      } else {
-        this._appended( $content, callback );
-      }
-    },
-    
-    _appended : function( $content, callback ) {
-      var $newBricks = this._getBricks( $content );
-      // add new bricks to brick pool
-      this.$bricks = this.$bricks.add( $newBricks );
-      this.layout( $newBricks, callback );
-    },
-    
-    // removes elements from Masonry widget
-    remove : function( $content ) {
-      this.$bricks = this.$bricks.not( $content );
-      $content.remove();
-    },
-    
-    // destroys widget, returns elements and container back (close) to original style
-    destroy : function() {
-
-      this.$bricks
-        .removeClass('masonry-brick')
-        .each(function(){
-          this.style.position = '';
-          this.style.top = '';
-          this.style.left = '';
-        });
-      
-      // re-apply saved container styles
-      var elemStyle = this.element[0].style;
-      for ( var prop in this.originalStyle ) {
-        elemStyle[ prop ] = this.originalStyle[ prop ];
-      }
-
-      this.element
-        .unbind('.masonry')
-        .removeClass('masonry')
-        .removeData('masonry');
-      
-      $(window).unbind('.masonry');
-
-    }
-    
-  };
-  
-  
-  // ======================= imagesLoaded Plugin ===============================
-  /*!
-   * jQuery imagesLoaded plugin v1.1.0
-   * http://github.com/desandro/imagesloaded
-   *
-   * MIT License. by Paul Irish et al.
-   */
-
-
-  // $('#my-container').imagesLoaded(myFunction)
-  // or
-  // $('img').imagesLoaded(myFunction)
-
-  // execute a callback when all images have loaded.
-  // needed because .load() doesn't work on cached images
-
-  // callback function gets image collection as argument
-  //  `this` is the container
-
-  $.fn.imagesLoaded = function( callback ) {
-    var $this = this,
-        $images = $this.find('img').add( $this.filter('img') ),
-        len = $images.length,
-        blank = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==',
-        loaded = [];
-
-    function triggerCallback() {
-      callback.call( $this, $images );
-    }
-
-    function imgLoaded( event ) {
-      var img = event.target;
-      if ( img.src !== blank && $.inArray( img, loaded ) === -1 ){
-        loaded.push( img );
-        if ( --len <= 0 ){
-          setTimeout( triggerCallback );
-          $images.unbind( '.imagesLoaded', imgLoaded );
+    // helper function for logging errors
+    // $.error breaks jQuery chaining
+    var logError = function(message) {
+        if (window.console) {
+            window.console.error(message);
         }
-      }
-    }
+    };
 
-    // if no images, trigger immediately
-    if ( !len ) {
-      triggerCallback();
-    }
+    // =======================  Plugin bridge  ===============================
+    // leverages data method to either create or return $.Mason constructor
+    // A bit from jQuery UI
+    //   https://github.com/jquery/jquery-ui/blob/master/ui/jquery.ui.widget.js
+    // A bit from jcarousel
+    //   https://github.com/jsor/jcarousel/blob/master/lib/jquery.jcarousel.js
 
-    $images.bind( 'load.imagesLoaded error.imagesLoaded',  imgLoaded ).each( function() {
-      // cached images don't fire load sometimes, so we reset src.
-      var src = this.src;
-      // webkit hack from http://groups.google.com/group/jquery-dev/browse_thread/thread/eee6ab7b2da50e1f
-      // data uri bypasses webkit log warning (thx doug jones)
-      this.src = blank;
-      this.src = src;
-    });
+    $.fn.masonry = function(options) {
+        if (typeof options === 'string') {
+            // call method
+            var args = Array.prototype.slice.call(arguments, 1);
 
-    return $this;
-  };
-
-
-  // helper function for logging errors
-  // $.error breaks jQuery chaining
-  var logError = function( message ) {
-    if ( window.console ) {
-      window.console.error( message );
-    }
-  };
-  
-  // =======================  Plugin bridge  ===============================
-  // leverages data method to either create or return $.Mason constructor
-  // A bit from jQuery UI
-  //   https://github.com/jquery/jquery-ui/blob/master/ui/jquery.ui.widget.js
-  // A bit from jcarousel 
-  //   https://github.com/jsor/jcarousel/blob/master/lib/jquery.jcarousel.js
-
-  $.fn.masonry = function( options ) {
-    if ( typeof options === 'string' ) {
-      // call method
-      var args = Array.prototype.slice.call( arguments, 1 );
-
-      this.each(function(){
-        var instance = $.data( this, 'masonry' );
-        if ( !instance ) {
-          logError( "cannot call methods on masonry prior to initialization; " +
-            "attempted to call method '" + options + "'" );
-          return;
-        }
-        if ( !$.isFunction( instance[options] ) || options.charAt(0) === "_" ) {
-          logError( "no such method '" + options + "' for masonry instance" );
-          return;
-        }
-        // apply method
-        instance[ options ].apply( instance, args );
-      });
-    } else {
-      this.each(function() {
-        var instance = $.data( this, 'masonry' );
-        if ( instance ) {
-          // apply options & init
-          instance.option( options || {} );
-          instance._init();
+            this.each(function() {
+                var instance = $.data(this, 'masonry');
+                if (!instance) {
+                    logError(
+                        'cannot call methods on masonry prior to initialization; ' +
+                            "attempted to call method '" +
+                            options +
+                            "'"
+                    );
+                    return;
+                }
+                if (
+                    !$.isFunction(instance[options]) ||
+                    options.charAt(0) === '_'
+                ) {
+                    logError(
+                        "no such method '" + options + "' for masonry instance"
+                    );
+                    return;
+                }
+                // apply method
+                instance[options].apply(instance, args);
+            });
         } else {
-          // initialize new instance
-          $.data( this, 'masonry', new $.Mason( options, this ) );
+            this.each(function() {
+                var instance = $.data(this, 'masonry');
+                if (instance) {
+                    // apply options & init
+                    instance.option(options || {});
+                    instance._init();
+                } else {
+                    // initialize new instance
+                    $.data(this, 'masonry', new $.Mason(options, this));
+                }
+            });
         }
-      });
-    }
-    return this;
-  };
-
-})( window, jQuery );
+        return this;
+    };
+})(window, jQuery);
