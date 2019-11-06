@@ -33,6 +33,7 @@ let paths = {
         'pug/index.pug'
     ],
     extras: [
+        '_redirects',
         'node_modules/font-awesome/*fonts/*',
         'assets/imac.png',
         'assets/loader.gif',
