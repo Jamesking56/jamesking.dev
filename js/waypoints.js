@@ -239,14 +239,14 @@ https://github.com/imakewebthings/jquery-waypoints/blob/master/licenses.txt
                         }
                         if (
                             oldOffset !== null &&
-                            (oldOffset < (_ref = axis.oldScroll) &&
-                                _ref <= waypoint.offset)
+                            oldOffset < (_ref = axis.oldScroll) &&
+                            _ref <= waypoint.offset
                         ) {
                             return waypoint.trigger([axis.backward]);
                         } else if (
                             oldOffset !== null &&
-                            (oldOffset > (_ref1 = axis.oldScroll) &&
-                                _ref1 >= waypoint.offset)
+                            oldOffset > (_ref1 = axis.oldScroll) &&
+                            _ref1 >= waypoint.offset
                         ) {
                             return waypoint.trigger([axis.forward]);
                         } else if (
