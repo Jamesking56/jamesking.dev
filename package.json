@@ -30,7 +30,7 @@
     "respond.js": "^1.4.2"
   },
   "devDependencies": {
-    "bufferstreams": "2.0.1",
+    "bufferstreams": "3.0.0",
     "clone": "2.1.2",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.2.0",
