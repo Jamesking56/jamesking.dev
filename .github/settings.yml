@@ -48,18 +48,25 @@ repository:
 
 # Labels: define labels for Issues and Pull Requests
 labels:
+  - name: help wanted
+    oldname: help-wanted
+    color: 0e8a16
+    description: We need some help on this one.
+  - name: more-information-needed
+    color: d93f0b
+    description: We need more information from the issue/PR creator.
   - name: bug
-    color: CC0000
-    description: An issue with the system 🐛.
-
+    color: b60205
+    description: A problem with the site.
   - name: feature
-    # If including a `#`, make sure to wrap it with quotes!
-    color: '#336699'
-    description: New functionality.
-
-  - name: first-timers-only
-    # include the old name to rename an existing label
-    oldname: Help Wanted
+    color: 1d76db
+    description: Something completely new to develop.
+  - name: enhancement
+    color: 84b6eb
+    description: An enhancement to something already existing.
+  - name: good first issue
+    color: "5319e7"
+    description: Good issue for someone new to GitHub.
 
 # Milestones: define milestones for Issues and Pull Requests
 milestones:
