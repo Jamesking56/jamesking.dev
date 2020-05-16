@@ -1,2 +1,2 @@
-# Jamesking56.uk
+# Jamesking.dev
 My personal website.

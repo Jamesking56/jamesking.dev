@@ -1,5 +1,5 @@
 {
-  "name": "jamesking56",
+  "name": "jamesking.dev",
   "version": "1.0.1",
   "description": "My personal website",
   "main": "index.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Jamesking56/Jamesking56.uk.git"
+    "url": "git+https://github.com/Jamesking56/Jamesking.dev.git"
   },
-  "author": "James King <james@jamesking56.uk>",
+  "author": "James King <james@jamesking.dev>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Jamesking56/Jamesking56.uk/issues"
+    "url": "https://github.com/Jamesking56/Jamesking.dev/issues"
   },
-  "homepage": "https://github.com/Jamesking56/Jamesking56.uk#readme",
+  "homepage": "https://github.com/Jamesking56/Jamesking.dev#readme",
   "dependencies": {
     "bootstrap": "^3.4.1",
     "easy-pie-chart": "^2.1.7",
