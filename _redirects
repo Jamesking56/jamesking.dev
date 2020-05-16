@@ -1,5 +1,12 @@
 # Redirect domain aliases to primary domain
-http://jamesking56.co.uk/* https://www.jamesking56.uk/:splat 301!
-http://www.jamesking56.co.uk/* https://www.jamesking56.uk/:splat 301!
-https://jamesking56.co.uk/* https://www.jamesking56.uk/:splat 301!
-https://www.jamesking56.co.uk/* https://www.jamesking56.uk/:splat 301!
+http://jamesking56.co.uk/* https://jamesking.dev/:splat 301!
+http://www.jamesking56.co.uk/* https://jamesking.dev/:splat 301!
+https://jamesking56.co.uk/* https://jamesking.dev/:splat 301!
+https://www.jamesking56.co.uk/* https://jamesking.dev/:splat 301!
+http://jamesking56.uk/* https://jamesking.dev/:splat 301!
+http://www.jamesking56.uk/* https://jamesking.dev/:splat 301!
+https://jamesking56.uk/* https://jamesking.dev/:splat 301!
+https://www.jamesking56.uk/* https://jamesking.dev/:splat 301!
+
+# www to non-www
+https://www.jamesking.dev/* https://jamesking.dev/:splat 301!
