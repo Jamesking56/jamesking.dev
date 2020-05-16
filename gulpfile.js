@@ -50,7 +50,11 @@ if (production()) {
 }
 
 const config = {
-    gravatar: "https://gravatar.com/avatar/18272084a145b66c6b118b38a2fe7c23"
+    gravatar: "https://gravatar.com/avatar/18272084a145b66c6b118b38a2fe7c23",
+    ga: {
+        enabled: production(),
+        code: "GTM-5BL7MZZ"
+    }
 };
 
 gulp.task('scripts', function() {
