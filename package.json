@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/Jamesking56/Jamesking.dev#readme",
   "dependencies": {
-    "bootstrap": "^3.4.1",
+    "bootstrap": "^4.1.2",
     "easy-pie-chart": "^2.1.7",
     "fittext.js": "^1.2.0",
     "flexslider": "^2.7.2",
