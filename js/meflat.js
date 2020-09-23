@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     /*============================================
 	Navigation Functions
 	==============================================*/
@@ -8,7 +8,7 @@ $(document).ready(function() {
         $('#main-nav').addClass('scrolled');
     }
 
-    $(window).scroll(function() {
+    $(window).scroll(function () {
         if ($(window).scrollTop() === 0) {
             $('#main-nav').removeClass('scrolled');
         } else {
@@ -42,7 +42,7 @@ $(document).ready(function() {
     });
 
     if ($('#home .imac-screen').length) {
-        $('.imac-screen img').on('load', function() {
+        $('.imac-screen img').on('load', function () {
             $(
                 '#home .text-col h1, #home .text-col p, #home .imac-frame'
             ).addClass('in');
@@ -56,8 +56,8 @@ $(document).ready(function() {
     var color = $('#home').css('backgroundColor');
 
     $('.skills').waypoint(
-        function() {
-            $('.chart').each(function() {
+        function () {
+            $('.chart').each(function () {
                 $(this).easyPieChart({
                     size: 140,
                     animate: 2000,
@@ -75,7 +75,7 @@ $(document).ready(function() {
     /*============================================
 	Project thumbs - Masonry
 	==============================================*/
-    $(window).on('load', function() {
+    $(window).on('load', function () {
         $('#projects-container').css({ visibility: 'visible' });
 
         $('#projects-container').masonry({
@@ -94,17 +94,15 @@ $(document).ready(function() {
     /*============================================
 	Filter Projects
 	==============================================*/
-    $('#filter-works a').click(function(e) {
+    $('#filter-works a').click(function (e) {
         e.preventDefault();
 
         $('#filter-works li').removeClass('active');
-        $(this)
-            .parent('li')
-            .addClass('active');
+        $(this).parent('li').addClass('active');
 
         var category = $(this).attr('data-filter');
 
-        $('.project-item').each(function() {
+        $('.project-item').each(function () {
             if ($(this).is(category)) {
                 $(this).removeClass('filtered');
             } else {
@@ -121,7 +119,7 @@ $(document).ready(function() {
     /*============================================
 	Project Preview
 	==============================================*/
-    $('.project-item').click(function(e) {
+    $('.project-item').click(function (e) {
         e.preventDefault();
 
         var elem = $(this),
@@ -130,10 +128,7 @@ $(document).ready(function() {
             slidesHtml = '<ul class="slides">',
             elemDataCont = elem.find('.project-description');
 
-        slides = elem
-            .find('.project-description')
-            .data('images')
-            .split(',');
+        slides = elem.find('.project-description').data('images').split(',');
 
         for (var i = 0; i < slides.length; ++i) {
             slidesHtml =
@@ -143,20 +138,11 @@ $(document).ready(function() {
         slidesHtml = slidesHtml + '</ul>';
 
         $('#project-modal')
-            .on('show.bs.modal', function() {
-                $(this)
-                    .find('#hdr-title')
-                    .text(title);
-                $(this)
-                    .find('#sdbr-title')
-                    .text(title);
-                $(this)
-                    .find('#project-content')
-                    .html(descr);
-                $(this)
-                    .find('.screen')
-                    .addClass('flexslider')
-                    .html(slidesHtml);
+            .on('show.bs.modal', function () {
+                $(this).find('#hdr-title').text(title);
+                $(this).find('#sdbr-title').text(title);
+                $(this).find('#project-content').html(descr);
+                $(this).find('.screen').addClass('flexslider').html(slidesHtml);
 
                 if (elemDataCont.data('category')) {
                     $(this)
@@ -164,9 +150,7 @@ $(document).ready(function() {
                         .show()
                         .text(elemDataCont.data('category'));
                 } else {
-                    $(this)
-                        .find('#sdbr-category')
-                        .hide();
+                    $(this).find('#sdbr-category').hide();
                 }
 
                 if (elemDataCont.data('date')) {
@@ -175,9 +159,7 @@ $(document).ready(function() {
                         .show()
                         .text(elemDataCont.data('date'));
                 } else {
-                    $(this)
-                        .find('#sdbr-date')
-                        .hide();
+                    $(this).find('#sdbr-date').hide();
                 }
 
                 if (elemDataCont.data('client')) {
@@ -186,9 +168,7 @@ $(document).ready(function() {
                         .show()
                         .text(elemDataCont.data('client'));
                 } else {
-                    $(this)
-                        .find('#sdbr-client')
-                        .hide();
+                    $(this).find('#sdbr-client').hide();
                 }
 
                 if (elemDataCont.data('link')) {
@@ -200,9 +180,7 @@ $(document).ready(function() {
                         .text(extLink[0])
                         .attr('href', extLink[1]);
                 } else {
-                    $(this)
-                        .find('#sdbr-link')
-                        .hide();
+                    $(this).find('#sdbr-link').hide();
                 }
 
                 if (elemDataCont.data('descr')) {
@@ -211,12 +189,10 @@ $(document).ready(function() {
                         .show()
                         .text(elemDataCont.data('descr'));
                 } else {
-                    $(this)
-                        .find('#sdbr-descr')
-                        .hide();
+                    $(this).find('#sdbr-descr').hide();
                 }
 
-                setTimeout(function() {
+                setTimeout(function () {
                     $('.screen.flexslider').flexslider({
                         prevText: '<i class="fa fa-angle-left"></i>',
                         nextText: '<i class="fa fa-angle-right"></i>',
@@ -225,7 +201,7 @@ $(document).ready(function() {
                         controlNav: false,
                         pauseOnAction: false,
                         pauseOnHover: true,
-                        start: function() {
+                        start: function () {
                             $('#project-modal .screen')
                                 .addClass('done')
                                 .prev('.loader')
@@ -237,10 +213,8 @@ $(document).ready(function() {
             .modal({ backdrop: false });
     });
 
-    $('#project-modal').on('hidden.bs.modal', function() {
-        $(this)
-            .find('.loader')
-            .show();
+    $('#project-modal').on('hidden.bs.modal', function () {
+        $(this).find('.loader').show();
         $(this)
             .find('.screen')
             .removeClass('flexslider')
@@ -252,7 +226,7 @@ $(document).ready(function() {
     /*============================================
 	ScrollTo Links
 	==============================================*/
-    $('a.scrollto').click(function(e) {
+    $('a.scrollto').click(function (e) {
         $('html,body').scrollTo(this.hash, this.hash, {
             gap: { y: -50 },
             animation: { easing: 'easeInOutCubic', duration: 1600 },
@@ -260,9 +234,7 @@ $(document).ready(function() {
         e.preventDefault();
 
         if ($('.navbar-collapse').hasClass('in')) {
-            $('.navbar-collapse')
-                .removeClass('in')
-                .addClass('collapse');
+            $('.navbar-collapse').removeClass('in').addClass('collapse');
         }
     });
 
@@ -291,11 +263,11 @@ $(document).ready(function() {
 	Scrolling Animations
 	==============================================*/
     $('.scrollimation').waypoint(
-        function() {
+        function () {
             $(this).addClass('in');
         },
         {
-            offset: function() {
+            offset: function () {
                 var h = $(window).height();
                 var elemh = $(this).outerHeight();
                 if (elemh > h * 0.3) {
@@ -310,7 +282,7 @@ $(document).ready(function() {
     /*============================================
 	Resize Functions
 	==============================================*/
-    $(window).resize(function() {
+    $(window).resize(function () {
         scrollSpyRefresh();
         waypointsRefresh();
     });
@@ -318,7 +290,7 @@ $(document).ready(function() {
 	Refresh scrollSpy function
 	==============================================*/
     function scrollSpyRefresh() {
-        setTimeout(function() {
+        setTimeout(function () {
             $('body').scrollspy('refresh');
         }, 1000);
     }
@@ -327,7 +299,7 @@ $(document).ready(function() {
 	Refresh waypoints function
 	==============================================*/
     function waypointsRefresh() {
-        setTimeout(function() {
+        setTimeout(function () {
             $.waypoints('refresh');
         }, 1000);
     }

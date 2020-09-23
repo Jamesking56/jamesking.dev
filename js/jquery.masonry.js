@@ -11,7 +11,7 @@
 /*jshint browser: true, curly: true, eqeqeq: true, forin: false, immed: false, newcap: true, noempty: true, strict: true, undef: true */
 /*global jQuery: false */
 
-(function(window, $, undefined) {
+(function (window, $, undefined) {
     'use strict';
 
     /*
@@ -29,13 +29,13 @@
         resizeTimeout;
 
     $event.special.smartresize = {
-        setup: function() {
+        setup: function () {
             $(this).bind('resize', $event.special.smartresize.handler);
         },
-        teardown: function() {
+        teardown: function () {
             $(this).unbind('resize', $event.special.smartresize.handler);
         },
-        handler: function(event, execAsap) {
+        handler: function (event, execAsap) {
             // Save the context
             var context = this,
                 args = arguments;
@@ -47,7 +47,7 @@
                 clearTimeout(resizeTimeout);
             }
             resizeTimeout = setTimeout(
-                function() {
+                function () {
                     $event[dispatchMethod].apply(context, args);
                 },
                 execAsap === 'execAsap' ? 0 : 100
@@ -55,7 +55,7 @@
         },
     };
 
-    $.fn.smartresize = function(fn) {
+    $.fn.smartresize = function (fn) {
         return fn
             ? this.bind('smartresize', fn)
             : this.trigger('smartresize', ['execAsap']);
@@ -64,7 +64,7 @@
     // ========================= Masonry ===============================
 
     // our "Widget" object constructor
-    $.Mason = function(options, element) {
+    $.Mason = function (options, element) {
         this.element = $(element);
 
         this._create(options);
@@ -87,7 +87,7 @@
     };
 
     $.Mason.prototype = {
-        _filterFindBricks: function($elems) {
+        _filterFindBricks: function ($elems) {
             var selector = this.options.itemSelector;
             // if there is a selector
             // filter/find appropriate item elements
@@ -96,7 +96,7 @@
                 : $elems.filter(selector).add($elems.find(selector));
         },
 
-        _getBricks: function($elems) {
+        _getBricks: function ($elems) {
             var $bricks = this._filterFindBricks($elems)
                 .css({ position: 'absolute' })
                 .addClass('masonry-brick');
@@ -104,7 +104,7 @@
         },
 
         // sets up widget
-        _create: function(options) {
+        _create: function (options) {
             this.options = $.extend(true, {}, $.Mason.settings, options);
             this.styleQueue = [];
 
@@ -137,13 +137,13 @@
 
             // add masonry class first time around
             var instance = this;
-            setTimeout(function() {
+            setTimeout(function () {
                 instance.element.addClass('masonry');
             }, 0);
 
             // bind resize method
             if (this.options.isResizable) {
-                $(window).bind('smartresize.masonry', function() {
+                $(window).bind('smartresize.masonry', function () {
                     instance.resize();
                 });
             }
@@ -154,12 +154,12 @@
 
         // _init fires when instance is first created
         // and when instance is triggered again -> $el.masonry();
-        _init: function(callback) {
+        _init: function (callback) {
             this._getColumns();
             this._reLayout(callback);
         },
 
-        option: function(key, value) {
+        option: function (key, value) {
             // set options AFTER initialization:
             // signature: $('#foo').bar({ cool:false });
             if ($.isPlainObject(key)) {
@@ -171,7 +171,7 @@
 
         // used on collection of atoms (should be filtered, and sorted before )
         // accepts atoms-to-be-laid-out to start with
-        layout: function($bricks, callback) {
+        layout: function ($bricks, callback) {
             // place each brick
             for (var i = 0, len = $bricks.length; i < len; i++) {
                 this._placeBrick($bricks[i]);
@@ -226,7 +226,7 @@
 
         // calculates number of columns
         // i.e. this.columnWidth = 200
-        _getColumns: function() {
+        _getColumns: function () {
             var container = this.options.isFitWidth
                     ? this.element.parent()
                     : this.element,
@@ -251,7 +251,7 @@
         },
 
         // layout logic
-        _placeBrick: function(brick) {
+        _placeBrick: function (brick) {
             var $brick = $(brick),
                 colSpan,
                 groupCount,
@@ -310,7 +310,7 @@
             }
         },
 
-        resize: function() {
+        resize: function () {
             var prevColCount = this.cols;
             // get updated colCount
             this._getColumns();
@@ -320,7 +320,7 @@
             }
         },
 
-        _reLayout: function(callback) {
+        _reLayout: function (callback) {
             // reset columns
             var i = this.cols;
             this.colYs = [];
@@ -334,24 +334,24 @@
         // ====================== Convenience methods ======================
 
         // goes through all children again and gets bricks in proper order
-        reloadItems: function() {
+        reloadItems: function () {
             this.$bricks = this._getBricks(this.element.children());
         },
 
-        reload: function(callback) {
+        reload: function (callback) {
             this.reloadItems();
             this._init(callback);
         },
 
         // convienence method for working with Infinite Scroll
-        appended: function($content, isAnimatedFromBottom, callback) {
+        appended: function ($content, isAnimatedFromBottom, callback) {
             if (isAnimatedFromBottom) {
                 // set new stuff to the bottom
                 this._filterFindBricks($content).css({
                     top: this.element.height(),
                 });
                 var instance = this;
-                setTimeout(function() {
+                setTimeout(function () {
                     instance._appended($content, callback);
                 }, 1);
             } else {
@@ -359,7 +359,7 @@
             }
         },
 
-        _appended: function($content, callback) {
+        _appended: function ($content, callback) {
             var $newBricks = this._getBricks($content);
             // add new bricks to brick pool
             this.$bricks = this.$bricks.add($newBricks);
@@ -367,14 +367,14 @@
         },
 
         // removes elements from Masonry widget
-        remove: function($content) {
+        remove: function ($content) {
             this.$bricks = this.$bricks.not($content);
             $content.remove();
         },
 
         // destroys widget, returns elements and container back (close) to original style
-        destroy: function() {
-            this.$bricks.removeClass('masonry-brick').each(function() {
+        destroy: function () {
+            this.$bricks.removeClass('masonry-brick').each(function () {
                 this.style.position = '';
                 this.style.top = '';
                 this.style.left = '';
@@ -413,7 +413,7 @@
     // callback function gets image collection as argument
     //  `this` is the container
 
-    $.fn.imagesLoaded = function(callback) {
+    $.fn.imagesLoaded = function (callback) {
         var $this = this,
             $images = $this.find('img').add($this.filter('img')),
             len = $images.length,
@@ -443,7 +443,7 @@
 
         $images
             .bind('load.imagesLoaded error.imagesLoaded', imgLoaded)
-            .each(function() {
+            .each(function () {
                 // cached images don't fire load sometimes, so we reset src.
                 var src = this.src;
                 // webkit hack from http://groups.google.com/group/jquery-dev/browse_thread/thread/eee6ab7b2da50e1f
@@ -457,7 +457,7 @@
 
     // helper function for logging errors
     // $.error breaks jQuery chaining
-    var logError = function(message) {
+    var logError = function (message) {
         if (window.console) {
             window.console.error(message);
         }
@@ -470,12 +470,12 @@
     // A bit from jcarousel
     //   https://github.com/jsor/jcarousel/blob/master/lib/jquery.jcarousel.js
 
-    $.fn.masonry = function(options) {
+    $.fn.masonry = function (options) {
         if (typeof options === 'string') {
             // call method
             var args = Array.prototype.slice.call(arguments, 1);
 
-            this.each(function() {
+            this.each(function () {
                 var instance = $.data(this, 'masonry');
                 if (!instance) {
                     logError(
@@ -499,7 +499,7 @@
                 instance[options].apply(instance, args);
             });
         } else {
-            this.each(function() {
+            this.each(function () {
                 var instance = $.data(this, 'masonry');
                 if (instance) {
                     // apply options & init

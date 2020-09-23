@@ -1,5 +1,5 @@
-$(document).ready(function() {
-    $('#contact-form').submit(function() {
+$(document).ready(function () {
+    $('#contact-form').submit(function () {
         if ($('#contact-form').hasClass('clicked')) {
             return false;
         }
@@ -17,7 +17,7 @@ $(document).ready(function() {
         $('#contact-form button').width(buttonWidth);
         $('#contact-form .error-message').remove();
 
-        $('.requiredField').each(function() {
+        $('.requiredField').each(function () {
             if ($.trim($(this).val()) == '') {
                 var errorText = $(this).data('error-empty');
                 $(this)
@@ -57,7 +57,7 @@ $(document).ready(function() {
             $('#contact-form button').html(
                 '<i class="fa fa-times"></i>' + errorMessage
             );
-            setTimeout(function() {
+            setTimeout(function () {
                 $('#contact-form button').html(buttonCopy);
                 $('#contact-form button').width('auto');
                 $('#contact-form').removeClass('clicked');
@@ -68,12 +68,12 @@ $(document).ready(function() {
             );
 
             var formInput = $(this).serialize();
-            $.post($(this).attr('action'), formInput, function(data) {
+            $.post($(this).attr('action'), formInput, function (data) {
                 $('#contact-form button').html(
                     '<i class="fa fa-check"></i>' + okMessage
                 );
                 $('#contact-form')[0].reset();
-                setTimeout(function() {
+                setTimeout(function () {
                     $('#contact-form button').html(buttonCopy);
                     $('#contact-form button').width('auto');
                     $('#contact-form').removeClass('clicked');
