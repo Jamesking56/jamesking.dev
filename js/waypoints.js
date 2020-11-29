@@ -207,58 +207,63 @@ https://github.com/imakewebthings/jquery-waypoints/blob/master/licenses.txt
                     },
                 };
                 return $.each(axes, function (aKey, axis) {
-                    return $.each(_this.waypoints[aKey], function (
-                        i,
-                        waypoint
-                    ) {
-                        var adjustment, elementOffset, oldOffset, _ref, _ref1;
+                    return $.each(
+                        _this.waypoints[aKey],
+                        function (i, waypoint) {
+                            var adjustment,
+                                elementOffset,
+                                oldOffset,
+                                _ref,
+                                _ref1;
 
-                        adjustment = waypoint.options.offset;
-                        oldOffset = waypoint.offset;
-                        elementOffset = $.isWindow(waypoint.element)
-                            ? 0
-                            : waypoint.$element.offset()[axis.offsetProp];
-                        if ($.isFunction(adjustment)) {
-                            adjustment = adjustment.apply(waypoint.element);
-                        } else if (typeof adjustment === 'string') {
-                            adjustment = parseFloat(adjustment);
-                            if (waypoint.options.offset.indexOf('%') > -1) {
-                                adjustment = Math.ceil(
-                                    (axis.contextDimension * adjustment) / 100
-                                );
+                            adjustment = waypoint.options.offset;
+                            oldOffset = waypoint.offset;
+                            elementOffset = $.isWindow(waypoint.element)
+                                ? 0
+                                : waypoint.$element.offset()[axis.offsetProp];
+                            if ($.isFunction(adjustment)) {
+                                adjustment = adjustment.apply(waypoint.element);
+                            } else if (typeof adjustment === 'string') {
+                                adjustment = parseFloat(adjustment);
+                                if (waypoint.options.offset.indexOf('%') > -1) {
+                                    adjustment = Math.ceil(
+                                        (axis.contextDimension * adjustment) /
+                                            100
+                                    );
+                                }
+                            }
+                            waypoint.offset =
+                                elementOffset -
+                                axis.contextOffset +
+                                axis.contextScroll -
+                                adjustment;
+                            if (
+                                (waypoint.options.onlyOnScroll &&
+                                    oldOffset != null) ||
+                                !waypoint.enabled
+                            ) {
+                                return;
+                            }
+                            if (
+                                oldOffset !== null &&
+                                oldOffset < (_ref = axis.oldScroll) &&
+                                _ref <= waypoint.offset
+                            ) {
+                                return waypoint.trigger([axis.backward]);
+                            } else if (
+                                oldOffset !== null &&
+                                oldOffset > (_ref1 = axis.oldScroll) &&
+                                _ref1 >= waypoint.offset
+                            ) {
+                                return waypoint.trigger([axis.forward]);
+                            } else if (
+                                oldOffset === null &&
+                                axis.oldScroll >= waypoint.offset
+                            ) {
+                                return waypoint.trigger([axis.forward]);
                             }
                         }
-                        waypoint.offset =
-                            elementOffset -
-                            axis.contextOffset +
-                            axis.contextScroll -
-                            adjustment;
-                        if (
-                            (waypoint.options.onlyOnScroll &&
-                                oldOffset != null) ||
-                            !waypoint.enabled
-                        ) {
-                            return;
-                        }
-                        if (
-                            oldOffset !== null &&
-                            oldOffset < (_ref = axis.oldScroll) &&
-                            _ref <= waypoint.offset
-                        ) {
-                            return waypoint.trigger([axis.backward]);
-                        } else if (
-                            oldOffset !== null &&
-                            oldOffset > (_ref1 = axis.oldScroll) &&
-                            _ref1 >= waypoint.offset
-                        ) {
-                            return waypoint.trigger([axis.forward]);
-                        } else if (
-                            oldOffset === null &&
-                            axis.oldScroll >= waypoint.offset
-                        ) {
-                            return waypoint.trigger([axis.forward]);
-                        }
-                    });
+                    );
                 });
             };
 
@@ -394,26 +399,28 @@ https://github.com/imakewebthings/jquery-waypoints/blob/master/licenses.txt
                 return methods._invoke(this, 'destroy');
             },
             prev: function (axis, selector) {
-                return methods._traverse.call(this, axis, selector, function (
-                    stack,
-                    index,
-                    waypoints
-                ) {
-                    if (index > 0) {
-                        return stack.push(waypoints[index - 1]);
+                return methods._traverse.call(
+                    this,
+                    axis,
+                    selector,
+                    function (stack, index, waypoints) {
+                        if (index > 0) {
+                            return stack.push(waypoints[index - 1]);
+                        }
                     }
-                });
+                );
             },
             next: function (axis, selector) {
-                return methods._traverse.call(this, axis, selector, function (
-                    stack,
-                    index,
-                    waypoints
-                ) {
-                    if (index < waypoints.length - 1) {
-                        return stack.push(waypoints[index + 1]);
+                return methods._traverse.call(
+                    this,
+                    axis,
+                    selector,
+                    function (stack, index, waypoints) {
+                        if (index < waypoints.length - 1) {
+                            return stack.push(waypoints[index + 1]);
+                        }
                     }
-                });
+                );
             },
             _traverse: function (axis, selector, push) {
                 var stack, waypoints;
@@ -527,23 +534,25 @@ https://github.com/imakewebthings/jquery-waypoints/blob/master/licenses.txt
                 if (contextSelector == null) {
                     contextSelector = window;
                 }
-                return jQMethods._filter(contextSelector, 'vertical', function (
-                    context,
-                    waypoint
-                ) {
-                    return waypoint.offset <= context.oldScroll.y;
-                });
+                return jQMethods._filter(
+                    contextSelector,
+                    'vertical',
+                    function (context, waypoint) {
+                        return waypoint.offset <= context.oldScroll.y;
+                    }
+                );
             },
             below: function (contextSelector) {
                 if (contextSelector == null) {
                     contextSelector = window;
                 }
-                return jQMethods._filter(contextSelector, 'vertical', function (
-                    context,
-                    waypoint
-                ) {
-                    return waypoint.offset > context.oldScroll.y;
-                });
+                return jQMethods._filter(
+                    contextSelector,
+                    'vertical',
+                    function (context, waypoint) {
+                        return waypoint.offset > context.oldScroll.y;
+                    }
+                );
             },
             left: function (contextSelector) {
                 if (contextSelector == null) {
