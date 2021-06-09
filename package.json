@@ -36,7 +36,7 @@
     "gulp-clean-css": "4.3.0",
     "gulp-concat": "2.6.1",
     "gulp-environments": "1.0.1",
-    "gulp-pug": "4.0.1",
+    "gulp-pug": "5.0.0",
     "gulp-uglify": "3.0.2",
     "prettier": "2.2.1",
     "rimraf": "3.0.2",
