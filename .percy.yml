@@ -1,10 +1,8 @@
-version: 1
+version: 2
 snapshot:
-    percy-css: |
-        .scrollimation {
-            opacity: 1 !important;
-        }
-static_snapshots:
-    path: dist/
-agent:
-    network-idle-timeout: 50 #ms
+  percy-css: |
+    .scrollimation {
+        opacity: 1 !important;
+    }
+discovery:
+  disable-cache: true
