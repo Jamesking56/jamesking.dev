@@ -7,16 +7,11 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
-              with:
-                  node-version: 16.x
+            - uses: bahmutov/npm-install@v1
             - name: generate HTML
-              run: |
-                  npm ci
-                  gulp
+              run: gulp
             - name: run percy
-              run: |
-                  npx percy snapshot dist/
+              run: npx percy snapshot dist/
               env:
                   CI: true
                   PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
