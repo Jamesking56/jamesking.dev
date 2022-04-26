@@ -20,7 +20,7 @@ jobs:
                   gulp
             - name: run percy
               run: |
-                  npx percy snapshot dist/
+                  npx @percy/cli snapshot dist/
               env:
                   CI: true
                   PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
