@@ -11,7 +11,7 @@ jobs:
             - name: generate HTML
               run: gulp
             - name: run percy
-              run: npx percy snapshot dist/
+              run: npx @percy/cli snapshot dist/
               env:
                   CI: true
                   PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
