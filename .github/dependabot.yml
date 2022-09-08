@@ -12,7 +12,7 @@ updates:
   ignore:
   - dependency-name: bootstrap
     versions:
-    - ">= 4.a, < 5"
+    - ">= 4.a"
 - package-ecosystem: github-actions
   directory: "/"
   schedule:
