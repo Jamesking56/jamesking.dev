@@ -8,7 +8,7 @@ $(document).ready(function () {
         $('#main-nav').addClass('scrolled');
     }
 
-    $(window).scroll(function () {
+    $(window).on('scroll', function () {
         if ($(window).scrollTop() === 0) {
             $('#main-nav').removeClass('scrolled');
         } else {
