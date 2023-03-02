@@ -644,4 +644,4 @@ https://github.com/imakewebthings/jquery-waypoints/blob/master/licenses.txt
             return $[wps]('refresh');
         });
     });
-}.call(this));
+}).call(this);
