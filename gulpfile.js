@@ -17,7 +17,7 @@ let paths = {
         "*js/jquery.fittext.js",
         'node_modules/flexslider/jquery.flexslider.js',
         "*js/jquery.masonry.js",
-        "*js/waypoints.js",
+        "node_modules/jquery-waypoints/waypoints.js",
         "*js/jquery.label_better.js",
         "*js/contact.js",
         "*js/meflat.js"
