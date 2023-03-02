@@ -1,5 +1,5 @@
 diff --git a/node_modules/flexslider/jquery.flexslider.js b/node_modules/flexslider/jquery.flexslider.js
-index eaa007c..4ae271e 100644
+index eaa007c..ed0d876 100644
 --- a/node_modules/flexslider/jquery.flexslider.js
 +++ b/node_modules/flexslider/jquery.flexslider.js
 @@ -813,11 +813,11 @@
@@ -52,3 +52,15 @@ index eaa007c..4ae271e 100644
            }
          }
          // SMOOTH HEIGHT:
+@@ -1142,9 +1142,9 @@
+   };
+ 
+   // Ensure the slider isn't focussed if the window loses focus.
+-  $( window ).blur( function ( e ) {
++  $( window ).on('blur', function ( e ) {
+     focused = false;
+-  }).focus( function ( e ) {
++  }).on('focus', function ( e ) {
+     focused = true;
+   });
+ 
