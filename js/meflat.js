@@ -282,7 +282,7 @@ $(document).ready(function () {
     /*============================================
 	Resize Functions
 	==============================================*/
-    $(window).resize(function () {
+    $(window).on('resize', function () {
         scrollSpyRefresh();
         waypointsRefresh();
     });
