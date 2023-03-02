@@ -18,7 +18,7 @@ $(document).ready(function () {
         $('#contact-form .error-message').remove();
 
         $('.requiredField').each(function () {
-            if ($.trim($(this).val()) == '') {
+            if ($(this).val().trim() === '') {
                 var errorText = $(this).data('error-empty');
                 $(this)
                     .parents('.field-wrap')
@@ -36,7 +36,7 @@ $(document).ready(function () {
                 $(this).attr('name') === 'email'
             ) {
                 var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,10})?$/;
-                if (!emailReg.test($.trim($(this).val()))) {
+                if (!emailReg.test($(this).val().trim())) {
                     var invalidEmail = $(this).data('error-invalid');
                     $(this)
                         .parents('.field-wrap')
