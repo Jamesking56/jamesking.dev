@@ -1,17 +1,28 @@
 diff --git a/node_modules/jquery-waypoints/waypoints.js b/node_modules/jquery-waypoints/waypoints.js
-index 81da414..9f8f2b3 100644
+index 81da414..0442d99 100644
 --- a/node_modules/jquery-waypoints/waypoints.js
 +++ b/node_modules/jquery-waypoints/waypoints.js
-@@ -140,7 +140,7 @@ https://github.com/imakewebthings/jquery-waypoints/blob/master/licenses.txt
+@@ -140,8 +140,17 @@ https://github.com/imakewebthings/jquery-waypoints/blob/master/licenses.txt
          var axes, cOffset, isWin,
            _this = this;
  
 -        isWin = $.isWindow(this.element);
+-        cOffset = this.$element.offset();
 +        isWin = this.element != null && this.element === this.element.window;
-         cOffset = this.$element.offset();
++        if (
++            this.element !== null
++            && typeof this.element === "object"
++            && typeof this.$element.getClientRects === "function"
++            && this.$element.getClientRects().length
++        ) {
++            cOffset = this.$element.offset();
++        } else {
++            cOffset = { top: 0, left: 0 };
++        }
          this.doScroll();
          axes = {
-@@ -169,8 +169,8 @@ https://github.com/imakewebthings/jquery-waypoints/blob/master/licenses.txt
+           horizontal: {
+@@ -169,8 +178,8 @@ https://github.com/imakewebthings/jquery-waypoints/blob/master/licenses.txt
  
              adjustment = waypoint.options.offset;
              oldOffset = waypoint.offset;
@@ -22,7 +33,7 @@ index 81da414..9f8f2b3 100644
                adjustment = adjustment.apply(waypoint.element);
              } else if (typeof adjustment === 'string') {
                adjustment = parseFloat(adjustment);
-@@ -213,7 +213,7 @@ https://github.com/imakewebthings/jquery-waypoints/blob/master/licenses.txt
+@@ -213,7 +222,7 @@ https://github.com/imakewebthings/jquery-waypoints/blob/master/licenses.txt
              var contextHeight;
  
              contextHeight = $[wps]('viewportHeight');
@@ -31,7 +42,7 @@ index 81da414..9f8f2b3 100644
                contextHeight = context.$element.height();
              }
              return contextHeight - $(this).outerHeight();
-@@ -293,7 +293,7 @@ https://github.com/imakewebthings/jquery-waypoints/blob/master/licenses.txt
+@@ -293,7 +302,7 @@ https://github.com/imakewebthings/jquery-waypoints/blob/master/licenses.txt
  
            $this = $(this);
            contextElement = (_ref1 = options.context) != null ? _ref1 : $.fn[wp].defaults.context;
@@ -40,7 +51,7 @@ index 81da414..9f8f2b3 100644
              contextElement = $this.closest(contextElement);
            }
            contextElement = $(contextElement);
-@@ -367,7 +367,7 @@ https://github.com/imakewebthings/jquery-waypoints/blob/master/licenses.txt
+@@ -367,7 +376,7 @@ https://github.com/imakewebthings/jquery-waypoints/blob/master/licenses.txt
        method = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
        if (methods[method]) {
          return methods[method].apply(this, args);
@@ -49,7 +60,7 @@ index 81da414..9f8f2b3 100644
          return methods.init.apply(this, arguments);
        } else if ($.isPlainObject(method)) {
          return methods.init.apply(this, [null, method]);
-@@ -512,7 +512,7 @@ https://github.com/imakewebthings/jquery-waypoints/blob/master/licenses.txt
+@@ -512,7 +521,7 @@ https://github.com/imakewebthings/jquery-waypoints/blob/master/licenses.txt
        resizeThrottle: 100,
        scrollThrottle: 30
      };
