@@ -168,7 +168,7 @@
                         .insertAfter(btn)
                         .animateLabel(settings, btn);
                 }
-                if (settings.hidePlaceholderOnFocus == true) {
+                if (settings.hidePlaceholderOnFocus === true) {
                     btn.data('default-placeholder', btn.attr('placeholder'));
                     btn.attr('placeholder', '');
                 }
