@@ -1,0 +1,13 @@
+diff --git a/node_modules/bootstrap/dist/js/bootstrap.js b/node_modules/bootstrap/dist/js/bootstrap.js
+index 170bd60..156911d 100644
+--- a/node_modules/bootstrap/dist/js/bootstrap.js
++++ b/node_modules/bootstrap/dist/js/bootstrap.js
+@@ -2134,7 +2134,7 @@ if (typeof jQuery === 'undefined') {
+     this.targets      = []
+     this.scrollHeight = this.getScrollHeight()
+ 
+-    if (!$.isWindow(this.$scrollElement[0])) {
++    if (!(this.$scrollElement[0] != null && this.$scrollElement[0] === this.$scrollElement[0].window)) {
+       offsetMethod = 'position'
+       offsetBase   = this.$scrollElement.scrollTop()
+     }
