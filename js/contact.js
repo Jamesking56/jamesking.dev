@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('#contact-form').submit(function () {
+    $('#contact-form').on('submit', function () {
         if ($('#contact-form').hasClass('clicked')) {
             return false;
         }
