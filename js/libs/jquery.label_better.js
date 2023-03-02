@@ -151,7 +151,7 @@
                     .animateLabel(settings, btn);
             }
 
-            btn.bind(triggerIn, function () {
+            btn.on(triggerIn, function () {
                 if (btn.val().length < 1) {
                     var text =
                             btn.data('new-placeholder') ||
@@ -173,7 +173,7 @@
                     btn.attr('placeholder', '');
                 }
                 btn.parent().find('.lb_label').addClass('active');
-            }).bind(triggerOut, function () {
+            }).on(triggerOut, function () {
                 if (btn.val().length < 1) {
                     btn.parent()
                         .find('.lb_label')
