@@ -14,7 +14,7 @@ let paths = {
         'node_modules/bootstrap/dist/js/bootstrap.js',
         'node_modules/jquery.easing/jquery.easing.js',
         "*js/jquery.scrollto.js",
-        "*js/jquery.fittext.js",
+        "node_modules/fittext.js/jquery.fittext.js",
         'node_modules/flexslider/jquery.flexslider.js',
         "*js/jquery.masonry.js",
         "node_modules/jquery-waypoints/waypoints.js",
