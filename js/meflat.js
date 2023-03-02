@@ -94,7 +94,7 @@ $(document).ready(function () {
     /*============================================
 	Filter Projects
 	==============================================*/
-    $('#filter-works a').click(function (e) {
+    $('#filter-works a').on('click', function (e) {
         e.preventDefault();
 
         $('#filter-works li').removeClass('active');
@@ -119,7 +119,7 @@ $(document).ready(function () {
     /*============================================
 	Project Preview
 	==============================================*/
-    $('.project-item').click(function (e) {
+    $('.project-item').on('click', function (e) {
         e.preventDefault();
 
         var elem = $(this),
@@ -226,7 +226,7 @@ $(document).ready(function () {
     /*============================================
 	ScrollTo Links
 	==============================================*/
-    $('a.scrollto').click(function (e) {
+    $('a.scrollto').on('click', function (e) {
         $('html,body').scrollTo(this.hash, this.hash, {
             gap: { y: -50 },
             animation: { easing: 'easeInOutCubic', duration: 1600 },
