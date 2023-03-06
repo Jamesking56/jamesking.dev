@@ -1,5 +1,24 @@
 {
   "extends": [
-    "config:base"
-  ]
+    "config:base",
+    "replacements:all",
+    ":automergeMinor",
+    ":automergePr",
+    ":automergeRequireAllStatusChecks",
+    ":combinePatchMinorReleases",
+    ":rebaseStalePrs",
+    ":renovatePrefix",
+    ":separateMultipleMajorReleases"
+  ],
+  "additionalReviewers": ["Jamesking56"],
+  "dependencyDashboardAutoclose": true,
+  "platformAutomerge": true,
+  "rollbackPrs": true,
+  "transitiveRemediation": true,
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["security"],
+    "schedule": "at any time",
+    "transitiveRemediation": true
+  }
 }
