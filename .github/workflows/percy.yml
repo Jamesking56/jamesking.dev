@@ -7,7 +7,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-            - uses: bahmutov/npm-install@v1.8.35
+            - uses: bahmutov/npm-install@v1.8.36
             - name: generate HTML
               run: gulp
             - name: run percy
