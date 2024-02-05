@@ -43,7 +43,7 @@
     "gulp-uglify": "3.0.2",
     "prettier": "3.2.5",
     "rimraf": "5.0.5",
-    "semver": "7.5.4",
+    "semver": "7.6.0",
     "uglify-save-license": "0.4.1"
   }
 }
