@@ -1,6 +1,6 @@
 {
   "extends": [
-    "config:base",
+    "config:recommended",
     "replacements:all",
     ":automergeMinor",
     ":automergePr",
@@ -14,11 +14,9 @@
   "dependencyDashboardAutoclose": true,
   "platformAutomerge": true,
   "rollbackPrs": true,
-  "transitiveRemediation": true,
   "vulnerabilityAlerts": {
     "enabled": true,
     "labels": ["security"],
-    "schedule": "at any time",
-    "transitiveRemediation": true
+    "schedule": "at any time"
   }
 }
