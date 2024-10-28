@@ -35,7 +35,7 @@
   "devDependencies": {
     "bufferstreams": "4.0.0",
     "clone": "2.1.2",
-    "gulp": "4.0.2",
+    "gulp": "5.0.0",
     "gulp-clean-css": "4.3.0",
     "gulp-concat": "2.6.1",
     "gulp-environments": "1.0.1",
