@@ -1,5 +1,5 @@
 diff --git a/node_modules/bootstrap/dist/js/bootstrap.js b/node_modules/bootstrap/dist/js/bootstrap.js
-index 170bd60..a00f43d 100644
+index 170bd60..781011d 100644
 --- a/node_modules/bootstrap/dist/js/bootstrap.js
 +++ b/node_modules/bootstrap/dist/js/bootstrap.js
 @@ -11,8 +11,8 @@ if (typeof jQuery === 'undefined') {
@@ -13,6 +13,15 @@ index 170bd60..a00f43d 100644
    }
  }(jQuery);
  
+@@ -2110,7 +2110,7 @@ if (typeof jQuery === 'undefined') {
+     this.activeTarget   = null
+     this.scrollHeight   = 0
+ 
+-    this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
++    this.$scrollElement.on('scroll.bs.scrollspy', this.process.bind(this))
+     this.refresh()
+     this.process()
+   }
 @@ -2134,7 +2134,7 @@ if (typeof jQuery === 'undefined') {
      this.targets      = []
      this.scrollHeight = this.getScrollHeight()
@@ -22,3 +31,11 @@ index 170bd60..a00f43d 100644
        offsetMethod = 'position'
        offsetBase   = this.$scrollElement.scrollTop()
      }
+@@ -2151,6 +2151,7 @@ if (typeof jQuery === 'undefined') {
+           && $href.is(':visible')
+           && [[$href[offsetMethod]().top + offsetBase, href]]) || null
+       })
++      .get()
+       .sort(function (a, b) { return a[0] - b[0] })
+       .each(function () {
+         that.offsets.push(this[0])
