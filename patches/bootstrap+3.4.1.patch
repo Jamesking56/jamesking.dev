@@ -1,7 +1,18 @@
 diff --git a/node_modules/bootstrap/dist/js/bootstrap.js b/node_modules/bootstrap/dist/js/bootstrap.js
-index 170bd60..156911d 100644
+index 170bd60..3a98701 100644
 --- a/node_modules/bootstrap/dist/js/bootstrap.js
 +++ b/node_modules/bootstrap/dist/js/bootstrap.js
+@@ -11,8 +11,8 @@ if (typeof jQuery === 'undefined') {
+ +function ($) {
+   'use strict';
+   var version = $.fn.jquery.split(' ')[0].split('.')
+-  if ((version[0] < 2 && version[1] < 9) || (version[0] == 1 && version[1] == 9 && version[2] < 1) || (version[0] > 3)) {
+-    throw new Error('Bootstrap\'s JavaScript requires jQuery version 1.9.1 or higher, but lower than version 4')
++  if ((version[0] < 2 && version[1] < 9) || (version[0] == 1 && version[1] == 9 && version[2] < 1) ) {
++    throw new Error('Bootstrap\'s JavaScript requires jQuery version 1.9.1 or higher')
+   }
+ }(jQuery);
+ 
 @@ -2134,7 +2134,7 @@ if (typeof jQuery === 'undefined') {
      this.targets      = []
      this.scrollHeight = this.getScrollHeight()
