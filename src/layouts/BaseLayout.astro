@@ -73,6 +73,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     {Astro.url.hostname === 'jamesking.dev' && !Astro.url.hostname.includes('deploy-preview') && !Astro.url.hostname.includes('netlify') && (
       <script type="text/partytown" src="https://cdn.counter.dev/script.js" data-id="c81d2e80-c20e-41d0-87f3-39a53030f73a" data-utcoffset="1"></script>
     )}
+
+    <!-- GhostlyX Analytics - only on production -->
+    {Astro.url.hostname === 'jamesking.dev' && (
+      <script defer data-domain="jamesking.dev" data-site-id="gx_dtLjGLHWPhaO" src="https://ghostlyx.com/js/script.js"></script>
+    )}
     
     <!-- JSON-LD Schema -->
     <script type="application/ld+json" set:html={JSON.stringify({
