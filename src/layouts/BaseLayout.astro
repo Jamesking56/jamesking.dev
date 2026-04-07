@@ -69,8 +69,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.bunny.net/css?family=jetbrains-mono:400,500,600,700" rel="stylesheet" />
     
-    <!-- Counter.dev Analytics - only on production (not deploy previews) -->
-    {Astro.url.hostname === 'jamesking.dev' && !Astro.url.hostname.includes('deploy-preview') && !Astro.url.hostname.includes('netlify') && (
+    <!-- Counter.dev Analytics - only on production -->
+    {Astro.url.hostname === 'jamesking.dev' && (
       <script type="text/partytown" src="https://cdn.counter.dev/script.js" data-id="c81d2e80-c20e-41d0-87f3-39a53030f73a" data-utcoffset="1"></script>
     )}
 
