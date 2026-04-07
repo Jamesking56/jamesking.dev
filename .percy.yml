@@ -1,8 +1,0 @@
-version: 2
-snapshot:
-  percy-css: |
-    .scrollimation {
-        opacity: 1 !important;
-    }
-discovery:
-  disable-cache: true

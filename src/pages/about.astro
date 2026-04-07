@@ -1,0 +1,318 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import profilePic from '../assets/profile-pic.png';
+
+const experience = [
+  {
+    company: "Varsuite Media Group Ltd",
+    role: "Chief Technical Officer",
+    period: "Nov 2024 - Present",
+    url: "https://www.varsuite.co.uk",
+    points: [
+      "Took over development from an outsourced team who were not delivering; secured and stabilized insecure WordPress and Laravel client sites",
+      "Migrated 100+ websites from multiple hosting platforms (primarily AWS) to 20i Reseller hosting, reducing hosting costs by ~70% and improving reliability",
+      "Introduced development standards: coding conventions, code review process, and client issue reporting workflows",
+      "Established new site onboarding process for clients joining the agency",
+      "Led technical delivery across all production websites, ensuring 99.99% uptime",
+      "AI-Augmented: Introduced AI tools to speed up development safely, writing team guidelines for AI-assisted coding"
+    ]
+  },
+  {
+    company: "Wider Plan Ltd",
+    role: "PHP Developer",
+    period: "Mar 2018 - Nov 2024",
+    url: "https://www.widerplan.com",
+    points: [
+      "Developed features for Wider Plan salary sacrifice system and Gov.UK services",
+      "Collaborated within an 8-developer team delivering government services under strict compliance and WCAG AA accessibility constraints",
+      "Converted CI/CD pipeline from legacy Jenkins to GitHub Actions with custom runner VMs",
+      "Active code reviewer via GitHub PRs, ensuring high code quality and test coverage",
+      "Maintained large Symfony codebase supporting payment systems processing millions",
+      "Devised automated tests in PHPUnit: Acceptance, Feature and Unit testing"
+    ]
+  },
+  {
+    company: "Just Checking Ltd",
+    role: "Senior Developer",
+    period: "May 2015 - Mar 2018",
+    url: "https://www.justchecking.co.uk",
+    points: [
+      "Promoted from Web Application Developer to Senior Developer (November 2016)",
+      "Mentored Junior Developers who went on to become Senior Developers",
+      "Delivered full-stack features end-to-end for prototype projects and main application",
+      "Created development tooling for a legacy platform",
+      "Migrated from Microsoft SQL Server to PostgreSQL and Windows Server to Ubuntu"
+    ]
+  },
+  {
+    company: "Real Point Design Ltd",
+    role: "Temporary Web Developer",
+    period: "May 2014 - Oct 2014",
+    points: [
+      "Delivered full-stack features end-to-end for Laravel systems",
+      "Worked on projects including a major BBC project",
+      "Established coding standards and way of working with Laravel",
+      "CentOS system administration for cloud servers"
+    ]
+  },
+  {
+    company: "Trakware Solutions Ltd",
+    role: "Junior Web Developer",
+    period: "May 2013 - May 2014",
+    points: [
+      "Industrial placement during University",
+      "Set up open source on GitHub for in-house JavaScript framework",
+      "Managed AWS cloud services",
+      "Delivered full-stack features and bug fixes"
+    ]
+  }
+];
+
+const skills = {
+  "AI-Augmented Development": [
+    "OpenCode (with Claude & Ollama models)",
+    "AI Pair Programming",
+    "Safety Review Process",
+    "Writing AI Skills and Guidelines",
+    "Prompt Engineering"
+  ],
+  "Backend": [
+    "Laravel",
+    "PHP",
+    "Symfony",
+    "Node.js",
+    "JSON REST APIs",
+    "GraphQL"
+  ],
+  "Frontend": [
+    "JavaScript",
+    "React",
+    "AlpineJS",
+    "TailwindCSS",
+    "CSS"
+  ],
+  "Cloud & Infrastructure": [
+    "AWS",
+    "DigitalOcean",
+    "Hetzner",
+    "20i",
+    "Cloudflare R2",
+    "Kubernetes",
+    "Docker",
+    "Terraform",
+    "Ansible"
+  ],
+  "Database": [
+    "MySQL",
+    "MariaDB",
+    "PostgreSQL",
+    "Redis",
+    "KeyDB",
+    "Valkey"
+  ],
+  "Tools & Practices": [
+    "GitHub Actions",
+    "Linux",
+    "Server Administration",
+    "WordPress",
+    "WooCommerce",
+    "Test-driven Development",
+    "Pest",
+    "PHPUnit"
+  ],
+  "Leadership": [
+    "Technical Leadership",
+    "Architecture Decisions",
+    "Code Review",
+    "Mentorship",
+    "Stakeholder Management",
+    "WCAG AA Accessibility"
+  ]
+};
+
+const achievements = [
+  "GradEx 2015 Winner (Web Category) - Final year project won web category",
+  "Posters in Parliament 2016 - Presented final year project in London to industry leaders and MPs"
+];
+
+const sideProjects = [
+  {
+    name: "Varsuite Core Ltd",
+    role: "Chief Technical Officer",
+    period: "Dec 2024 - Present",
+    url: "https://www.vs-core.com",
+    description: "Multi-tenant SaaS platform for agency site management, supporting 80+ websites",
+    points: [
+      "Architected and built multi-tenant SaaS platform in Laravel 11",
+      "Pioneered scalable Kubernetes cluster using infrastructure-as-code, achieving zero-downtime deployments",
+      "Implemented CI/CD pipelines in GitHub Actions with automated testing using Pest",
+      "Authored coding standards and code review practices (PSR12, Rector)",
+      "Delivered full billing integration with Paddle, training other team members",
+      "AI-Augmented: Use OpenCode with Claude & Ollama daily for code generation, safety-reviewed before production"
+    ]
+  },
+  {
+    name: "Momentum Studio Ltd",
+    role: "Owner / Founder",
+    period: "Apr 2018 - Dec 2024",
+    description: "Digital agency founded while working freelance in evenings and weekends",
+    points: [
+      "Founded and ran own digital agency, handling all aspects from sales and marketing to technical delivery",
+      "Delivered end-to-end projects using Laravel, WordPress, WooCommerce, cPanel, Linux and Shopify",
+      "Developed own coding standards and CI/CD pipelines",
+      "Created custom tooling to aid Linux system administration",
+      "Registered Shopify Partner",
+      "Managed all client communication, project delivery, and billing"
+    ]
+  }
+];
+---
+
+<Layout title="About Me" description="Learn about James King's journey as a CTO and AI-Augmented Software Engineer. Over 10 years of experience in PHP, Laravel, Symfony, Kubernetes, and AWS.">
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold text-tokyo-fg-bright mb-8">About Me</h1>
+    
+    <!-- Intro -->
+    <section class="mb-12">
+      <div class="bg-tokyo-bg-alt border border-tokyo-border rounded-lg p-6 flex flex-col sm:flex-row gap-6">
+        <Image 
+          src={profilePic}
+          alt="James King" 
+          width={256}
+          height={256}
+          loading="eager"
+          fetchpriority="high"
+          class="w-32 h-32 rounded-lg object-cover flex-shrink-0 border-2 border-tokyo-border"
+        />
+        <div>
+          <p class="text-lg text-tokyo-fg mb-4">
+            I'm James King, a Chief Technical Officer and AI-Augmented Software Engineer based in Redditch, UK. 
+            I leverage AI daily to build production features safely, with proven experience delivering high-compliance 
+            systems processing millions in payments.
+          </p>
+          <p class="text-tokyo-fg mb-4">
+            I write AI skills and guidelines to improve development workflows and am a passionate advocate of 
+            test automation and best practices in software development.
+          </p>
+          <div class="flex flex-wrap gap-4 mt-6">
+            <a href="/cv.pdf" class="px-4 py-2 bg-tokyo-accent text-tokyo-bg font-semibold rounded hover:bg-tokyo-accent-hover transition-colors inline-flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Download CV
+            </a>
+            <a href="https://linkedin.com/in/jamesking56" target="_blank" rel="noopener external" class="px-4 py-2 border border-tokyo-accent text-tokyo-accent rounded hover:bg-tokyo-accent/10 transition-colors">
+              LinkedIn
+            </a>
+            <a href="https://github.com/Jamesking56" target="_blank" rel="noopener external" class="px-4 py-2 border border-tokyo-accent text-tokyo-accent rounded hover:bg-tokyo-accent/10 transition-colors">
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Skills -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold text-tokyo-fg-bright mb-4">Skills</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {Object.entries(skills).map(([category, items]) => (
+          <div class="bg-tokyo-bg-alt border border-tokyo-border rounded p-4">
+            <h3 class="font-semibold text-tokyo-accent mb-2">{category}</h3>
+            <ul class="space-y-1">
+              {items.map(item => (
+                <li class="text-sm text-tokyo-fg">{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+    
+    <!-- Experience -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold text-tokyo-fg-bright mb-4">Experience</h2>
+      <div class="space-y-6">
+        {experience.map(job => (
+          <div class="bg-tokyo-bg-alt border border-tokyo-border rounded p-4">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+              <div>
+                <h3 class="font-semibold text-tokyo-fg-bright">{job.role}</h3>
+                {job.url && (
+                  <a href={job.url} target="_blank" rel="noopener external" class="text-tokyo-accent hover:underline text-sm">{job.company}</a>
+                )}
+                {!job.url && <p class="text-tokyo-accent font-medium">{job.company}</p>}
+              </div>
+              <span class="text-sm text-tokyo-muted">{job.period}</span>
+            </div>
+            <ul class="space-y-2">
+              {job.points.map(point => (
+                <li class="text-sm text-tokyo-fg flex items-start gap-2">
+                  <span class="text-tokyo-accent mt-1">•</span>
+                  {point}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+    
+    <!-- Side Projects -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold text-tokyo-fg-bright mb-4">Side Projects</h2>
+      <div class="space-y-6">
+        {sideProjects.map(project => (
+          <div class="bg-tokyo-bg-alt border border-tokyo-border rounded p-4">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+              <div>
+                <h3 class="font-semibold text-tokyo-fg-bright">{project.name}</h3>
+                <p class="text-tokyo-accent font-medium">{project.role}</p>
+              </div>
+              <span class="text-sm text-tokyo-muted">{project.period}</span>
+            </div>
+            <p class="text-sm text-tokyo-fg mb-3">{project.description}</p>
+            <ul class="space-y-2">
+              {project.points.map(point => (
+                <li class="text-sm text-tokyo-fg flex items-start gap-2">
+                  <span class="text-tokyo-accent mt-1">•</span>
+                  {point}
+                </li>
+              ))}
+            </ul>
+            {project.url && (
+              <a href={project.url} target="_blank" rel="noopener external" class="text-sm text-tokyo-accent hover:underline mt-3 inline-block">{project.url}</a>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+    
+    <!-- Education -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold text-tokyo-fg-bright mb-4">Education</h2>
+      <div class="bg-tokyo-bg-alt border border-tokyo-border rounded p-4">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
+          <h3 class="font-semibold text-tokyo-fg-bright">BSc (Hons) Web Programming</h3>
+          <span class="text-sm text-tokyo-muted">2011 - 2015</span>
+        </div>
+        <p class="text-tokyo-accent font-medium mb-2">Staffordshire University, Stafford</p>
+        <p class="text-sm text-tokyo-fg">4-year course including 1-year industrial placement. Final year project won GradEx for the web category.</p>
+      </div>
+    </section>
+    
+    <!-- Achievements -->
+    <section>
+      <h2 class="text-2xl font-semibold text-tokyo-fg-bright mb-4">Achievements</h2>
+      <ul class="space-y-2">
+        {achievements.map(achievement => (
+          <li class="flex items-center gap-2 text-tokyo-fg">
+            <span class="text-tokyo-success">✓</span>
+            {achievement}
+          </li>
+        ))}
+      </ul>
+    </section>
+  </div>
+</Layout>

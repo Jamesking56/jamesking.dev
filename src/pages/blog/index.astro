@@ -1,0 +1,75 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog');
+const posts = allPosts
+  .filter(post => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const typeLabels: Record<string, string> = {
+  article: 'Article',
+  note: 'Note',
+  links: 'Links',
+  video: 'Video',
+  question: 'Question'
+};
+
+const typeColors: Record<string, string> = {
+  article: 'bg-tokyo-accent/20 text-tokyo-accent',
+  note: 'bg-tokyo-success/20 text-tokyo-success',
+  links: 'bg-tokyo-warning/20 text-tokyo-warning',
+  video: 'bg-tokyo-purple/20 text-tokyo-purple',
+  question: 'bg-tokyo-cyan/20 text-tokyo-cyan'
+};
+---
+
+<Layout title="Blog" description="Daily posts on development, AI, Laravel, PHP, Kubernetes, and tech by James King. Articles, notes, links, videos, and coding questions.">
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold text-tokyo-fg-bright mb-4">Blog</h1>
+    <p class="text-tokyo-muted mb-8">
+      Daily posts on development, AI, and tech. Different formats for different kinds of content.
+    </p>
+    
+    <!-- Filter tabs -->
+    <div class="flex flex-wrap gap-2 mb-8">
+      <a href="/blog" class="px-3 py-1 bg-tokyo-border text-tokyo-fg-bright rounded text-sm">All</a>
+      {['article', 'note', 'links', 'video', 'question'].map(type => (
+        <a href={`/blog/${type}`} class="px-3 py-1 bg-tokyo-bg-alt border border-tokyo-border text-tokyo-muted rounded text-sm hover:border-tokyo-accent hover:text-tokyo-fg transition-colors">
+          {typeLabels[type]}
+        </a>
+      ))}
+    </div>
+    
+    <!-- Posts list -->
+    <div class="space-y-4">
+      {posts.map(post => (
+        <a href={`/blog/${post.id}`} class="block bg-tokyo-bg-alt border border-tokyo-border rounded p-4 hover:border-tokyo-accent transition-colors group">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <time class="text-sm text-tokyo-muted">
+                  {post.data.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+                </time>
+                <span class={`px-2 py-0.5 text-xs rounded ${typeColors[post.data.type]}`}>
+                  {typeLabels[post.data.type]}
+                </span>
+              </div>
+              <h2 class="text-lg font-semibold text-tokyo-fg-bright group-hover:text-tokyo-accent transition-colors">
+                {post.data.title}
+              </h2>
+              {post.data.description && (
+                <p class="text-sm text-tokyo-muted mt-1">{post.data.description}</p>
+              )}
+            </div>
+            <span class="text-tokyo-muted group-hover:text-tokyo-accent transition-colors">&#8594;</span>
+          </div>
+        </a>
+      ))}
+    </div>
+    
+    {posts.length === 0 && (
+      <p class="text-tokyo-muted">No posts yet. Check back soon!</p>
+    )}
+  </div>
+</Layout>

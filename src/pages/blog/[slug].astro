@@ -1,0 +1,138 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.id },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const typeLabels: Record<string, string> = {
+  article: 'Article',
+  note: 'Note',
+  links: 'Links',
+  video: 'Video',
+  question: 'Question'
+};
+
+const typeColors: Record<string, string> = {
+  article: 'bg-tokyo-accent/20 text-tokyo-accent',
+  note: 'bg-tokyo-success/20 text-tokyo-success',
+  links: 'bg-tokyo-warning/20 text-tokyo-warning',
+  video: 'bg-tokyo-purple/20 text-tokyo-purple',
+  question: 'bg-tokyo-cyan/20 text-tokyo-cyan'
+};
+---
+
+<Layout 
+  title={post.data.title} 
+  description={post.data.description}
+  type="article"
+  publishedTime={post.data.date.toISOString()}
+>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <!-- Back link -->
+    <a href="/blog" class="inline-flex items-center gap-2 text-tokyo-muted hover:text-tokyo-fg mb-8">
+      <span>&#8592;</span> Back to Blog
+    </a>
+    
+    <!-- Header -->
+    <header class="mb-8">
+      <div class="flex items-center gap-2 mb-4">
+        <time class="text-sm text-tokyo-muted">
+          {post.data.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+        </time>
+        <span class={`px-2 py-0.5 text-xs rounded ${typeColors[post.data.type]}`}>
+          {typeLabels[post.data.type]}
+        </span>
+      </div>
+      <h1 class="text-3xl font-bold text-tokyo-fg-bright mb-4">{post.data.title}</h1>
+      {post.data.quote && (
+        <blockquote class="border-l-4 border-tokyo-accent pl-4 py-2 my-4 text-tokyo-fg italic">
+          {post.data.quote}
+        </blockquote>
+      )}
+    </header>
+    
+    <!-- Content -->
+    <article class="prose prose-invert max-w-none">
+      <Content />
+    </article>
+    
+    <style>
+      .prose h2 {
+        border-left: 3px solid #7aa2f7;
+        padding-left: 1rem;
+        background-color: #24283b;
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+        border-radius: 0 0.25rem 0.25rem 0;
+        color: #c0caf5;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+      }
+    </style>
+    
+    <!-- Links type specific content -->
+    {post.data.type === 'links' && post.data.links && (
+      <div class="mt-8 pt-8 border-t border-tokyo-border">
+        <h2 class="text-xl font-semibold text-tokyo-fg-bright mb-4">Links</h2>
+        <ul class="space-y-4">
+          {post.data.links.map(link => (
+            <li>
+              <a href={link.url} target="_blank" rel="noopener external" class="text-tokyo-accent hover:underline">
+                {link.title}
+              </a>
+              {link.description && (
+                <p class="text-sm text-tokyo-muted mt-1">{link.description}</p>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+    
+    <!-- Video type specific content -->
+    {post.data.type === 'video' && post.data.video && (
+      <div class="mt-8 pt-8 border-t border-tokyo-border">
+        <div class="aspect-video rounded-lg overflow-hidden bg-tokyo-bg-alt">
+          <iframe 
+            src={post.data.video.replace('watch?v=', 'embed/')}
+            title={post.data.title}
+            class="w-full h-full"
+            allow="fullscreen"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    )}
+    
+    <!-- JSON-LD for blog post -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": post.data.title,
+      "description": post.data.description,
+      "image": "https://jamesking.dev/og-image.png",
+      "author": {
+        "@type": "Person",
+        "name": "James King",
+        "url": "https://jamesking.dev"
+      },
+      "datePublished": post.data.date.toISOString(),
+      "dateModified": post.data.date.toISOString(),
+      "url": `https://jamesking.dev/blog/${post.id}`,
+      "publisher": {
+        "@type": "Person",
+        "name": "James King",
+        "url": "https://jamesking.dev"
+      }
+    })} />
+  </div>
+</Layout>

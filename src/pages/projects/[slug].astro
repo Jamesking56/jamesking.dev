@@ -1,0 +1,76 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map(project => ({
+    params: { slug: project.id },
+    props: { project }
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<Layout title={project.data.title} description={project.data.description} type="article">
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <!-- Back link -->
+    <a href="/projects" class="inline-flex items-center gap-2 text-tokyo-muted hover:text-tokyo-fg mb-8">
+      <span>&#8592;</span> Back to Projects
+    </a>
+    
+    <!-- Header -->
+    <header class="mb-8">
+      <h1 class="text-3xl font-bold text-tokyo-fg-bright mb-4">{project.data.title}</h1>
+      <p class="text-lg text-tokyo-fg mb-4">{project.data.description}</p>
+      
+      <!-- Tech stack -->
+      <div class="flex flex-wrap gap-2 mb-6">
+        {project.data.tech.map(t => (
+          <span class="px-2 py-1 text-sm bg-tokyo-accent/20 text-tokyo-accent rounded">{t}</span>
+        ))}
+      </div>
+      
+      <!-- Links -->
+      <div class="flex gap-4">
+        {project.data.website && (
+          <a href={project.data.website} target="_blank" rel="noopener external" class="px-4 py-2 bg-tokyo-accent text-tokyo-bg font-semibold rounded hover:bg-tokyo-accent-hover transition-colors">
+            Visit Website
+          </a>
+        )}
+        {project.data.github && (
+          <a href={project.data.github} target="_blank" rel="noopener external" class="px-4 py-2 border border-tokyo-border text-tokyo-fg rounded hover:border-tokyo-accent hover:text-tokyo-accent transition-colors">
+            GitHub
+          </a>
+        )}
+      </div>
+    </header>
+    
+    <!-- Content -->
+    <article class="prose prose-invert max-w-none">
+      <Content />
+    </article>
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": project.data.title,
+      "description": project.data.description,
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "James King",
+        "url": "https://jamesking.dev"
+      }
+    })} />
+  </div>
+</Layout>

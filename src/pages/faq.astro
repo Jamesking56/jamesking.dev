@@ -1,0 +1,83 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const faqs = [
+  {
+    question: "What is an AI-augmented software engineer?",
+    answer: "An AI-augmented software engineer uses AI tools like Claude, Ollama, and OpenCode to accelerate development while maintaining safety and quality. This includes AI-assisted code generation, automated code review, prompt engineering for development tasks, and writing AI skills/workflows for the team. The key is using AI as a pair programmer while maintaining human oversight for all production code."
+  },
+  {
+    question: "What's your experience with Kubernetes?",
+    answer: "I've built scalable Kubernetes clusters using infrastructure-as-code (Terraform), achieving zero-downtime deployments. I manage clusters supporting 80+ websites in a multi-tenant SaaS platform. I'm experienced with container orchestration, service mesh, and cloud-native architecture."
+  },
+  {
+    question: "How do you handle web security?",
+    answer: "Security is built into every project I deliver. This includes: secure authentication (OAuth, 2FA), input sanitization, parameterized queries to prevent SQL injection, CSRF protection, regular security audits, and keeping dependencies updated. I follow OWASP guidelines and ensure compliance with GDPR and other regulations."
+  },
+  {
+    question: "Can you help migrate my existing website?",
+    answer: "Yes. I have extensive experience migrating websites - I've migrated 100+ websites from AWS to 20i hosting, reducing costs by ~70% while improving reliability. Whether it's WordPress to Laravel, or moving hosts, I can handle the full migration process while maintaining SEO and minimizing downtime."
+  },
+  {
+    question: "What's your development process?",
+    answer: "My development process follows best practices: requirements gathering, technical specification, Agile development with sprints, code review (including AI-assisted review), comprehensive testing (Unit, Feature, Acceptance using Pest/PHPUnit), CI/CD pipeline setup, and documentation. I believe in test-driven development and automation."
+  },
+  {
+    question: "What's your role at Varsuite Media Group?",
+    answer: "I'm the Chief Technical Officer, leading the technical direction of a website development agency producing WordPress and Laravel websites. I took over from an outsourced team, secured and stabilized client sites, and migrated 100+ websites to 20i hosting. I also introduced development standards, coding conventions, and AI tools for the team."
+  },
+  {
+    question: "What programming languages do you specialize in?",
+    answer: "My primary expertise is in PHP and Laravel, with extensive experience in Symfony for enterprise applications. I also work with JavaScript, React, and Node.js for frontend and API development. I'm experienced with MySQL, PostgreSQL, and Redis databases."
+  },
+  {
+    question: "How do you use AI in your development workflow?",
+    answer: "I use OpenCode with Claude and Ollama models daily for code generation, but every line of AI-generated code goes through rigorous safety review before hitting production. I've written AI skills and guidelines for my team to ensure safe and effective AI-assisted development. I believe AI is a powerful pair programmer but requires human oversight."
+  },
+  {
+    question: "What's your experience with cloud infrastructure?",
+    answer: "I've worked extensively with AWS, DigitalOcean, and Hetzner for cloud services. I've migrated 100+ websites from AWS to 20i, reducing hosting costs by ~70%. I use Terraform for infrastructure-as-code and have set up scalable Kubernetes clusters with zero-downtime deployments."
+  },
+  {
+    question: "Do you do code reviews?",
+    answer: "Yes, I offer code review services where I review AI-generated code or human-written code for security issues, compliance problems, and technical debt. I have extensive experience as an active code reviewer in enterprise environments, ensuring high code quality and test coverage."
+  }
+];
+---
+
+<Layout title="FAQ" description="Frequently asked questions about AI-augmented development, Kubernetes, Laravel, PHP, security, cloud infrastructure, and services offered by James King.">
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold text-tokyo-fg-bright mb-4">FAQ</h1>
+    <p class="text-tokyo-muted mb-8">
+      Frequently asked questions about me and the services I offer.
+    </p>
+    
+    <div class="space-y-4">
+      {faqs.map(faq => (
+        <details class="bg-tokyo-bg-alt border border-tokyo-border rounded group">
+          <summary class="p-4 cursor-pointer text-tokyo-fg-bright font-semibold flex items-center justify-between">
+            {faq.question}
+            <span class="text-tokyo-muted group-open:rotate-90 transition-transform">&#9658;</span>
+          </summary>
+          <div class="px-4 pb-4 text-tokyo-fg">
+            {faq.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+    
+    <!-- JSON-LD FAQ Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    })} />
+  </div>
+</Layout>

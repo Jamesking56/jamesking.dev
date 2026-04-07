@@ -1,0 +1,51 @@
+# humanstxt.org
+
+/* Team */
+
+James King
+AI-Augmented Software Engineer
+Redditch, UK
+
+/* Contact */
+
+Email: james@jamesking.dev
+LinkedIn: https://linkedin.com/in/jamesking56
+GitHub: https://github.com/Jamesking56
+
+/* Skills */
+
+AI-Augmented Development: OpenCode, Claude, Ollama, AI Pair Programming, Safety Review Process, Writing AI Skills and Guidelines, Prompt Engineering
+Backend: Laravel, PHP, Symfony, Node.js, JSON REST APIs, GraphQL
+Frontend: JavaScript, React, AlpineJS, TailwindCSS, CSS
+Cloud & Infrastructure: AWS, DigitalOcean, Hetzner, 20i, Cloudflare R2, Kubernetes, Docker, Terraform, Ansible
+Database: MySQL, MariaDB, PostgreSQL, Redis, KeyDB, Valkey
+Tools & Practices: GitHub Actions, Linux, Server Administration, WordPress, WooCommerce, Test-driven Development, Pest, PHPUnit
+Leadership: Technical Leadership, Architecture Decisions, Code Review, Mentorship, Stakeholder Management, WCAG AA Accessibility
+
+/* Tech Stack */
+
+OS: Omarchy Linux (Arch-based)
+Desktop: Hyprland (Wayland)
+Editors: PHPStorm, Zed, Neovim
+Terminal: Ghostty
+
+/* Work */
+
+CTO at Varsuite Media Group Ltd (Nov 2024 - Present)
+PHP Developer at Wider Plan Ltd (Mar 2018 - Nov 2024)
+Senior Developer at Just Checking Ltd (May 2015 - Mar 2018)
+
+/* Education */
+
+BSc (Hons) Web Programming - Staffordshire University (2011-2015)
+
+/* Awards */
+
+GradEx 2015 Winner (Web Category)
+Posters in Parliament 2016
+
+/* Site */
+
+Last updated: April 2026
+Language: English
+Doctype: HTML5

@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const uses = {
+  "Desktop (Primary)": [
+    { name: "CPU", description: "Intel Core i7-13700K (16-core, 8P + 8E, 30MB L3 cache)" },
+    { name: "GPU", description: "NVIDIA GeForce RTX 3080 Ti (MSI Ventus)" },
+    { name: "Motherboard", description: "ASRock B760M PG Lightning/D4" },
+    { name: "RAM", description: "32 GB DDR4" },
+    { name: "Storage", description: "1TB Seagate FireCuda 530 + 2TB Samsung 990 PRO" },
+    { name: "Monitors", description: "Dell U3415W (3440x1440 ultrawide) + ViewSonic VP2765 (1920x1080 vertical)" },
+    { name: "OS", description: "Omarchy Linux (Arch-based)" },
+    { name: "Desktop", description: "Hyprland (Wayland)" }
+  ],
+  "Laptop": [
+    { name: "Model", description: "Samsung Galaxy Book 2 (NP750XED-KC3UK)" },
+    { name: "CPU", description: "Intel Core i5-1235U (12th Gen)" },
+    { name: "RAM", description: "8 GB LPDDR4x" },
+    { name: "Storage", description: "256 GB SSD" },
+    { name: "Display", description: "15.6\" Full HD (1920x1080)" },
+    { name: "Graphics", description: "Intel Iris Xe Graphics" },
+    { name: "OS", description: "Omarchy Linux (Arch-based)" },
+    { name: "Desktop", description: "Hyprland (Wayland)" }
+  ],
+  "Editors & Terminal": [
+    { name: "PHPStorm", description: "Primary IDE for PHP/Laravel development" },
+    { name: "Zed", description: "Fast, collaborative code editor" },
+    { name: "Neovim", description: "For quick edits and config files" },
+    { name: "Ghostty", description: "Terminal emulator" }
+  ],
+  "AI Tools": [
+    { name: "OpenCode", description: "AI coding assistant with Claude & Ollama models" },
+    { name: "Claude", description: "Code generation and review" },
+    { name: "Ollama", description: "Local AI models" },
+    { name: "GitHub Copilot", description: "Inline code suggestions" }
+  ],
+  "Languages & Frameworks": [
+    { name: "PHP", description: "Primary backend language" },
+    { name: "Laravel", description: "Go-to PHP framework" },
+    { name: "Symfony", description: "Enterprise PHP framework" },
+    { name: "Statamic", description: "Flat-file CMS built on Laravel" },
+    { name: "Astro", description: "Static site generator (this site!)" },
+    { name: "JavaScript", description: "Frontend and Node.js" },
+    { name: "React", description: "Frontend framework" },
+    { name: "AlpineJS", description: "Lightweight JavaScript framework" },
+    { name: "TailwindCSS", description: "Styling" },
+    { name: "CSS", description: "Styling" },
+    { name: "GraphQL", description: "API query language" },
+    { name: "JSON REST APIs", description: "API development" }
+  ],
+  "Cloud & Infrastructure": [
+    { name: "20i", description: "Primary hosting (reseller)" },
+    { name: "AWS", description: "Cloud services" },
+    { name: "DigitalOcean", description: "VPS and droplets" },
+    { name: "Hetzner", description: "Cost-effective servers" },
+    { name: "OVH", description: "Cloud hosting" },
+    { name: "Civo", description: "Cloud-native Kubernetes" },
+    { name: "Linode", description: "VPS hosting" },
+    { name: "Platform.sh", description: "Cloud PaaS" },
+    { name: "Cloudfleet", description: "Managed Kubernetes" },
+    { name: "Netlify", description: "Static site hosting" },
+    { name: "Cloudflare", description: "CDN and DNS" },
+    { name: "Cloudflare R2", description: "Object storage" }
+  ],
+  "DevOps Tools": [
+    { name: "Kubernetes", description: "Container orchestration" },
+    { name: "Docker", description: "Containerization" },
+    { name: "GitHub Actions", description: "CI/CD" },
+    { name: "Terraform", description: "Infrastructure as code" },
+    { name: "Ansible", description: "Configuration management" },
+    { name: "IaaS", description: "Infrastructure as a Service" },
+    { name: "Percy", description: "Visual regression testing" },
+    { name: "Sentry", description: "Error monitoring" },
+    { name: "Codecov", description: "Code coverage tracking" }
+  ],
+  "Database": [
+    { name: "MySQL", description: "Primary database" },
+    { name: "PostgreSQL", description: "Alternative database" },
+    { name: "Microsoft SQL Server", description: "Enterprise databases" },
+    { name: "MariaDB", description: "MySQL alternative" },
+    { name: "SQLite", description: "Lightweight local database" },
+    { name: "Redis", description: "In-memory data store" },
+    { name: "KeyDB", description: "High-performance Redis fork" },
+    { name: "Valkey", description: "Redis fork" }
+  ],
+  "Other Tools": [
+    { name: "Git", description: "Version control" },
+    { name: "Server Administration", description: "Linux server management" },
+    { name: "Test-driven Development", description: "TDD methodology" },
+    { name: "Pest", description: "PHP testing framework" },
+    { name: "PHPUnit", description: "Testing framework" },
+    { name: "Starship", description: "Terminal prompt" },
+    { name: "Fastfetch", description: "System info display" },
+    { name: "btop", description: "System monitor" },
+    { name: "Lazygit", description: "TUI for Git" },
+    { name: "Dotfiles", description: "My Hyprland, Neovim & Ghostty configs", url: "https://github.com/Jamesking56/dotfiles" },
+    { name: "Coding Standards", description: "Shared PHP coding standards (Pint, PHPStan)", url: "https://github.com/Jamesking56/coding-standards" }
+  ]
+};
+---
+
+<Layout title="Uses" description="The tools, software, and setup James King uses daily. Terminal, editors, AI tools, cloud infrastructure, and development workflow.">
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold text-tokyo-fg-bright mb-4">Uses</h1>
+    <p class="text-tokyo-muted mb-4">
+      I'm a big fan of <a href="https://omarchy.org?utm_source=jamesking.dev&utm_medium=referral" target="_blank" rel="noopener external" class="text-tokyo-accent hover:underline">Omarchy Linux</a><span class="text-xs text-tokyo-muted">↗</span> - after trying several operating systems over the years, it's the one that finally feels like home.
+    </p>
+    <p class="text-tokyo-muted mb-8">
+      A list of tools, software, and hardware I use daily. Inspired by <a href="https://wesbos.com/uses?utm_source=jamesking.dev&utm_medium=referral" target="_blank" rel="noopener external" class="text-tokyo-accent hover:underline">wesbos.com/uses</a><span class="text-xs text-tokyo-muted">↗</span>.
+    </p>
+    
+    <div class="space-y-8">
+      {Object.entries(uses).map(([category, items]) => (
+        <section>
+          <h2 class="text-xl font-semibold text-tokyo-accent mb-4">{category}</h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            {items.map(item => (
+              <div class="bg-tokyo-bg-alt border border-tokyo-border rounded p-4">
+                {item.url ? (
+                  <a href={item.url} target="_blank" rel="noopener external" class="font-semibold text-tokyo-fg-bright hover:text-tokyo-accent underline decoration-tokyo-accent/50 hover:decoration-tokyo-accent transition-colors flex items-center gap-1">
+                    {item.name}<span class="text-xs text-tokyo-muted">↗</span>
+                  </a>
+                ) : (
+                  <h3 class="font-semibold text-tokyo-fg-bright">{item.name}</h3>
+                )}
+                <p class="text-sm text-tokyo-muted mt-1">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  </div>
+</Layout>
