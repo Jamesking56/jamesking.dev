@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is James King's personal website - an AI-Augmented Software Engineer based in Redditch, UK. The site is built with **Astro 6.x** and TailwindCSS (via Vite), featuring a Tokyo Night design theme.
+This is James King's personal website - an AI-Augmented Software Engineer based in Redditch, UK. The site is built with **Astro 6.x** and TailwindCSS v4 (via Vite), featuring a Tokyo Night design theme.
 
 ## Site Structure
 
@@ -211,7 +211,7 @@ Screenshots are taken on build. Check Percy dashboard for visual diffs.
 
 ## Troubleshooting
 
-- **Build fails**: Check `astro.config.mjs` and `tailwind.config.mjs`
+- **Build fails**: Check `astro.config.mjs` and `src/styles/global.css` (Tailwind v4 config is in CSS)
 - **Content not showing**: Check frontmatter in content files
 - **Styles broken**: Verify TailwindCSS is properly configured
 - **Schema errors**: Validate JSON-LD in BaseLayout

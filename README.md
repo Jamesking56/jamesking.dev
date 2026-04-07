@@ -15,7 +15,7 @@ Astro-based static website featuring:
 ## Tech Stack
 
 - **Framework**: Astro 6.x
-- **Styling**: TailwindCSS via Vite with Tokyo Night color palette
+- **Styling**: TailwindCSS v4 via Vite with Tokyo Night color palette
 - **Deployment**: Netlify
 - **Visual Testing**: Percy
 - **Analytics**: Counter.dev (cookieless, privacy-first)
@@ -58,8 +58,6 @@ public/
 
 # Config files
 astro.config.mjs    # Astro config
-tailwind.config.mjs  # Tailwind config
-postcss.config.cjs   # PostCSS config (Tailwind)
 ```
 
 ## Adding Content
