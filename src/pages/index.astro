@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import profilePic from '../assets/profile-pic.png';
+---
+
+<Layout title="AI-Augmented Software Engineer" description="James King - CTO & full-stack developer leveraging AI to build production features safely. Expert in Laravel, PHP, Symfony, Kubernetes, and AWS.">
+  <div class="max-w-4xl mx-auto px-2 sm:px-4 py-6 sm:py-12">
+    <!-- Terminal-style Hero -->
+    <section class="mb-8 sm:mb-16">
+      <div class="bg-tokyo-bg-alt border border-tokyo-border rounded-lg overflow-hidden">
+        <!-- Terminal bar -->
+        <div class="bg-tokyo-border px-3 sm:px-4 py-2 flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-tokyo-error"></div>
+          <div class="w-3 h-3 rounded-full bg-tokyo-warning"></div>
+          <div class="w-3 h-3 rounded-full bg-tokyo-success"></div>
+          <span class="ml-2 text-xs text-tokyo-muted">james@home ~</span>
+        </div>
+        
+        <!-- Terminal content -->
+        <div class="p-3 sm:p-6 flex flex-col sm:flex-row gap-3 sm:gap-6">
+          <!-- Profile pic -->
+          <Image 
+            src={profilePic}
+            alt="James King"
+            width={256}
+            height={256}
+            loading="eager"
+            fetchpriority="high"
+            class="w-20 h-20 sm:w-32 sm:h-32 rounded-lg object-cover flex-shrink-0 border-2 border-tokyo-border self-center sm:self-auto"
+          />
+          
+          <div>
+            <p class="text-tokyo-muted mb-1 sm:mb-2 text-sm sm:text-base">$ whoami</p>
+            <h1 class="text-xl sm:text-3xl font-bold text-tokyo-fg-bright mb-2 sm:mb-3">
+              AI-Augmented Software Engineer
+            </h1>
+            <p class="text-sm sm:text-base text-tokyo-fg mb-3 sm:mb-4">
+              Hi, I'm James King. I leverage AI daily to build production features safely. 
+              I'm a CTO, full-stack developer, and passionate advocate of test automation.
+            </p>
+            
+            <!-- Tech stack tags -->
+            <div class="flex flex-wrap gap-1 sm:gap-2 mb-4 sm:mb-6">
+              <span class="px-2 py-1 text-xs bg-tokyo-purple/20 text-tokyo-purple rounded">AI-Augmented</span>
+              <span class="px-2 py-1 text-xs bg-tokyo-accent/20 text-tokyo-accent rounded">Laravel</span>
+              <span class="px-2 py-1 text-xs bg-tokyo-cyan/20 text-tokyo-cyan rounded">PHP</span>
+              <span class="px-2 py-1 text-xs bg-tokyo-success/20 text-tokyo-success rounded">Kubernetes</span>
+              <span class="px-2 py-1 text-xs bg-tokyo-warning/20 text-tokyo-warning rounded">AWS</span>
+              <span class="px-2 py-1 text-xs bg-tokyo-error/20 text-tokyo-error rounded">Symfony</span>
+            </div>
+            
+            <div class="flex gap-2 sm:gap-4">
+              <a href="/about" class="px-3 sm:px-4 py-2 bg-tokyo-accent text-tokyo-bg font-semibold rounded hover:bg-tokyo-accent-hover transition-colors text-sm sm:text-base">
+                About Me
+              </a>
+              <a href="/contact" class="px-3 sm:px-4 py-2 border border-tokyo-accent text-tokyo-accent rounded hover:bg-tokyo-accent/10 transition-colors text-sm sm:text-base">
+                Get In Touch
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Quick links in card format -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+      <a href="/about" class="block p-4 bg-tokyo-bg-alt border border-tokyo-border rounded hover:border-tokyo-accent transition-colors group">
+        <h2 class="text-lg font-semibold text-tokyo-fg-bright group-hover:text-tokyo-accent transition-colors">About</h2>
+        <p class="text-sm text-tokyo-muted mt-1">Learn about my background, experience, and skills</p>
+      </a>
+      
+      <a href="/services" class="block p-4 bg-tokyo-bg-alt border border-tokyo-border rounded hover:border-tokyo-accent transition-colors group">
+        <h2 class="text-lg font-semibold text-tokyo-fg-bright group-hover:text-tokyo-accent transition-colors">Services</h2>
+        <p class="text-sm text-tokyo-muted mt-1">Human-led services for your development team</p>
+      </a>
+      
+      <a href="/uses" class="block p-4 bg-tokyo-bg-alt border border-tokyo-border rounded hover:border-tokyo-accent transition-colors group">
+        <h2 class="text-lg font-semibold text-tokyo-fg-bright group-hover:text-tokyo-accent transition-colors">Uses</h2>
+        <p class="text-sm text-tokyo-muted mt-1">Tools, software, and setup I use daily</p>
+      </a>
+      
+      <a href="/projects" class="block p-4 bg-tokyo-bg-alt border border-tokyo-border rounded hover:border-tokyo-accent transition-colors group">
+        <h2 class="text-lg font-semibold text-tokyo-fg-bright group-hover:text-tokyo-accent transition-colors">Projects</h2>
+        <p class="text-sm text-tokyo-muted mt-1">Side projects and SaaS products I've built</p>
+      </a>
+      
+      <a href="/blog" class="block p-4 bg-tokyo-bg-alt border border-tokyo-border rounded hover:border-tokyo-accent transition-colors group">
+        <h2 class="text-lg font-semibold text-tokyo-fg-bright group-hover:text-tokyo-accent transition-colors">Blog</h2>
+        <p class="text-sm text-tokyo-muted mt-1">Daily posts on development, AI, and tech</p>
+      </a>
+      
+      <a href="/now" class="block p-4 bg-tokyo-bg-alt border border-tokyo-border rounded hover:border-tokyo-accent transition-colors group">
+        <h2 class="text-lg font-semibold text-tokyo-fg-bright group-hover:text-tokyo-accent transition-colors">Now</h2>
+        <p class="text-sm text-tokyo-muted mt-1">What I'm currently working on</p>
+      </a>
+      
+      <a href="/faq" class="block p-4 bg-tokyo-bg-alt border border-tokyo-border rounded hover:border-tokyo-accent transition-colors group">
+        <h2 class="text-lg font-semibold text-tokyo-fg-bright group-hover:text-tokyo-accent transition-colors">FAQ</h2>
+        <p class="text-sm text-tokyo-muted mt-1">Common questions about what I do</p>
+      </a>
+    </section>
+  </div>
+</Layout>

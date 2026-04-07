@@ -1,0 +1,95 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const types = ['article', 'note', 'links', 'video', 'question'];
+  return types.map(type => ({
+    params: { type },
+    props: { type }
+  }));
+}
+
+const { type } = Astro.props;
+
+const allPosts = await getCollection('blog');
+const posts = allPosts
+  .filter(post => post.data.type === type && !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const typeLabels = {
+  article: 'Article',
+  note: 'Note',
+  links: 'Links',
+  video: 'Video',
+  question: 'Question'
+};
+
+const typeColors = {
+  article: 'bg-tokyo-accent/20 text-tokyo-accent',
+  note: 'bg-tokyo-success/20 text-tokyo-success',
+  links: 'bg-tokyo-warning/20 text-tokyo-warning',
+  video: 'bg-tokyo-purple/20 text-tokyo-purple',
+  question: 'bg-tokyo-cyan/20 text-tokyo-cyan'
+};
+
+const typeDescriptions = {
+  article: 'Long-form articles on Laravel, PHP, Kubernetes, AI development, and tech tutorials.',
+  note: 'Short notes and quick thoughts on development, AI, and technology.',
+  links: 'Link roundups of interesting articles, tools, and resources I found.',
+  video: 'Videos I found interesting - tutorials, talks, and tech content.',
+  question: 'Coding interview questions and algorithm challenges with solutions.'
+};
+---
+
+<Layout title={`${typeLabels[type]}s`} description={typeDescriptions[type]}>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold text-tokyo-fg-bright mb-4">{typeLabels[type]}s</h1>
+    <p class="text-tokyo-muted mb-8">
+      All {typeLabels[type].toLowerCase()}s from my blog.
+    </p>
+    
+    <!-- Filter tabs -->
+    <div class="flex flex-wrap gap-2 mb-8">
+      <a href="/blog" class="px-3 py-1 bg-tokyo-bg-alt border border-tokyo-border text-tokyo-muted rounded text-sm hover:border-tokyo-accent hover:text-tokyo-fg transition-colors">All</a>
+      {['article', 'note', 'links', 'video', 'question'].map(t => (
+        <a href={`/blog/${t}`} class:list={[
+          'px-3 py-1 rounded text-sm transition-colors',
+          t === type 
+            ? 'bg-tokyo-border text-tokyo-fg-bright' 
+            : 'bg-tokyo-bg-alt border border-tokyo-border text-tokyo-muted hover:border-tokyo-accent hover:text-tokyo-fg'
+        ]}>
+          {typeLabels[t]}
+        </a>
+      ))}
+    </div>
+    
+    <!-- Posts list -->
+    <div class="space-y-4">
+      {posts.map(post => (
+        <a href={`/blog/${post.id}`} class="block bg-tokyo-bg-alt border border-tokyo-border rounded p-4 hover:border-tokyo-accent transition-colors group">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <time class="text-sm text-tokyo-muted">
+                  {post.data.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+                </time>
+              </div>
+              <h2 class="text-lg font-semibold text-tokyo-fg-bright group-hover:text-tokyo-accent transition-colors">
+                {post.data.title}
+              </h2>
+              {post.data.description && (
+                <p class="text-sm text-tokyo-muted mt-1">{post.data.description}</p>
+              )}
+            </div>
+            <span class="text-tokyo-muted group-hover:text-tokyo-accent transition-colors">&#8594;</span>
+          </div>
+        </a>
+      ))}
+    </div>
+    
+    {posts.length === 0 && (
+      <p class="text-tokyo-muted">No {typeLabels[type].toLowerCase()}s yet. Check back soon!</p>
+    )}
+  </div>
+</Layout>

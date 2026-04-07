@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const services = [
+  {
+    title: "AI Code Review",
+    description: "Review AI-generated code for security issues, compliance problems, and technical debt. With AI becoming ubiquitous in development, someone needs to be the human checkpoint.",
+    items: [
+      "Security vulnerability detection in AI-generated code",
+      "Compliance checking against industry standards",
+      "Technical debt identification and remediation",
+      "Code quality assessment and best practices",
+      "Review of AI prompts and outputs for accuracy",
+      "Establishing AI code review processes for teams"
+    ]
+  },
+  {
+    title: "Technical Consulting",
+    description: "Technical advice for projects and development processes. I help companies make better technical decisions without the overhead of hiring a full-time CTO.",
+    items: [
+      "Architecture design and technical strategy",
+      "Technology stack selection and evaluation",
+      "Development process optimization",
+      "Team workflow and tooling recommendations",
+      "Technical risk assessment",
+      "Codebase auditing and improvement plans"
+    ]
+  },
+  {
+    title: "DevOps & Infrastructure",
+    description: "Cloud infrastructure and deployment pipeline setup. I help teams achieve reliable, scalable deployments with minimal friction.",
+    items: [
+      "Kubernetes cluster setup and management",
+      "CI/CD pipeline implementation",
+      "Infrastructure-as-code with Terraform",
+      "Cloud migration and cost optimization",
+      "Zero-downtime deployment strategies",
+      "Monitoring and alerting setup"
+    ]
+  },
+  {
+    title: "Team Mentorship",
+    description: "Mentoring developers to level up their skills. I help junior developers become seniors and seniors become leaders.",
+    items: [
+      "One-on-one mentoring sessions",
+      "Code review best practices training",
+      "Test-driven development education",
+      "AI tool adoption guidance for teams",
+      "Career development advice",
+      "Technical interview preparation"
+    ]
+  },
+  {
+    title: "Security Audits",
+    description: "Comprehensive security reviews for web applications. I help identify vulnerabilities before the bad guys do.",
+    items: [
+      "OWASP vulnerability assessment",
+      "Authentication and authorization review",
+      "Database security auditing",
+      "API security testing",
+      "GDPR compliance checking",
+      "Security hardening recommendations"
+    ]
+  }
+];
+---
+
+<Layout title="Services" description="AI code review, technical consulting, DevOps & infrastructure, team mentorship, and security audits by James King. Expert Laravel, PHP, Kubernetes services.">
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold text-tokyo-fg-bright mb-4">Services</h1>
+    <p class="text-tokyo-muted mb-12">
+      Human-led services for companies looking to level up their development. 
+      No AI can replace the nuance of experienced human judgment.
+    </p>
+    
+    <div class="space-y-8">
+      {services.map(service => (
+        <section class="bg-tokyo-bg-alt border border-tokyo-border rounded-lg p-6">
+          <h2 class="text-2xl font-semibold text-tokyo-fg-bright mb-3">{service.title}</h2>
+          <p class="text-tokyo-fg mb-4">{service.description}</p>
+          
+          <h3 class="text-sm font-semibold text-tokyo-accent mb-3">What's included:</h3>
+          <ul class="space-y-2">
+            {service.items.map(item => (
+              <li class="text-sm text-tokyo-fg flex items-start gap-2">
+                <span class="text-tokyo-success mt-1">✓</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+    
+    <div class="mt-12 bg-tokyo-border/30 border border-tokyo-border rounded-lg p-6 text-center">
+      <p class="text-tokyo-fg mb-4">
+        Interested in working together? Let's discuss how I can help your team.
+      </p>
+      <a href="/contact" class="px-6 py-3 bg-tokyo-accent text-tokyo-bg font-semibold rounded hover:bg-tokyo-accent-hover transition-colors inline-block">
+        Get In Touch
+      </a>
+    </div>
+  </div>
+</Layout>

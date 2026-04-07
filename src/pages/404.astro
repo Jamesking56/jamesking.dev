@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const jokes = [
+  { code: "404", joke: "The programmer's favorite number: 404. Not found, just like my will to live after this bug." },
+  { code: "echo $JOKE", joke: "Permission denied. Your joke didn't have the right chmod." },
+  { code: "rm -rf /hope", joke: "We looked everywhere, but your page has been rm'd from existence." },
+  { code: "sudo cat /dev/null", joke: "The page you're looking for is null. Void. Non-existent. Like my free time." },
+  { code: "grep 'page' /dev/universe", joke: "No matches found. The universe is vast, but this page isn't in it." },
+  { code: "git checkout --missing", joke: "We tried to checkout the page but it's been deleted. Have you tried committing to better decisions?" },
+  { code: "docker run --rm page", joke: "The container failed and exited with code 404. At least it's not 500, right?" },
+  { code: "curl -v http://page", joke: "Connection timeout. The page is taking longer than my build pipeline. Which is saying something." },
+  { code: "npm search page", joke: "No results. It might be deprecated, abandoned, or just didn't pass code review." },
+  { code: "ping localhost", joke: "Reply from reality: Destination host unreachable. This page is in another castle." },
+  { code: "tail -f /dev/nothing", joke: "Following... and following... and following. The page went that way." },
+  { code: "ssh page@localhost", joke: "Connection refused. The page refuses to acknowledge this error exists." },
+  { code: "kill -9 $PAGE", joke: "Process killed. The page was SIGTERM'd before it could finish loading." },
+  { code: "dd if=/dev/null of=page", joke: "Input error. This page is so empty it has zero bytes." },
+  { code: "journalctl -u page", joke: "No journal entries found. The page left no trace, like a good developer who left on time." },
+  { code: "df -h /page", joke: "Filesystem full of nothing. That page used to be here, I swear. It was on the TODO." },
+  { code: "ls -la /castle", joke: "Sorry kid, the princess is in /another/castle. You'll need to SSH your way there." },
+  { code: "warp to world-1-1", joke: "You somehow ended up in a pipe. The page is in another castle. Try the next level." },
+];
+
+const selectedJoke = jokes[Math.floor(Math.random() * jokes.length)];
+---
+
+<Layout title="404 - Page Not Found">
+  <div class="min-h-screen grid grid-rows-[auto_1fr_auto]">
+    <div class="max-w-4xl mx-auto px-4 py-12 flex-1 flex items-center justify-center">
+      <div class="text-center">
+        <div class="bg-tokyo-bg-alt border border-tokyo-border rounded-lg overflow-hidden mb-8">
+          <div class="bg-tokyo-border px-4 py-2 flex items-center gap-2">
+            <div class="w-3 h-3 rounded-full bg-tokyo-error"></div>
+            <div class="w-3 h-3 rounded-full bg-tokyo-warning"></div>
+            <div class="w-3 h-3 rounded-full bg-tokyo-success"></div>
+            <span class="ml-2 text-xs text-tokyo-muted">james@home ~</span>
+          </div>
+          <div class="p-8">
+            <p class="text-tokyo-muted mb-2">$ echo $?</p>
+            <h1 class="text-6xl font-bold text-tokyo-fg-bright mb-4">404</h1>
+            <p class="text-xl text-tokyo-fg mb-6">Page not found</p>
+            <div class="bg-tokyo-bg border border-tokyo-border rounded p-4 mb-4 text-left font-mono text-sm">
+              <span class="text-tokyo-success">$</span> <span class="text-tokyo-cyan">{selectedJoke.code}</span>
+              <br />
+              <span class="text-tokyo-muted">{selectedJoke.joke}</span>
+            </div>
+          </div>
+        </div>
+        
+        <a href="/" class="px-4 py-2 bg-tokyo-accent text-tokyo-bg font-semibold rounded hover:bg-tokyo-accent-hover transition-colors inline-block">
+          Go Home
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>

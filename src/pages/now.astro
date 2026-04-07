@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const now = {
+  updated: "April 2026",
+  workingOn: [
+    "Building Varsuite Core - A multi-tenant SaaS platform for agency site management, now supporting 80+ websites with advanced billing and reporting",
+    "Developing this new personal website with Astro and Tokyo Night theme - still tweaking and adding content",
+    "Integrating AI tools into my daily development workflow - using OpenCode, Claude, and Ollama for code generation and review"
+  ],
+  learning: [
+    "Kubernetes optimization - deep diving into resource management, auto-scaling, and cost optimization",
+    "New AI tools and workflows - experimenting with different models and prompts for maximum productivity",
+    "Learning how to create guides for AI to follow for safer software development practices",
+    "Advanced GitHub Actions patterns - building more sophisticated CI/CD pipelines"
+  ],
+  exploring: [
+    "Omarchy Linux customizations - tweaking Hyprland, waybar, and theming",
+    "Self-hosting more services - looking at alternatives to proprietary solutions",
+    "Terminal productivity - pushing Neovim and Ghostty to their limits"
+  ]
+};
+---
+
+<Layout title="Now" description="What James King is currently working on - AI-augmented development, Kubernetes, Laravel projects, and ongoing learning.">
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold text-tokyo-fg-bright mb-4">Now</h1>
+    <p class="text-tokyo-muted mb-8">
+      What I'm focused on right now. Inspired by <a href="https://sivers.org/now?utm_source=jamesking.dev&utm_medium=referral" target="_blank" rel="noopener external" class="text-tokyo-accent hover:underline">sivers.org/now</a><span class="text-xs text-tokyo-muted">↗</span>
+    </p>
+    
+    <div class="bg-tokyo-bg-alt border border-tokyo-border rounded-lg p-6 mb-8">
+      <p class="text-sm text-tokyo-muted mb-6">Last updated: {now.updated}</p>
+      
+      <section class="mb-8">
+        <h2 class="text-lg font-semibold text-tokyo-accent mb-4">Working On</h2>
+        <ul class="space-y-3">
+          {now.workingOn.map(item => (
+            <li class="flex items-start gap-3 text-tokyo-fg">
+              <span class="text-tokyo-success mt-1">&#8226;</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+      
+      <section>
+        <h2 class="text-lg font-semibold text-tokyo-accent mb-4">Exploring</h2>
+        <ul class="space-y-3">
+          {now.exploring.map(item => (
+            <li class="flex items-start gap-3 text-tokyo-fg">
+              <span class="text-tokyo-purple mt-1">&#8226;</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </div>
+    
+    <p class="text-sm text-tokyo-muted">
+      <a href="/about" class="text-tokyo-accent hover:underline">About me</a> for more background.
+    </p>
+  </div>
+</Layout>

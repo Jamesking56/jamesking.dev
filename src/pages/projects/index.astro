@@ -1,0 +1,38 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects');
+const vsCore = allProjects.find(p => p.id === 'vs-core');
+const others = allProjects.filter(p => p.id !== 'vs-core' && p.id !== 'jamesking-dev');
+const jameskingDev = allProjects.find(p => p.id === 'jamesking-dev');
+const projects = [vsCore, ...others, jameskingDev];
+---
+
+<Layout title="Projects" description="Side projects and SaaS products built by James King. Includes Varsuite Core (multi-tenant SaaS), cloudfleet-cli-aur, dotfiles, and coding standards.">
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <h1 class="text-3xl font-bold text-tokyo-fg-bright mb-4">Projects</h1>
+    <p class="text-tokyo-muted mb-8">
+      Side projects and SaaS products I've built over the years.
+    </p>
+    
+    <div class="grid md:grid-cols-2 gap-4">
+      {projects.map(project => (
+        <a href={`/projects/${project.id}`} class="bg-tokyo-bg-alt border border-tokyo-border rounded p-4 hover:border-tokyo-accent transition-colors group">
+          <h3 class="text-lg font-semibold text-tokyo-fg-bright group-hover:text-tokyo-accent transition-colors">
+            {project.data.title}
+          </h3>
+          <p class="text-sm text-tokyo-muted mt-2">{project.data.description}</p>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {project.data.tech.slice(0, 4).map(t => (
+              <span class="px-2 py-1 text-xs bg-tokyo-border/50 text-tokyo-muted rounded">{t}</span>
+            ))}
+            {project.data.tech.length > 4 && (
+              <span class="px-2 py-1 text-xs text-tokyo-muted">+{project.data.tech.length - 4}</span>
+            )}
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>

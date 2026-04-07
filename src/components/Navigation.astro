@@ -1,0 +1,105 @@
+---
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/services', label: 'Services' },
+  { href: '/uses', label: 'Uses' },
+  { href: '/faq', label: 'FAQ' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/now', label: 'Now' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="border-b border-tokyo-border bg-tokyo-bg-alt" role="banner" transition:persist>
+  <div class="max-w-4xl mx-auto px-2 sm:px-4">
+    <div class="flex items-center justify-between h-12">
+      <!-- Left: Logo/Name -->
+      <a href="/" class="text-tokyo-accent font-semibold hover:text-tokyo-accent-hover transition-colors text-sm sm:text-base" aria-label="James King - Home">
+        ~/jamesking.dev
+      </a>
+      
+      <!-- Mobile: Burger menu button -->
+      <button 
+        id="menu-toggle" 
+        class="sm:hidden p-2 text-tokyo-fg hover:text-tokyo-fg-bright transition-colors"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+        aria-controls="main-nav"
+      >
+        <svg id="menu-icon-closed" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="menu-icon-open" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      
+      <!-- Desktop: Navigation -->
+      <nav class="hidden sm:flex items-center gap-1" role="navigation" aria-label="Main navigation">
+        {navItems.map(item => (
+          <a
+            href={item.href}
+            class="nav-link px-3 py-1 text-sm rounded transition-colors"
+            aria-current={currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href)) ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+    </div>
+  </div>
+  
+  <!-- Mobile: Dropdown menu -->
+  <nav id="main-nav" class="hidden sm:hidden border-t border-tokyo-border bg-tokyo-bg-alt">
+    <div class="px-2 py-2 space-y-1">
+      {navItems.map(item => (
+        <a
+          href={item.href}
+          class="nav-link-mobile block px-3 py-2 text-sm rounded transition-colors"
+        >
+          {item.label}
+        </a>
+      ))}
+    </div>
+  </nav>
+</header>
+
+<script>
+  function updateNavActive() {
+    const currentPath = window.location.pathname;
+    
+    document.querySelectorAll('.nav-link, .nav-link-mobile').forEach(link => {
+      const href = link.getAttribute('href');
+      const isActive = href === currentPath || (href !== '/' && currentPath.startsWith(href));
+      
+      link.classList.toggle('bg-tokyo-border', isActive);
+      link.classList.toggle('text-tokyo-fg-bright', isActive);
+      link.classList.toggle('text-tokyo-fg', !isActive);
+      link.classList.toggle('hover:text-tokyo-fg-bright', !isActive);
+      link.classList.toggle('hover:bg-tokyo-border/50', !isActive);
+      link.setAttribute('aria-current', isActive ? 'page' : 'false');
+    });
+  }
+
+  function initMenu() {
+    updateNavActive();
+    
+    const menuToggle = document.getElementById('menu-toggle');
+    const mainNav = document.getElementById('main-nav');
+    const menuIconClosed = document.getElementById('menu-icon-closed');
+    const menuIconOpen = document.getElementById('menu-icon-open');
+    
+    menuToggle?.addEventListener('click', () => {
+      const isExpanded = mainNav?.classList.toggle('hidden') === false;
+      menuToggle.setAttribute('aria-expanded', String(!isExpanded));
+      menuIconClosed?.classList.toggle('hidden');
+      menuIconOpen?.classList.toggle('hidden');
+    });
+  }
+
+  document.addEventListener('astro:page-load', initMenu);
+</script>
