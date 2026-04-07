@@ -10,14 +10,12 @@ Astro-based static website featuring:
 - Projects showcase
 - Full SEO/AEO optimization
 - Netlify deployment
-- Percy visual regression testing
 
 ## Tech Stack
 
 - **Framework**: Astro 6.x
 - **Styling**: TailwindCSS v4 via Vite with Tokyo Night color palette
 - **Deployment**: Netlify
-- **Visual Testing**: Percy
 - **Analytics**: Counter.dev (cookieless, privacy-first)
 
 ## Getting Started
@@ -123,10 +121,6 @@ Project details...
 ## Deployment
 
 Connected to Netlify. Push to main branch triggers deployment.
-
-## Visual Regression Testing
-
-Percy is configured for visual testing. Screenshots are captured and compared on each build.
 
 ## License
 

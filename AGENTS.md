@@ -205,10 +205,6 @@ npm run preview # Preview build
 - Forms: Enabled via `data-netlify="true"` on contact form
 - CDN caching: Configured in netlify.toml
 
-## Percy (Visual Regression)
-
-Screenshots are taken on build. Check Percy dashboard for visual diffs.
-
 ## Troubleshooting
 
 - **Build fails**: Check `astro.config.mjs` and `src/styles/global.css` (Tailwind v4 config is in CSS)
