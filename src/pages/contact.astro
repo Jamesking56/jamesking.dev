@@ -18,6 +18,7 @@ import Layout from '../layouts/Layout.astro';
           data-netlify="true" 
           netlify-honeypot="bot-field"
           class="space-y-4"
+          id="contact-form"
         >
           <input name="bot-field" type="text" class="hidden" tabindex="-1" autocomplete="off" />
           
@@ -64,6 +65,12 @@ import Layout from '../layouts/Layout.astro';
             Send Message
           </button>
         </form>
+        
+        <!-- Success message (hidden by default) -->
+        <div id="success-message" class="hidden mt-4 p-4 bg-tokyo-success/20 border border-tokyo-success rounded text-tokyo-fg">
+          <p class="font-semibold text-tokyo-success">Message sent!</p>
+          <p class="text-sm mt-1">Thanks for reaching out. I'll get back to you soon.</p>
+        </div>
       </div>
       
       <!-- Contact Info -->
@@ -102,4 +109,26 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
   </div>
+
+  <script>
+    const handleSubmit = event => {
+      event.preventDefault();
+
+      const myForm = event.target;
+      const formData = new FormData(myForm);
+
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString()
+      })
+        .then(() => {
+          myForm.classList.add('hidden');
+          document.getElementById('success-message').classList.remove('hidden');
+        })
+        .catch(error => alert(error));
+    };
+
+    document.getElementById('contact-form').addEventListener('submit', handleSubmit);
+  </script>
 </Layout>
