@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import { join } from 'path';
 import sitemap from '@astrojs/sitemap';
 import partytown from '@astrojs/partytown';
+import tailwind from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://jamesking.dev',
@@ -19,8 +20,6 @@ export default defineConfig({
     format: 'file'
   },
   vite: {
-    css: {
-      postcss: './postcss.config.cjs'
-    }
+    plugins: [tailwind()]
   }
 });

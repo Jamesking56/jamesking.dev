@@ -1,6 +1,21 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-tokyo-bg: #1a1b26;
+  --color-tokyo-bg-alt: #24283b;
+  --color-tokyo-fg: #a9b1d6;
+  --color-tokyo-fg-bright: #c0caf5;
+  --color-tokyo-accent: #7aa2f7;
+  --color-tokyo-accent-hover: #89b4fa;
+  --color-tokyo-border: #414868;
+  --color-tokyo-muted: #565f89;
+  --color-tokyo-success: #9ece6a;
+  --color-tokyo-warning: #e0af68;
+  --color-tokyo-error: #f7768e;
+  --color-tokyo-purple: #bb9af7;
+  --color-tokyo-cyan: #7dcfff;
+}
 
 @layer base {
   ::view-transition-old(root),
