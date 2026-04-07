@@ -3,7 +3,7 @@ title: "jamesking.dev"
 description: "This website! Built with Astro, TailwindCSS, and Tokyo Night theme."
 tech: ["Astro", "TailwindCSS", "Netlify"]
 github: "https://github.com/Jamesking56/jamesking.dev"
-year: "2025"
+year: "2026"
 ---
 
 This very website! Built with Astro and TailwindCSS, featuring:
