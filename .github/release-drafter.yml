@@ -1,0 +1,24 @@
+name-template: 'v$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
+exclude-labels:
+  - 'skip-changelog'
+categories:
+  - title: '🚀 Features'
+    label: 'enhancement'
+  - title: '🐛 Bug Fixes'
+    label: 'bug'
+  - title: '🧹 Maintenance'
+    label: 'chore'
+  - title: '📝 Documentation'
+    label: 'documentation'
+  - title: '🔒 Security'
+    label: 'security'
+template: |
+  ## Changes
+
+  $CHANGES
+
+  ## Contributors
+
+  Thank you to our contributors!
+  $CONTRIBUTORS
