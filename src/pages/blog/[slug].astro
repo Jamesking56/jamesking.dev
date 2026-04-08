@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Giscus from '../../components/Giscus.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -64,6 +65,14 @@ const typeColors: Record<string, string> = {
     <article class="prose prose-invert max-w-none">
       <Content />
     </article>
+    
+    <!-- Giscus Comments -->
+    <Giscus 
+      repo="jamesking56/jamesking.dev"
+      repoId="MDEwOlJlcG9zaXRvcnk0MjY3NDUyNQ=="
+      category="Announcements"
+      categoryId="DIC_kwDOAospXc4B_d7j"
+    />
     
     <style>
       .prose h2 {
