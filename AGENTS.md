@@ -211,3 +211,11 @@ npm run preview # Preview build
 - **Content not showing**: Check frontmatter in content files
 - **Styles broken**: Verify TailwindCSS is properly configured
 - **Schema errors**: Validate JSON-LD in BaseLayout
+
+## Git Workflow
+
+**Never commit and push without user confirmation.** After making changes:
+
+1. Run `git status` to show what was changed
+2. Ask the user if they want to commit and push
+3. Only proceed after explicit confirmation
