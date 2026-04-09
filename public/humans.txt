@@ -17,7 +17,7 @@ GitHub: https://github.com/Jamesking56
 AI-Augmented Development: OpenCode, Claude, Ollama, AI Pair Programming, Safety Review Process, Writing AI Skills and Guidelines, Prompt Engineering
 Backend: Laravel, PHP, Symfony, Node.js, JSON REST APIs, GraphQL
 Frontend: JavaScript, React, AlpineJS, TailwindCSS, CSS
-Cloud & Infrastructure: AWS, DigitalOcean, Hetzner, 20i, Cloudflare R2, Kubernetes, Docker, Terraform, Ansible
+Cloud & Infrastructure: AWS, DigitalOcean, Hetzner, Cloudflare R2, Kubernetes, Docker, Terraform, Ansible
 Database: MySQL, MariaDB, PostgreSQL, Redis, KeyDB, Valkey
 Tools & Practices: GitHub Actions, Linux, Server Administration, WordPress, WooCommerce, Test-driven Development, Pest, PHPUnit
 Leadership: Technical Leadership, Architecture Decisions, Code Review, Mentorship, Stakeholder Management, WCAG AA Accessibility
