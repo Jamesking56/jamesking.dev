@@ -3,7 +3,7 @@
 /* Team */
 
 James King
-AI-Augmented Software Engineer
+Technical Lead | AI Code Governance
 Redditch, UK
 
 /* Contact */
@@ -14,13 +14,12 @@ GitHub: https://github.com/Jamesking56
 
 /* Skills */
 
-AI-Augmented Development: OpenCode, Claude, Ollama, AI Pair Programming, Safety Review Process, Writing AI Skills and Guidelines, Prompt Engineering
+AI Code Governance: AI-Generated Code Review, Security Vulnerability Detection, Compliance Frameworks, Team AI Guidelines, Prompt Engineering, Safety Review Processes
+Architecture & Leadership: Technical Architecture, System Design, Code Review Leadership, Stakeholder Management, Team Mentorship, Compliance & Governance
 Backend: Laravel, PHP, Symfony, Node.js, JSON REST APIs, GraphQL
-Frontend: JavaScript, React, AlpineJS, TailwindCSS, CSS
 Cloud & Infrastructure: AWS, DigitalOcean, Hetzner, Cloudflare R2, Kubernetes, Docker, Terraform, Ansible
 Database: MySQL, MariaDB, PostgreSQL, Redis, KeyDB, Valkey
-Tools & Practices: GitHub Actions, Linux, Server Administration, WordPress, WooCommerce, Test-driven Development, Pest, PHPUnit
-Leadership: Technical Leadership, Architecture Decisions, Code Review, Mentorship, Stakeholder Management, WCAG AA Accessibility
+Tools & Practices: GitHub Actions, Linux, Server Administration, Test-driven Development, Pest, PHPUnit, WCAG AA Accessibility
 
 /* Tech Stack */
 

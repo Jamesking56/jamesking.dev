@@ -1,0 +1,405 @@
+# James King - Technical Lead | AI Code Governance
+
+James King - Technical Lead specializing in AI code review, security, and compliance. 6 years delivering government services under strict WCAG AA constraints. Expert in Laravel, PHP, Symfony, Kubernetes.
+
+## Table of Contents
+
+- [About](about)
+- [Services](services)
+- [Projects](projects)
+- [Blog](blog)
+- [Uses](uses)
+- [FAQ](faq)
+- [Now](now)
+- [Contact](contact)
+
+---
+
+# About
+
+Proven experience delivering high-compliance systems processing millions in payments. 6 years in government services under strict WCAG AA accessibility constraints.
+
+I'm James King, a Chief Technical Officer and AI Code Governance specialist based in Redditch, UK. I help teams safely adopt AI in development through rigorous code review, compliance frameworks, and governance processes.
+
+I've written AI skills and guidelines for development teams and am a passionate advocate of test automation and secure software development practices.
+
+## Experience
+
+### Varsuite Media Group Ltd - Chief Technical Officer (Nov 2024 - Present)
+
+- Took over development from an outsourced team who were not delivering; secured and stabilized insecure WordPress and Laravel client sites
+- Migrated 100+ websites from multiple hosting platforms (primarily AWS) to in-house hosting, reducing hosting costs by ~70% and improving reliability
+- Introduced development standards: coding conventions, code review process, and client issue reporting workflows
+- Established new site onboarding process for clients joining the agency
+- Led technical delivery across all production websites, ensuring 99.99% uptime
+- AI Code Governance: Introduced AI tools to speed up development safely, writing team guidelines for AI-assisted coding
+
+### Wider Plan Ltd - PHP Developer (Mar 2018 - Nov 2024)
+
+- Developed features for Wider Plan salary sacrifice system and Gov.UK services
+- Collaborated within an 8-developer team delivering government services under strict compliance and WCAG AA accessibility constraints
+- Converted CI/CD pipeline from legacy Jenkins to GitHub Actions with custom runner VMs
+- Active code reviewer via GitHub PRs, ensuring high code quality and test coverage
+- Maintained large Symfony codebase supporting payment systems processing millions
+- Devised automated tests in PHPUnit: Acceptance, Feature and Unit testing
+
+### Just Checking Ltd - Senior Developer (May 2015 - Mar 2018)
+
+- Promoted from Web Application Developer to Senior Developer (November 2016)
+- Mentored Junior Developers who went on to become Senior Developers
+- Delivered full-stack features end-to-end for prototype projects and main application
+- Created development tooling for a legacy platform
+- Migrated from Microsoft SQL Server to PostgreSQL and Windows Server to Ubuntu
+
+### Real Point Design Ltd - Temporary Web Developer (May 2014 - Oct 2014)
+
+- Delivered full-stack features end-to-end for Laravel systems
+- Worked on projects including a major BBC project
+- Established coding standards and way of working with Laravel
+- CentOS system administration for cloud servers
+
+### Trakware Solutions Ltd - Junior Web Developer (May 2013 - May 2014)
+
+- Industrial placement during University
+- Set up open source on GitHub for in-house JavaScript framework
+- Managed AWS cloud services
+- Delivered full-stack features and bug fixes
+
+## Skills
+
+### AI Code Governance
+
+- AI-Generated Code Review
+- Security Vulnerability Detection
+- Compliance Frameworks
+- Team AI Guidelines
+- Prompt Engineering
+- Safety Review Processes
+
+### Architecture & Leadership
+
+- Technical Architecture
+- System Design
+- Code Review Leadership
+- Stakeholder Management
+- Team Mentorship
+- Compliance & Governance
+
+### Backend
+
+- Laravel
+- PHP
+- Symfony
+- Node.js
+- JSON REST APIs
+- GraphQL
+
+### Cloud & Infrastructure
+
+- AWS
+- DigitalOcean
+- Hetzner
+- Cloudflare R2
+- Kubernetes
+- Docker
+- Terraform
+- Ansible
+
+### Database
+
+- MySQL
+- MariaDB
+- PostgreSQL
+- Redis
+- KeyDB
+- Valkey
+
+### Tools & Practices
+
+- GitHub Actions
+- Linux
+- Server Administration
+- Test-driven Development
+- Pest
+- PHPUnit
+- WCAG AA Accessibility
+
+## Education
+
+- BSc (Hons) Web Programming - Staffordshire University (2011 - 2015)
+- GradEx 2015 Winner (Web Category)
+- Posters in Parliament 2016
+
+---
+
+# Services
+
+Human-led services for companies looking to level up their development. No AI can replace the nuance of experienced human judgment.
+
+Rates: Available upon request. All projects start with a free consultation to understand your needs.
+
+## AI Code Review (Day rate or fixed project)
+
+Review AI-generated code for security issues, compliance problems, and technical debt. With AI becoming ubiquitous in development, someone needs to be the human checkpoint.
+
+- Security vulnerability detection in AI-generated code
+- Compliance checking against industry standards
+- Technical debt identification and remediation
+- Code quality assessment and best practices
+- Review of AI prompts and outputs for accuracy
+- Establishing AI code review processes for teams
+
+## Technical Consulting (Day rate or retainer available)
+
+Technical advice for projects and development processes. I help companies make better technical decisions without the overhead of hiring a full-time CTO.
+
+- Architecture design and technical strategy
+- Technology stack selection and evaluation
+- Development process optimization
+- Team workflow and tooling recommendations
+- Technical risk assessment
+- Codebase auditing and improvement plans
+
+## DevOps & Infrastructure (Fixed project or day rate)
+
+Cloud infrastructure and deployment pipeline setup. I help teams achieve reliable, scalable deployments with minimal friction.
+
+- Kubernetes cluster setup and management
+- CI/CD pipeline implementation
+- Infrastructure-as-code with Terraform
+- Cloud migration and cost optimization
+- Zero-downtime deployment strategies
+- Monitoring and alerting setup
+
+## Team Mentorship (Monthly retainer - recurring)
+
+Mentoring developers to level up their skills. I help junior developers become seniors and seniors become leaders.
+
+- One-on-one mentoring sessions
+- Code review best practices training
+- Test-driven development education
+- AI tool adoption guidance for teams
+- Career development advice
+- Technical interview preparation
+
+## Security Audits (Fixed project)
+
+Comprehensive security reviews for web applications. I help identify vulnerabilities before the bad guys do.
+
+- OWASP vulnerability assessment
+- Authentication and authorization review
+- Database security auditing
+- API security testing
+- GDPR compliance checking
+- Security hardening recommendations
+
+---
+
+# Projects
+
+## Varsuite Core
+
+Multi-tenant SaaS platform for agency site management, supporting 80+ websites. Built with Laravel 11, PHP, Kubernetes, Docker, PostgreSQL, Redis.
+
+- Multi-tenant architecture with isolated data per client
+- Automated deployment pipelines
+- Billing integration with Paddle
+- Advanced reporting and analytics
+- Built with Laravel 11 on a scalable Kubernetes cluster using infrastructure-as-code with Terraform
+- Achieved zero-downtime deployments through careful blue-green deployment strategies
+- Custom WordPress plugin and Laravel composer package for integration
+
+## jamesking.dev
+
+This website! Built with Astro, TailwindCSS, and Tokyo Night theme.
+
+- Tokyo Night color scheme inspired by my Omarchy Linux desktop
+- JetBrains Mono font for terminal aesthetic
+- Flexible blog content types (articles, notes, links, videos, questions)
+- SEO-optimized with structured data
+- Visual regression testing with Percy
+- Automated dependency updates with Renovate
+
+---
+
+# Blog
+
+## Hello World - Welcome to My New Website
+
+Introducing my new personal website built with Astro, featuring a Tokyo Night design and flexible blog content types.
+
+Astro is an incredible framework for static sites. It's fast, flexible, and has excellent developer experience. Perfect for a personal site that needs to be performant and easy to maintain.
+
+The site features flexible content types:
+
+- Articles - Long-form posts for tutorials and deep dives
+- Notes - Short-form updates and quick thoughts
+- Links - Link roundups (inspired by cassidoo's newsletter)
+- Videos - Share interesting videos I find
+- Questions - Coding interview questions
+
+## Hey, you can now comment on my posts!
+
+Added Giscus commenting so you can react and comment on blog posts using your GitHub account.
+
+---
+
+# Uses
+
+## Desktop (Primary)
+
+- CPU: Intel Core i7-13700K (16-core, 8P + 8E, 30MB L3 cache)
+- GPU: NVIDIA GeForce RTX 3080 Ti (MSI Ventus)
+- Motherboard: ASRock B760M PG Lightning/D4
+- RAM: 32 GB DDR4
+- Storage: 1TB Seagate FireCuda 530 + 2TB Samsung 990 PRO
+- Monitors: Dell U3415W (3440x1440 ultrawide) + ViewSonic VP2765 (1920x1080 vertical)
+- OS: Omarchy Linux (Arch-based)
+- Desktop: Hyprland (Wayland)
+
+## Laptop
+
+- Model: Samsung Galaxy Book 2 (NP750XED-KC3UK)
+- CPU: Intel Core i5-1235U (12th Gen)
+- RAM: 8 GB LPDDR4x
+- Storage: 256 GB SSD
+- Display: 15.6" Full HD (1920x1080)
+- Graphics: Intel Iris Xe Graphics
+- OS: Omarchy Linux (Arch-based)
+- Desktop: Hyprland (Wayland)
+
+## Editors & Terminal
+
+- PHPStorm: Primary IDE for PHP/Laravel development
+- Zed: Fast, collaborative code editor
+- Neovim: For quick edits and config files
+- Ghostty: Terminal emulator
+
+## AI Tools
+
+- OpenCode: AI coding assistant with Claude & Ollama models
+- Claude: Code generation and review
+- Ollama: Local AI models
+- GitHub Copilot: Inline code suggestions
+
+## Languages & Frameworks
+
+- PHP: Primary backend language
+- Laravel: Go-to PHP framework
+- Symfony: Enterprise PHP framework
+- Statamic: Flat-file CMS built on Laravel
+- Astro: Static site generator (this site!)
+- JavaScript: Frontend and Node.js
+- React: Frontend framework
+- AlpineJS: Lightweight JavaScript framework
+- TailwindCSS: Styling
+- CSS: Styling
+- GraphQL: API query language
+- JSON REST APIs: API development
+
+## Cloud & Infrastructure
+
+- AWS: Cloud services
+- DigitalOcean: VPS and droplets
+- Hetzner: Cost-effective servers
+- OVH: Cloud hosting
+- Civo: Cloud-native Kubernetes
+- Linode: VPS hosting
+- Platform.sh: Cloud PaaS
+- Cloudfleet: Managed Kubernetes
+- Netlify: Static site hosting
+- Cloudflare: CDN and DNS
+- Cloudflare R2: Object storage
+
+## DevOps Tools
+
+- Kubernetes: Container orchestration
+- Docker: Containerization
+- GitHub Actions: CI/CD
+- Terraform: Infrastructure as code
+- Ansible: Configuration management
+- IaaS: Infrastructure as a Service
+- Percy: Visual regression testing
+- Sentry: Error monitoring
+- Codecov: Code coverage tracking
+
+## Database
+
+- MySQL: Primary database
+- PostgreSQL: Alternative database
+- Microsoft SQL Server: Enterprise databases
+- MariaDB: MySQL alternative
+- SQLite: Lightweight local database
+- Redis: In-memory data store
+- KeyDB: High-performance Redis fork
+- Valkey: Redis fork
+
+## Other Tools
+
+- Git: Version control
+- Server Administration: Linux server management
+- Test-driven Development: TDD methodology
+- Pest: PHP testing framework
+- PHPUnit: Testing framework
+- Starship: Terminal prompt
+- Fastfetch: System info display
+- btop: System monitor
+- Lazygit: TUI for Git
+- Dotfiles: My Hyprland, Neovim & Ghostty configs
+- Coding Standards: Shared PHP coding standards (Pint, PHPStan)
+
+---
+
+# FAQ
+
+## What is an AI-augmented software engineer?
+
+An AI-augmented software engineer uses AI tools like Claude, Ollama, and OpenCode to accelerate development while maintaining safety and quality. This includes AI-assisted code generation, automated code review, prompt engineering for development tasks, and writing AI skills/workflows for the team. The key is using AI as a pair programmer while maintaining human oversight for all production code.
+
+## What's your experience with Kubernetes?
+
+I've built scalable Kubernetes clusters using infrastructure-as-code (Terraform), achieving zero-downtime deployments. I manage clusters supporting 80+ websites in a multi-tenant SaaS platform. I'm experienced with container orchestration, service mesh, and cloud-native architecture.
+
+## How do you handle web security?
+
+Security is built into every project I deliver. This includes: secure authentication (OAuth, 2FA), input sanitization, parameterized queries to prevent SQL injection, CSRF protection, regular security audits, and keeping dependencies updated. I follow OWASP guidelines and ensure compliance with GDPR and other regulations.
+
+## Can you help migrate my existing website?
+
+Yes. I have extensive experience migrating websites - I've migrated 100+ websites from AWS to in-house hosting, reducing costs by ~70% while improving reliability. Whether it's WordPress to Laravel, or moving hosts, I can handle the full migration process while maintaining SEO and minimizing downtime.
+
+## What's your development process?
+
+My development process follows best practices: requirements gathering, technical specification, Agile development with sprints, code review (including AI-assisted review), comprehensive testing (Unit, Feature, Acceptance using Pest/PHPUnit), CI/CD pipeline setup, and documentation. I believe in test-driven development and automation.
+
+## What's your role at Varsuite Media Group?
+
+I'm the Chief Technical Officer, leading the technical direction of a website development agency producing WordPress and Laravel websites. I took over from an outsourced team, secured and stabilized client sites, and migrated 100+ websites to in-house hosting. I also introduced development standards, coding conventions, and AI tools for the team.
+
+## What programming languages do you specialize in?
+
+My primary expertise is in PHP and Laravel, with extensive experience in Symfony for enterprise applications. I also work with JavaScript, React, and Node.js for frontend and API development. I'm experienced with MySQL, PostgreSQL, and Redis databases.
+
+## How do you use AI in your development workflow?
+
+I use OpenCode with Claude and Ollama models daily for code generation, but every line of AI-generated code goes through rigorous safety review before hitting production. I've written AI skills and guidelines for my team to ensure safe and effective AI-assisted development. I believe AI is a powerful pair programmer but requires human oversight.
+
+## What's your experience with cloud infrastructure?
+
+I've worked extensively with AWS, DigitalOcean, and Hetzner for cloud services. I've migrated 100+ websites from AWS to in-house hosting, reducing hosting costs by ~70%. I use Terraform for infrastructure-as-code and have set up scalable Kubernetes clusters with zero-downtime deployments.
+
+## Do you do code reviews?
+
+Yes, I offer code review services where I review AI-generated code or human-written code for security issues, compliance problems, and technical debt. I have extensive experience as an active code reviewer in enterprise environments, ensuring high code quality and test coverage.
+
+---
+
+# Now
+
+What I'm currently working on.
+
+---
+
+# Contact
+
+Get in touch for consulting, development work, or technical leadership opportunities.

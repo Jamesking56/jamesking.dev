@@ -5,6 +5,7 @@ const services = [
   {
     title: "AI Code Review",
     description: "Review AI-generated code for security issues, compliance problems, and technical debt. With AI becoming ubiquitous in development, someone needs to be the human checkpoint.",
+    format: "Day rate or fixed project",
     items: [
       "Security vulnerability detection in AI-generated code",
       "Compliance checking against industry standards",
@@ -17,6 +18,7 @@ const services = [
   {
     title: "Technical Consulting",
     description: "Technical advice for projects and development processes. I help companies make better technical decisions without the overhead of hiring a full-time CTO.",
+    format: "Day rate or retainer available",
     items: [
       "Architecture design and technical strategy",
       "Technology stack selection and evaluation",
@@ -29,6 +31,7 @@ const services = [
   {
     title: "DevOps & Infrastructure",
     description: "Cloud infrastructure and deployment pipeline setup. I help teams achieve reliable, scalable deployments with minimal friction.",
+    format: "Fixed project or day rate",
     items: [
       "Kubernetes cluster setup and management",
       "CI/CD pipeline implementation",
@@ -41,6 +44,7 @@ const services = [
   {
     title: "Team Mentorship",
     description: "Mentoring developers to level up their skills. I help junior developers become seniors and seniors become leaders.",
+    format: "Monthly retainer (recurring)",
     items: [
       "One-on-one mentoring sessions",
       "Code review best practices training",
@@ -53,6 +57,7 @@ const services = [
   {
     title: "Security Audits",
     description: "Comprehensive security reviews for web applications. I help identify vulnerabilities before the bad guys do.",
+    format: "Fixed project",
     items: [
       "OWASP vulnerability assessment",
       "Authentication and authorization review",
@@ -68,15 +73,23 @@ const services = [
 <Layout title="Services" description="AI code review, technical consulting, DevOps & infrastructure, team mentorship, and security audits by James King. Expert Laravel, PHP, Kubernetes services.">
   <div class="max-w-4xl mx-auto px-4 py-12">
     <h1 class="text-3xl font-bold text-tokyo-fg-bright mb-4">Services</h1>
-    <p class="text-tokyo-muted mb-12">
+    <p class="text-tokyo-muted mb-8">
       Human-led services for companies looking to level up their development. 
       No AI can replace the nuance of experienced human judgment.
+    </p>
+    <p class="text-tokyo-muted mb-12">
+      <strong>Rates:</strong> Available upon request. All projects start with a free consultation to understand your needs.
     </p>
     
     <div class="space-y-8">
       {services.map(service => (
         <section class="bg-tokyo-bg-alt border border-tokyo-border rounded-lg p-6">
-          <h2 class="text-2xl font-semibold text-tokyo-fg-bright mb-3">{service.title}</h2>
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+            <h2 class="text-2xl font-semibold text-tokyo-fg-bright">{service.title}</h2>
+            {service.format && (
+              <span class="text-sm text-tokyo-muted bg-tokyo-bg px-3 py-1 rounded">{service.format}</span>
+            )}
+          </div>
           <p class="text-tokyo-fg mb-4">{service.description}</p>
           
           <h3 class="text-sm font-semibold text-tokyo-accent mb-3">What's included:</h3>

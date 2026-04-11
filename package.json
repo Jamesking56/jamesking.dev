@@ -1,7 +1,7 @@
 {
   "name": "jamesking.dev",
   "version": "2.0.0",
-  "description": "Personal website for James King - AI-Augmented Software Engineer",
+  "description": "Personal website for James King - Technical Lead | AI Code Governance",
   "type": "module",
   "scripts": {
     "dev": "astro dev",
