@@ -3,7 +3,7 @@ title: "What I Stopped Doing When I Started Using AI"
 type: article
 date: 2026-04-16
 description: "I stopped writing boilerplate, tests, and docs when I started using AI. But I ramped up code review, debugging, and prompt engineering. Here's what actually changed."
-ogImage: "/og-image-ai-workflow.svg"
+ogImage: "/og-image-ai-workflow.png"
 ---
 
 The conversation around AI in software development usually goes one of two ways: AI is going to replace developers, or AI is useless and you're doing it wrong. After a few months of genuinely integrating AI into my daily workflow, I've found neither framing is useful.
