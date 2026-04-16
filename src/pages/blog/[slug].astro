@@ -14,6 +14,8 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 
+const ogImage = post.data.ogImage || '/og-image.svg';
+
 const typeLabels: Record<string, string> = {
   article: 'Article',
   note: 'Note',
@@ -34,6 +36,7 @@ const typeColors: Record<string, string> = {
 <Layout 
   title={post.data.title} 
   description={post.data.description}
+  image={ogImage}
   type="article"
   publishedTime={post.data.date.toISOString()}
 >
@@ -85,6 +88,17 @@ const typeColors: Record<string, string> = {
         color: #c0caf5;
         margin-top: 2rem;
         margin-bottom: 1rem;
+      }
+      .prose figure {
+        margin: 0;
+      }
+      .prose figure img {
+        margin-bottom: 0.25rem;
+      }
+      .prose figure figcaption {
+        margin-top: 0;
+        font-size: 0.875rem;
+        color: #565f89;
       }
     </style>
     

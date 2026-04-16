@@ -50,6 +50,9 @@
     "video": {
       "type": "string"
     },
+    "ogImage": {
+      "type": "string"
+    },
     "draft": {
       "default": false,
       "type": "boolean"
