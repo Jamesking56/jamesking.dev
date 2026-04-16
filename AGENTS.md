@@ -45,6 +45,7 @@ type: article  # or: note, links, video, question
 date: 2026-04-06
 description: "SEO description (optional)"
 quote: "Optional quote to display (optional)"
+ogImage: "/og-image-YOUR-POST-SLUG.png"  # Custom OG image (optional)
 ---
 
 Your content here...
@@ -52,6 +53,51 @@ Your content here...
 ## Section
 
 More content...
+```
+
+### OG Images for Blog Posts
+
+Every blog post should have a custom OG image for social sharing. Requirements:
+
+- **Format:** PNG (not SVG - social platforms don't render SVG reliably)
+- **Dimensions:** 1200x630px
+- **Location:** `public/og-image-YOUR-POST-SLUG.png`
+- **Naming:** Match the post slug (e.g., for `my-new-post.md`, use `og-image-my-new-post.png`)
+
+**OG Image Design Template:**
+```svg
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Dark background matching site theme -->
+  <rect width="1200" height="630" fill="#1a1b26"/>
+  <rect x="40" y="40" width="1120" height="550" rx="16" fill="#24283b"/>
+  
+  <!-- Terminal dots -->
+  <circle cx="80" cy="80" r="12" fill="#f7768e"/>
+  <circle cx="112" cy="80" r="12" fill="#e0af68"/>
+  <circle cx="144" cy="80" r="12" fill="#9ece6a"/>
+  
+  <!-- Accent bar -->
+  <rect x="80" y="170" width="100" height="8" rx="4" fill="#7aa2f7"/>
+  
+  <!-- Title (split if long) -->
+  <text x="80" y="280" font-family="monospace" font-size="48" font-weight="bold" fill="#c0caf5">Your Post Title</text>
+  
+  <!-- Hook/teaser line -->
+  <text x="80" y="420" font-family="monospace" font-size="24" fill="#a9b1d6">Brief teaser that entices people to click</text>
+  
+  <!-- Branding -->
+  <text x="80" y="530" font-family="monospace" font-size="20" fill="#565f89">jamesking.dev</text>
+</svg>
+```
+
+**To create the PNG:**
+```bash
+convert -background "#1a1b26" -density 72 -resize 1200x630 input.svg output.png
+```
+
+**Include in frontmatter:**
+```markdown
+ogImage: "/og-image-YOUR-POST-SLUG.png"
 ```
 
 ### Type-Specific Fields
@@ -170,7 +216,15 @@ When modifying pages, preserve these:
 2. **faq.astro** - Contains FAQPage schema
 3. **projects/[slug].astro** - Contains SoftwareApplication schema
 4. **blog/[slug].astro** - Contains BlogPosting schema
-5. **Open Graph** - Update og-image.svg if design changes
+5. **Open Graph** - Update og-image.png if design changes
+
+### OG Image Requirements
+
+- **Always use PNG format** (not SVG - social platforms cache poorly with SVG)
+- **Always 1200x630px** (use `convert -background "#1a1b26" -density 72 -resize 1200x630 input.svg output.png`)
+- **Every blog post needs a custom OG image** in `public/og-image-{slug}.png`
+- **Reference in frontmatter:** `ogImage: "/og-image-YOUR-POST-SLUG.png"`
+- See "OG Images for Blog Posts" section above for design template
 
 ## Updating Information
 
@@ -211,6 +265,7 @@ npm run preview # Preview build
 - **Content not showing**: Check frontmatter in content files
 - **Styles broken**: Verify TailwindCSS is properly configured
 - **Schema errors**: Validate JSON-LD in BaseLayout
+- **OG image not showing on social**: Use PNG format at 1200x630px, not SVG. Use debugger tools to clear cache (LinkedIn Post Inspector, Twitter Card Validator)
 
 ## Git Workflow
 
