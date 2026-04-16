@@ -2,7 +2,7 @@
 title: "What I Stopped Doing When I Started Using AI"
 type: article
 date: 2026-04-16
-description: "I stopped writing boilerplate, tests, and docs when I started using AI. But I ramped up code review, debugging, and prompt engineering. Here's what actually changed."
+description: "I stopped writing boilerplate, tests, and docs when I started using AI. But I ramped up code review and debugging. Here's what actually changed."
 ogImage: "/og-image-ai-workflow.png"
 ---
 
