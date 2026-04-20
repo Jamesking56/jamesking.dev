@@ -46,11 +46,11 @@ function htmlToMarkdown(html: string): string {
   return md;
 }
 
-export default async (request: Request): Promise<Response> => {
+export default async (request: Request, context: Response): Promise<Response> => {
   const accept = request.headers.get("Accept") || "";
   
   if (!accept.includes("text/markdown")) {
-    return new Response(null, { status: 404 });
+    return context.next();
   }
   
   const url = new URL(request.url);
@@ -68,7 +68,7 @@ export default async (request: Request): Promise<Response> => {
     const htmlResponse = await fetch(htmlUrl.toString());
     
     if (!htmlResponse.ok) {
-      return new Response(null, { status: 404 });
+      return context.next();
     }
     
     const html = await htmlResponse.text();
@@ -84,6 +84,6 @@ export default async (request: Request): Promise<Response> => {
       }
     });
   } catch {
-    return new Response(null, { status: 404 });
+    return context.next();
   }
 };
