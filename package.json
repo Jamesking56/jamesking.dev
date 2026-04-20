@@ -9,7 +9,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "postbuild": "node scripts/indexnow.js"
+    "postbuild": "node scripts/indexnow.js && node scripts/generate-markdown.js"
   },
   "dependencies": {
     "@astrojs/partytown": "^2.1.6",

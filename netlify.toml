@@ -21,7 +21,7 @@
 [[headers]]
   for = "/"
   [headers.values]
-    Link = "</llms.txt>; rel=\"alternate\"; type=\"text/plain\", </rss.xml>; rel=\"alternate\"; type=\"application/rss+xml\", </humans.txt>; rel=\"start\"; type=\"text/plain\", </sitemap.xml>; rel=\"sitemap\""
+    Link = "</llms.txt>; rel=\"alternate\"; type=\"text/plain\", </rss.xml>; rel=\"alternate\"; type=\"application/rss+xml\", </humans.txt>; rel=\"start\"; type=\"text/plain\", </sitemap.xml>; rel=\"sitemap\", </index.md>; rel=\"alternate\"; type=\"text/markdown\""
 
 # API Catalog (RFC 9727)
 [[headers]]
