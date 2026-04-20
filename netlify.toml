@@ -16,6 +16,12 @@
     X-XSS-Protection = "1; mode=block"
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Link headers for agent discovery (RFC 8288)
+[[headers]]
+  for = "/"
+  [headers.values]
+    Link = "</llms.txt>; rel=\"alternate\"; type=\"text/plain\", </rss.xml>; rel=\"alternate\"; type=\"application/rss+xml\", </humans.txt>; rel=\"start\"; type=\"text/plain\""
+
 [[headers]]
   for = "/*.css"
   [headers.values]
