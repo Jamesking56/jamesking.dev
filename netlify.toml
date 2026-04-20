@@ -21,20 +21,13 @@
 [[headers]]
   for = "/"
   [headers.values]
-    Link = "</llms.txt>; rel=\"alternate\"; type=\"text/plain\", </rss.xml>; rel=\"alternate\"; type=\"application/rss+xml\", </humans.txt>; rel=\"start\"; type=\"text/plain\", </index.md>; rel=\"alternate\"; type=\"text/markdown\"
+    Link = "</llms.txt>; rel=\"alternate\"; type=\"text/plain\", </rss.xml>; rel=\"alternate\"; type=\"application/rss+xml\", </humans.txt>; rel=\"start\"; type=\"text/plain\", </sitemap.xml>; rel=\"sitemap\""
 
 # API Catalog (RFC 9727)
 [[headers]]
   for = "/.well-known/api-catalog"
   [headers.values]
     Content-Type = "application/linkset+json"
-
-# Markdown version of homepage
-[[headers]]
-  for = "/index.md"
-  [headers.values]
-    Content-Type = "text/markdown; charset=utf-8"
-    Vary = "Accept"
 
 [[headers]]
   for = "/*.css"
