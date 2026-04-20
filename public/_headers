@@ -1,0 +1,5 @@
+# Netlify Edge Headers
+# Add Content-Signal as HTTP header
+
+/*
+  Content-Signal: ai-train=no, search=yes, ai-input=no

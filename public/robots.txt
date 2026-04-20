@@ -1,6 +1,26 @@
 User-agent: *
 Disallow:
 
+# AI Agent and Bot Access
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Meta-External-Agent
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Content Signals (IETF draft-romm-aipref-contentsignals)
 Content-Signal: ai-train=no, search=yes, ai-input=no
 
 Sitemap: https://jamesking.dev/sitemap-index.xml
