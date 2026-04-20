@@ -1,0 +1,28 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://jamesking.dev/",
+      "rel": "alternate",
+      "type": "application/rss+xml",
+      "href": "https://jamesking.dev/rss.xml"
+    },
+    {
+      "anchor": "https://jamesking.dev/",
+      "rel": "alternate",
+      "type": "text/plain",
+      "href": "https://jamesking.dev/llms.txt"
+    },
+    {
+      "anchor": "https://jamesking.dev/",
+      "rel": "start",
+      "type": "text/plain",
+      "href": "https://jamesking.dev/humans.txt"
+    },
+    {
+      "anchor": "https://jamesking.dev/",
+      "rel": "sitemap",
+      "type": "application/xml",
+      "href": "https://jamesking.dev/sitemap-index.xml"
+    }
+  ]
+}

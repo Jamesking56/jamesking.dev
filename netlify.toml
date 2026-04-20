@@ -20,7 +20,13 @@
 [[headers]]
   for = "/"
   [headers.values]
-    Link = "</llms.txt>; rel=\"alternate\"; type=\"text/plain\", </rss.xml>; rel=\"alternate\"; type=\"application/rss+xml\", </humans.txt>; rel=\"start\"; type=\"text/plain\""
+    Link = "</llms.txt>; rel=\"alternate\"; type=\"text/plain\", </rss.xml>; rel=\"alternate\"; type=\"application/rss+xml\", </humans.txt>; rel=\"start\"; type=\"text/plain\"
+
+# API Catalog (RFC 9727)
+[[headers]]
+  for = "/.well-known/api-catalog"
+  [headers.values]
+    Content-Type = "application/linkset+json"
 
 [[headers]]
   for = "/*.css"
