@@ -81,7 +81,11 @@ const currentPath = Astro.url.pathname;
       link.classList.toggle('text-tokyo-fg', !isActive);
       link.classList.toggle('hover:text-tokyo-fg-bright', !isActive);
       link.classList.toggle('hover:bg-tokyo-border/50', !isActive);
-      link.setAttribute('aria-current', isActive ? 'page' : 'false');
+      if (isActive) {
+        link.setAttribute('aria-current', 'page');
+      } else {
+        link.removeAttribute('aria-current');
+      }
     });
   }
 

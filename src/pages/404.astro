@@ -26,7 +26,7 @@ const selectedJoke = jokes[Math.floor(Math.random() * jokes.length)];
 ---
 
 <Layout title="404 - Page Not Found">
-  <div class="min-h-screen grid grid-rows-[auto_1fr_auto]">
+  <div class="grid grid-rows-[auto_1fr_auto]">
     <div class="max-w-4xl mx-auto px-4 py-12 flex-1 flex items-center justify-center">
       <div class="text-center">
         <div class="bg-tokyo-bg-alt border border-tokyo-border rounded-lg overflow-hidden mb-8">
@@ -38,7 +38,7 @@ const selectedJoke = jokes[Math.floor(Math.random() * jokes.length)];
           </div>
           <div class="p-8">
             <p class="text-tokyo-muted mb-2">$ echo $?</p>
-            <h1 class="text-6xl font-bold text-tokyo-fg-bright mb-4">404</h1>
+            <h1 class="text-4xl sm:text-6xl font-bold text-tokyo-fg-bright mb-4">404</h1>
             <p class="text-xl text-tokyo-fg mb-6">Page not found</p>
             <div class="bg-tokyo-bg border border-tokyo-border rounded p-4 mb-4 text-left font-mono text-sm">
               <span class="text-tokyo-success">$</span> <span class="text-tokyo-cyan">{selectedJoke.code}</span>

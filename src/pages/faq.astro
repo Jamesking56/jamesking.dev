@@ -55,7 +55,7 @@ const faqs = [
     <div class="space-y-4">
       {faqs.map(faq => (
         <details class="bg-tokyo-bg-alt border border-tokyo-border rounded group">
-          <summary class="p-4 cursor-pointer text-tokyo-fg-bright font-semibold flex items-center justify-between">
+          <summary class="p-4 cursor-pointer text-tokyo-fg-bright font-semibold flex items-center justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tokyo-accent/50 focus-visible:rounded">
             {faq.question}
             <span class="text-tokyo-muted group-open:rotate-90 transition-transform">&#9658;</span>
           </summary>

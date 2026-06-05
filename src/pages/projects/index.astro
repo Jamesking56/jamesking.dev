@@ -3,10 +3,11 @@ import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
 const allProjects = await getCollection('projects');
-const vsCore = allProjects.find(p => p.id === 'vs-core');
-const others = allProjects.filter(p => p.id !== 'vs-core' && p.id !== 'jamesking-dev');
-const jameskingDev = allProjects.find(p => p.id === 'jamesking-dev');
-const projects = [vsCore, ...others, jameskingDev];
+const sorted = allProjects.sort((a, b) => {
+  if (a.data.featured && !b.data.featured) return -1;
+  if (!a.data.featured && b.data.featured) return 1;
+  return 0;
+});
 ---
 
 <Layout title="Projects" description="Side projects and SaaS products built by James King. Includes Varsuite Core (multi-tenant SaaS), cloudfleet-cli-aur, dotfiles, and coding standards.">
@@ -17,7 +18,7 @@ const projects = [vsCore, ...others, jameskingDev];
     </p>
     
     <div class="grid md:grid-cols-2 gap-4">
-      {projects.map(project => (
+      {sorted.map(project => (
         <a href={`/projects/${project.id}`} class="bg-tokyo-bg-alt border border-tokyo-border rounded p-4 hover:border-tokyo-accent transition-colors group">
           <h3 class="text-lg font-semibold text-tokyo-fg-bright group-hover:text-tokyo-accent transition-colors">
             {project.data.title}
