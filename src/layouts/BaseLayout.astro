@@ -102,16 +102,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         },
         "datePublished": publishedTime,
         "image": "https://jamesking.dev/og-image.png"
-      } : {
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": {
-            "@type": "EntryPoint",
-            "urlTemplate": "https://jamesking.dev/blog?q={search_term_string}"
-          },
-          "query-input": "required name=search_term_string"
-        }
-      }),
+      } : {}),
       "publisher": {
         "@type": "Person",
         "name": "James King",

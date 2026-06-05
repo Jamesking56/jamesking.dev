@@ -9,11 +9,11 @@ export async function GET() {
 
   return rss({
     title: 'James King - AI-Augmented Software Engineer',
-    description: 'Daily posts on development, AI, and tech',
+    description: 'Posts on development, AI, and tech',
     site: 'https://jamesking.dev',
     items: sortedPosts.map(post => ({
       title: post.data.title,
-      link: `/blog/${post.slug}`,
+      link: `/blog/${post.id}`,
       pubDate: post.data.date,
       description: post.data.description,
     })),
