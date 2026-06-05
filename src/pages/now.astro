@@ -2,16 +2,16 @@
 import Layout from '../layouts/Layout.astro';
 
 const now = {
-  updated: "April 2026",
+  updated: "June 2026",
   workingOn: [
     "Building Varsuite Core - A multi-tenant SaaS platform for agency site management, now supporting 80+ websites with advanced billing and reporting",
-    "Developing this new personal website with Astro and Tokyo Night theme - still tweaking and adding content",
-    "Integrating AI tools into my daily development workflow - using OpenCode, Claude, and Ollama for code generation and review"
+    "Writing AI guides and development workflows for my team at Varsuite, establishing safe and effective AI-augmented development practices",
+    "Expanding jamesking.dev with new content, services, and improving the overall site experience"
   ],
   learning: [
     "Kubernetes optimization - deep diving into resource management, auto-scaling, and cost optimization",
     "New AI tools and workflows - experimenting with different models and prompts for maximum productivity",
-    "Learning how to create guides for AI to follow for safer software development practices",
+    "Creating guides for AI to follow for safer software development practices",
     "Advanced GitHub Actions patterns - building more sophisticated CI/CD pipelines"
   ],
   exploring: [
@@ -38,6 +38,18 @@ const now = {
           {now.workingOn.map(item => (
             <li class="flex items-start gap-3 text-tokyo-fg">
               <span class="text-tokyo-success mt-1">&#8226;</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+      
+      <section class="mb-8">
+        <h2 class="text-lg font-semibold text-tokyo-accent mb-4">Learning</h2>
+        <ul class="space-y-3">
+          {now.learning.map(item => (
+            <li class="flex items-start gap-3 text-tokyo-fg">
+              <span class="text-tokyo-cyan mt-1">&#8226;</span>
               <span>{item}</span>
             </li>
           ))}

@@ -45,6 +45,6 @@ Posters in Parliament 2016
 
 /* Site */
 
-Last updated: April 2026
+Last updated: June 2026
 Language: English
 Doctype: HTML5
