@@ -9,6 +9,7 @@ This is James King's personal website - an AI-Augmented Software Engineer based 
 ```
 /                    → Homepage with hero, AI positioning, quick links
 /about               → Full bio, experience, skills, CV download
+/services            → Services offered (AI Code Review, Consulting, DevOps, Mentorship, Security)
 /uses                → Tools and software I use daily
 /faq                 → FAQ for AI citation (hiring questions)
 /blog                → Blog listing with type filters

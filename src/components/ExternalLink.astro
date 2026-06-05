@@ -1,0 +1,13 @@
+---
+interface Props {
+  href: string;
+  label: string;
+}
+
+const { href, label } = Astro.props;
+const url = href.includes('?') ? `${href}&utm_source=jamesking.dev&utm_medium=referral` : `${href}?utm_source=jamesking.dev&utm_medium=referral`;
+---
+
+<a href={url} target="_blank" rel="noopener external" class="text-tokyo-accent underline hover:text-tokyo-accent-hover" aria-label={`${label} (opens in new tab)`}>
+  <slot /><span class="text-xs text-tokyo-muted">&#8599;</span>
+</a>
