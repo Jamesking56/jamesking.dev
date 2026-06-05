@@ -3,6 +3,7 @@ title: "Hello World - Welcome to My New Website"
 type: article
 date: 2026-04-06
 description: "Introducing my new personal website built with Astro, featuring a Tokyo Night design and flexible blog content types."
+ogImage: "/og-image-hello-world.png"
 quote: "The beginning is the word and the end is silence. And in between are all the stories."
 ---
 
