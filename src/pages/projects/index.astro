@@ -3,14 +3,13 @@ import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
 const allProjects = await getCollection('projects');
+const order = ['laravel-moat-aur', 'cloudfleet-cli-aur', 'dotfiles', 'jamesking-dev', 'coding-standards'];
 const sorted = allProjects.sort((a, b) => {
-  if (a.data.featured && !b.data.featured) return -1;
-  if (!a.data.featured && b.data.featured) return 1;
-  return 0;
+  return (order.indexOf(a.id) ?? 99) - (order.indexOf(b.id) ?? 99);
 });
 ---
 
-<Layout title="Projects" description="Side projects and SaaS products built by James King. Includes Varsuite Core (multi-tenant SaaS), cloudfleet-cli-aur, dotfiles, and coding standards.">
+<Layout title="Projects" description="Side projects and open source work by James King. Includes Laravel Moat AUR, cloudfleet-cli-aur, dotfiles, and coding standards.">
   <div class="max-w-4xl mx-auto px-4 py-12">
     <h1 class="text-3xl font-bold text-tokyo-fg-bright mb-4">Projects</h1>
     <p class="text-tokyo-muted mb-8">
