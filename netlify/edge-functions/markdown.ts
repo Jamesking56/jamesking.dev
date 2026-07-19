@@ -30,13 +30,11 @@ function htmlToMarkdown(html: string): string {
   md = md.replace(/<blockquote[^>]*>(.*?)<\/blockquote>/gis, '> $1\n');
   md = md.replace(/<br\s*\/?>/gi, '\n');
   md = md.replace(/<hr\s*\/?>/gi, '---\n');
-  md = md.replace(/<[^>]+>/g, '');
-  md = md.replace(/&nbsp;/g, ' ');
-  md = md.replace(/&amp;/g, '&');
-  md = md.replace(/&lt;/g, '<');
-  md = md.replace(/&gt;/g, '>');
-  md = md.replace(/&quot;/g, '"');
-  md = md.replace(/&#39;/g, "'");
+  md = md.replace(/&(?:nbsp|lt|gt|quot|#39|amp);/g, (m) => ({
+    '&nbsp;': ' ', '&lt;': '<', '&gt;': '>',
+    '&quot;': '"', '&#39;': "'", '&amp;': '&',
+  })[m]!);
+  md = md.replace(/[<>]/g, '');
   md = md.replace(/\n{3,}/g, '\n\n');
   
   return md.trim();
