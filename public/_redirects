@@ -1,6 +1,9 @@
 # Note: Netlify Edge Functions handle markdown negotiation
 # This file exists for build process compatibility
 
+# Canonicalize Astro file-style blog URLs to clean URLs
+/blog/:slug.html /blog/:slug 301!
+
 # Redirect domain aliases to primary domain
 http://jamesking56.co.uk/* https://jamesking.dev/:splat 301!
 http://www.jamesking56.co.uk/* https://jamesking.dev/:splat 301!
