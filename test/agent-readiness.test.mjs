@@ -64,7 +64,7 @@ test('markdown negotiation is registered and cache-safe', async () => {
     {
       next: async () => new Response(`<!doctype html>
         <html><head><title>About</title><script>window.analytics = true;</script></head>
-        <body><nav>Navigation</nav><main><h1>About</h1><p>Server-rendered content.</p></main><footer>Footer</footer></body></html>`),
+        <body><nav>Navigation</nav><main><h1>About</h1><scrip<script>window.attack = true;</script>t>alert(123)</script><p>Server-rendered content.</p></main><footer>Footer</footer></body></html>`),
     },
   );
 
@@ -73,7 +73,7 @@ test('markdown negotiation is registered and cache-safe', async () => {
   assert.equal(response.headers.get('Vary'), 'Accept, Accept-Encoding');
   const body = await response.text();
   assert.match(body, /# About/);
-  assert.doesNotMatch(body, /doctype|analytics|Navigation|Footer|<[^>]+>/i);
+  assert.doesNotMatch(body, /doctype|analytics|attack|alert|Navigation|Footer|<[^>]+>/i);
 });
 
 test('markdown requests for missing pages return a recoverable 404', async () => {
