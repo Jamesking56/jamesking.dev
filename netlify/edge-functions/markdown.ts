@@ -7,6 +7,17 @@ const handlers: Record<string, (c: string) => string> = {
   p: (c) => `${c}\n\n`,
 };
 
+export const config = { path: '/*' };
+
+const notFoundMarkdown = `# Page not found
+
+The requested page does not exist on jamesking.dev.
+
+- [Home](https://jamesking.dev/)
+- [Sitemap](https://jamesking.dev/sitemap-index.xml)
+- [Agent guide](https://jamesking.dev/llms.txt)
+`;
+
 function parseTag(html: string, tag: string): string {
   const regex = new RegExp(`<${tag}[^>]*>(.*?)</${tag}>`, 'gis');
   return html.replace(regex, (_, content) => handlers[tag]?.(content) || content);
@@ -47,11 +58,18 @@ export default async (req: Request, ctx: { next: () => Promise<Response> }): Pro
     return ctx.next();
   }
   
-  const url = new URL(req.url);
-  const path = url.pathname === '/' ? '/index.html' : url.pathname + '/index.html';
-  
   try {
-    const res = await fetch(url.origin + path);
+    const res = await ctx.next();
+    if (res.status === 404) {
+      return new Response(notFoundMarkdown, {
+        status: 404,
+        headers: {
+          'Content-Type': 'text/markdown; charset=utf-8',
+          'Vary': 'Accept, Accept-Encoding',
+        },
+      });
+    }
+
     if (!res.ok) return ctx.next();
     
     const html = await res.text();
@@ -61,7 +79,7 @@ export default async (req: Request, ctx: { next: () => Promise<Response> }): Pro
     return new Response(md, {
       headers: {
         'Content-Type': 'text/markdown; charset=utf-8',
-        'Vary': 'Accept',
+        'Vary': 'Accept, Accept-Encoding',
         'x-markdown-tokens': String(tokens),
       }
     });

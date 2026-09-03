@@ -9,6 +9,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "test": "npm run build && node --test",
     "postbuild": "node scripts/indexnow.js && node scripts/generate-markdown.js"
   },
   "dependencies": {
