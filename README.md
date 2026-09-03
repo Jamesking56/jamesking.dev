@@ -1,10 +1,10 @@
 # jamesking.dev
 
-Personal website for James King - AI-Augmented Software Engineer
+Personal website for James King, Technical Lead and AI Code Governance specialist.
 
 ## Overview
 
-Astro-based static website featuring:
+Astro static site featuring:
 - Tokyo Night design theme (inspired by Omarchy Linux)
 - Flexible blog with multiple content types
 - Projects showcase
@@ -13,7 +13,7 @@ Astro-based static website featuring:
 
 ## Tech Stack
 
-- **Framework**: Astro 6.x
+- **Framework**: Astro 7.x
 - **Styling**: TailwindCSS v4 via Vite with Tokyo Night color palette
 - **Deployment**: Netlify
 - **Analytics**: Counter.dev (cookieless, privacy-first)
@@ -32,31 +32,45 @@ npm run build
 
 # Preview production build
 npm run preview
+
+# Build and run the Node test suite
+npm test
 ```
+
+`npm run build` also generates Markdown page exports and submits URLs to IndexNow.
 
 ## Project Structure
 
 ```
 src/
 ├── components/     # Reusable UI components
-├── content/        # Content (blog posts, projects)
-│   ├── blog/      # Blog posts (.md files)
-│   └── projects/  # Project entries (.md files)
-├── content.config.ts # Astro v6 content collections config
+├── content/        # Content collections and source files
+│   ├── blog/       # Blog posts (.md files)
+│   ├── projects/   # Project entries (.md files)
+│   └── config.ts   # Content collection schemas
 ├── layouts/       # Page layouts
 ├── pages/         # Route pages
-│   ├── blog/      # Blog routes
-│   └── projects/  # Project routes
+│   ├── blog/       # Blog routes
+│   └── projects/   # Project routes
 ├── styles/        # Global styles (Tailwind)
 └── ...
 public/
-├── cv.pdf         # Downloadable CV
-├── favicon.svg    # Site favicon
-└── og-image.svg   # Open Graph image
+├── cv.pdf          # Downloadable CV
+├── favicon.svg     # Site favicon
+└── og-image.png    # Default Open Graph image
 
 # Config files
 astro.config.mjs    # Astro config
+netlify.toml        # Netlify build and header configuration
 ```
+
+## Routes
+
+- `/` - Homepage
+- `/about`, `/services`, `/uses`, `/now`, `/contact`, `/faq`
+- `/blog`, `/blog/[type]`, `/blog/[slug]`
+- `/projects`, `/projects/[slug]`
+- `/rss.xml`, `/humans.txt`, `/llms.txt`
 
 ## Adding Content
 
@@ -71,10 +85,13 @@ type: article  # article, note, links, video, question
 date: 2026-04-06
 description: "Short description for SEO"
 quote: "Optional quote"
+ogImage: "/og-image-my-post.png"
 ---
 
 Your content here...
 ```
+
+Create a 1200x630 PNG at `public/og-image-my-post.png` for each blog post.
 
 ### Projects
 
@@ -98,7 +115,7 @@ Project details...
 
 | Type | Description | Frontmatter |
 |------|-------------|-------------|
-| `article` | Long-form posts | title, date, description, quote |
+| `article` | Long-form posts | title, date, description, quote, ogImage |
 | `note` | Short updates | title, date |
 | `links` | Link roundups | title, date, links[] |
 | `video` | Video shares | title, date, video URL |
