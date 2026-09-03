@@ -1,14 +1,50 @@
 import fs from 'fs';
 import path from 'path';
 
-function htmlToMarkdown(html) {
-  let md = html.match(/<main\b[^>]*>(.*?)<\/main>/is)?.[1] || html;
+const unsafeTags = ['script', 'style', 'noscript', 'template', 'svg'];
+
+function removeUnsafeContent(html) {
   let previous;
   do {
-    previous = md;
-    md = md.replace(/<!--.*?-->/gs, '');
-    md = md.replace(/<(script|style|noscript|template|svg)\b[^>]*>.*?<\/\1>/gis, '');
-  } while (md !== previous);
+    previous = html;
+
+    const commentStart = html.indexOf('<!--');
+    if (commentStart !== -1) {
+      const commentEnd = html.indexOf('-->', commentStart + 4);
+      html = html.slice(0, commentStart) + (commentEnd === -1 ? '' : html.slice(commentEnd + 3));
+      continue;
+    }
+
+    const lower = html.toLowerCase();
+    let start = -1;
+    let tag = '';
+    for (const candidate of unsafeTags) {
+      let index = lower.indexOf(`<${candidate}`);
+      while (index !== -1 && !' \t\n\r\f/>'.includes(lower[index + candidate.length + 1])) {
+        index = lower.indexOf(`<${candidate}`, index + 1);
+      }
+      const boundary = lower[index + candidate.length + 1];
+      if (index !== -1 && ' \t\n\r\f/>'.includes(boundary)) {
+        if (start === -1 || index < start) {
+          start = index;
+          tag = candidate;
+        }
+      }
+    }
+
+    if (start !== -1) {
+      const openingEnd = html.indexOf('>', start);
+      const closingStart = openingEnd === -1 ? -1 : lower.indexOf(`</${tag}>`, openingEnd + 1);
+      html = html.slice(0, start) + (closingStart === -1 ? '' : html.slice(closingStart + tag.length + 3));
+    }
+  } while (html !== previous);
+
+  return html;
+}
+
+function htmlToMarkdown(html) {
+  let md = html.match(/<main\b[^>]*>(.*?)<\/main>/is)?.[1] || html;
+  md = removeUnsafeContent(md);
   
   const tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
   tags.forEach((tag, i) => {
