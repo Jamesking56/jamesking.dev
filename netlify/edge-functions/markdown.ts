@@ -24,7 +24,9 @@ function parseTag(html: string, tag: string): string {
 }
 
 function htmlToMarkdown(html: string): string {
-  let md = html;
+  let md = html.match(/<main\b[^>]*>(.*?)<\/main>/is)?.[1] || html;
+  md = md.replace(/<!--.*?-->/gs, '');
+  md = md.replace(/<(script|style|noscript|template|svg)\b[^>]*>.*?<\/\1>/gis, '');
   
   ['h1', 'h2', 'h3', 'h4', 'h5', 'p'].forEach(tag => {
     md = parseTag(md, tag);
@@ -45,7 +47,7 @@ function htmlToMarkdown(html: string): string {
     '&nbsp;': ' ', '&lt;': '<', '&gt;': '>',
     '&quot;': '"', '&#39;': "'", '&amp;': '&',
   })[m]!);
-  md = md.replace(/[<>]/g, '');
+  md = md.replace(/<[^>]*>/g, '');
   md = md.replace(/\n{3,}/g, '\n\n');
   
   return md.trim();

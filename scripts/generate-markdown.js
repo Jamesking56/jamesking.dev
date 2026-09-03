@@ -2,7 +2,9 @@ import fs from 'fs';
 import path from 'path';
 
 function htmlToMarkdown(html) {
-  let md = html;
+  let md = html.match(/<main\b[^>]*>(.*?)<\/main>/is)?.[1] || html;
+  md = md.replace(/<!--.*?-->/gs, '');
+  md = md.replace(/<(script|style|noscript|template|svg)\b[^>]*>.*?<\/\1>/gis, '');
   
   const tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
   tags.forEach((tag, i) => {
@@ -26,7 +28,7 @@ function htmlToMarkdown(html) {
     '&nbsp;': ' ', '&lt;': '<', '&gt;': '>',
     '&quot;': '"', '&#39;': "'", '&amp;': '&',
   })[m]);
-  md = md.replace(/[<>]/g, '');
+  md = md.replace(/<[^>]*>/g, '');
   md = md.replace(/\n{3,}/g, '\n\n');
   
   return md.trim();

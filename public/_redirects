@@ -1,8 +1,28 @@
-# Note: Netlify Edge Functions handle markdown negotiation
-# This file exists for build process compatibility
-
-# Canonicalize Astro file-style blog URLs to clean URLs
-/blog/:slug.html /blog/:slug 301!
+# Canonicalize Astro file-style URLs to clean URLs
+/index.html / 301!
+/about.html /about 301!
+/blog/article.html /blog/article 301!
+/blog.html /blog 301!
+/blog/giscus-comments.html /blog/giscus-comments 301!
+/blog/hello-world.html /blog/hello-world 301!
+/blog/links.html /blog/links 301!
+/blog/note.html /blog/note 301!
+/blog/question.html /blog/question 301!
+/blog/reviewing-ai-generated-code.html /blog/reviewing-ai-generated-code 301!
+/blog/software-golden-era.html /blog/software-golden-era 301!
+/blog/video.html /blog/video 301!
+/blog/what-i-stopped-doing-when-i-started-using-ai.html /blog/what-i-stopped-doing-when-i-started-using-ai 301!
+/contact.html /contact 301!
+/faq.html /faq 301!
+/now.html /now 301!
+/projects/cloudfleet-cli-aur.html /projects/cloudfleet-cli-aur 301!
+/projects/coding-standards.html /projects/coding-standards 301!
+/projects/dotfiles.html /projects/dotfiles 301!
+/projects.html /projects 301!
+/projects/jamesking-dev.html /projects/jamesking-dev 301!
+/projects/laravel-moat-aur.html /projects/laravel-moat-aur 301!
+/services.html /services 301!
+/uses.html /uses 301!
 
 # Redirect domain aliases to primary domain
 http://jamesking56.co.uk/* https://jamesking.dev/:splat 301!
