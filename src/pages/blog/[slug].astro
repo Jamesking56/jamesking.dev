@@ -68,6 +68,25 @@ const typeColors: Record<string, string> = {
     <article class="prose prose-invert max-w-none">
       <Content />
     </article>
+
+    <!-- Links type specific content -->
+    {post.data.type === 'links' && post.data.links && (
+      <div class="mt-8 pt-8 border-t border-tokyo-border">
+        <h2 class="text-xl font-semibold text-tokyo-fg-bright mb-4">Links</h2>
+        <ul class="space-y-4">
+          {post.data.links.map(link => (
+            <li>
+              <a href={link.url} target="_blank" rel="noopener external" class="text-tokyo-accent underline hover:text-tokyo-accent-hover" aria-label={`${link.title} (opens in new tab)`}>
+                {link.title}
+              </a><span class="text-xs text-tokyo-muted">↗</span>
+              {link.description && (
+                <p class="text-sm text-tokyo-muted mt-1">{link.description}</p>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
     
     <!-- Giscus Comments -->
     <Giscus 
@@ -101,25 +120,6 @@ const typeColors: Record<string, string> = {
         color: var(--color-tokyo-muted);
       }
     </style>
-    
-    <!-- Links type specific content -->
-    {post.data.type === 'links' && post.data.links && (
-      <div class="mt-8 pt-8 border-t border-tokyo-border">
-        <h2 class="text-xl font-semibold text-tokyo-fg-bright mb-4">Links</h2>
-        <ul class="space-y-4">
-          {post.data.links.map(link => (
-            <li>
-              <a href={link.url} target="_blank" rel="noopener external" class="text-tokyo-accent hover:underline">
-                {link.title}
-              </a>
-              {link.description && (
-                <p class="text-sm text-tokyo-muted mt-1">{link.description}</p>
-              )}
-            </li>
-          ))}
-        </ul>
-      </div>
-    )}
     
     <!-- Video type specific content -->
     {post.data.type === 'video' && post.data.video && (
