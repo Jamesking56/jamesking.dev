@@ -3,158 +3,70 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Contact" description="Get in touch with James King for AI consulting, technical leadership, DevOps work, or web development services. Based in Redditch, UK.">
-  <div class="max-w-4xl mx-auto px-4 py-12">
+  <div class="max-w-2xl mx-auto px-4 py-12">
     <h1 class="text-3xl font-bold text-tokyo-fg-bright mb-4">Get In Touch</h1>
     <p class="text-tokyo-muted mb-8">
       Have a project in mind? Let's talk.
     </p>
     
-    <div class="grid md:grid-cols-2 gap-8">
-      <!-- Contact Form -->
+    <div class="space-y-4">
       <div class="bg-tokyo-bg-alt border border-tokyo-border rounded-lg p-6">
-        <form 
-          name="contact" 
-          method="POST" 
-          data-netlify="true" 
-          netlify-honeypot="bot-field"
-          class="space-y-4"
-          id="contact-form"
-        >
-          <input type="hidden" name="form-name" value="contact" />
-          <input name="bot-field" type="text" class="hidden" tabindex="-1" autocomplete="off" />
-          
-          <div>
-            <label for="name" class="block text-sm text-tokyo-fg mb-2">Name</label>
-            <input 
-              type="text" 
-              id="name" 
-              name="name" 
-              required
-              autocomplete="name"
-              class="w-full px-3 py-2 bg-tokyo-bg border border-tokyo-border rounded text-tokyo-fg focus:border-tokyo-accent focus:ring-2 focus:ring-tokyo-accent/30 focus:outline-none"
-            />
-          </div>
-          
-          <div>
-            <label for="email" class="block text-sm text-tokyo-fg mb-2">Email</label>
-            <input 
-              type="email" 
-              id="email" 
-              name="email" 
-              required
-              autocomplete="email"
-              class="w-full px-3 py-2 bg-tokyo-bg border border-tokyo-border rounded text-tokyo-fg focus:border-tokyo-accent focus:ring-2 focus:ring-tokyo-accent/30 focus:outline-none"
-            />
-          </div>
-          
-          <div>
-            <label for="message" class="block text-sm text-tokyo-fg mb-2">Message</label>
-            <textarea 
-              id="message" 
-              name="message" 
-              rows="5" 
-              required
-              autocomplete="off"
-              class="w-full px-3 py-2 bg-tokyo-bg border border-tokyo-border rounded text-tokyo-fg focus:border-tokyo-accent focus:ring-2 focus:ring-tokyo-accent/30 focus:outline-none"
-            ></textarea>
-          </div>
-          
-          <button 
-            type="submit" 
-            id="submit-btn"
-            class="w-full px-4 py-2 bg-tokyo-accent text-tokyo-bg font-semibold rounded hover:bg-tokyo-accent-hover transition-colors cursor-pointer"
-          >
-            <span id="submit-text">Send Message</span>
-            <span id="submit-loading" class="hidden">Sending...</span>
-          </button>
-          <div id="error-message" class="hidden mt-4 p-4 bg-tokyo-error/20 border border-tokyo-error rounded text-tokyo-fg">
-            <p class="font-semibold text-tokyo-error">Something went wrong</p>
-            <p class="text-sm mt-1">Please try again or email me directly at james@jamesking.dev.</p>
-          </div>
-        </form>
-        
-        <!-- Success message (hidden by default) -->
-        <div id="success-message" class="hidden mt-4 p-4 bg-tokyo-success/20 border border-tokyo-success rounded text-tokyo-fg">
-          <p class="font-semibold text-tokyo-success">Message sent!</p>
-          <p class="text-sm mt-1">Thanks for reaching out. I'll get back to you soon.</p>
-        </div>
-      </div>
-      
-      <!-- Contact Info -->
-      <div class="space-y-4">
-        <div class="bg-tokyo-bg-alt border border-tokyo-border rounded-lg p-6">
-          <h2 class="text-lg font-semibold text-tokyo-fg-bright mb-4">Other Ways to Connect</h2>
-          
-          <div class="space-y-4">
-            <a href="mailto:james@jamesking.dev" class="flex items-center gap-3 text-tokyo-fg hover:text-tokyo-accent transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-tokyo-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-              james@jamesking.dev
-            </a>
-            
-            <a href="https://linkedin.com/in/jamesking56" target="_blank" rel="noopener external" class="flex items-center gap-3 text-tokyo-fg hover:text-tokyo-accent transition-colors">
+        <h2 class="text-lg font-semibold text-tokyo-fg-bright mb-4">Ways to Connect</h2>
+
+        <div class="space-y-4">
+          <a href="mailto:james@jamesking.dev" class="flex items-center gap-3 text-tokyo-fg hover:text-tokyo-accent transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-tokyo-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            james@jamesking.dev
+          </a>
+
+          <div class="flex items-center gap-1">
+            <a href="https://linkedin.com/in/jamesking56?utm_source=jamesking.dev&utm_medium=referral" target="_blank" rel="noopener external" aria-label="LinkedIn (opens in new tab)" class="flex items-center gap-3 text-tokyo-accent underline hover:text-tokyo-accent-hover transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-tokyo-muted" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
               </svg>
-              LinkedIn
-            </a>
-            
-            <a href="https://github.com/Jamesking56" target="_blank" rel="noopener external" class="flex items-center gap-3 text-tokyo-fg hover:text-tokyo-accent transition-colors">
+              LinkedIn</a><span class="text-xs text-tokyo-muted">↗</span>
+          </div>
+
+          <div class="flex items-center gap-1">
+            <a href="https://github.com/Jamesking56?utm_source=jamesking.dev&utm_medium=referral" target="_blank" rel="noopener external" aria-label="GitHub (opens in new tab)" class="flex items-center gap-3 text-tokyo-accent underline hover:text-tokyo-accent-hover transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-tokyo-muted" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
               </svg>
-              GitHub
-            </a>
+              GitHub</a><span class="text-xs text-tokyo-muted">↗</span>
+          </div>
+
+          <div class="flex items-center gap-1">
+            <a href="https://x.com/Jamesking56?utm_source=jamesking.dev&utm_medium=referral" target="_blank" rel="noopener external" aria-label="X (opens in new tab)" class="flex items-center gap-3 text-tokyo-accent underline hover:text-tokyo-accent-hover">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-tokyo-muted" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"/>
+              </svg>
+              X</a><span class="text-xs text-tokyo-muted">↗</span>
+          </div>
+
+          <div class="flex items-center gap-1">
+            <a href="https://bsky.app/profile/jamesking.dev?utm_source=jamesking.dev&utm_medium=referral" target="_blank" rel="noopener external" aria-label="Bluesky (opens in new tab)" class="flex items-center gap-3 text-tokyo-accent underline hover:text-tokyo-accent-hover">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-tokyo-muted" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5.202 2.857C7.954 4.922 10.913 9.11 12 11.358c1.087-2.247 4.046-6.436 6.798-8.501C20.783 1.366 24 .213 24 3.883c0 .732-.42 6.156-.667 7.037-.856 3.061-3.978 3.842-6.755 3.37 4.854.826 6.089 3.562 3.422 6.299-5.065 5.196-7.28-1.304-7.847-2.97-.104-.305-.152-.448-.153-.327 0-.121-.05.022-.153.327-.568 1.666-2.782 8.166-7.847 2.97-2.667-2.737-1.432-5.473 3.422-6.3-2.777.473-5.899-.308-6.755-3.369C.42 10.04 0 4.615 0 3.883c0-3.67 3.217-2.517 5.202-1.026"/>
+              </svg>
+              Bluesky</a><span class="text-xs text-tokyo-muted">↗</span>
+          </div>
+
+          <div class="flex items-center gap-1">
+            <a href="https://phpc.social/@Jamesking56?utm_source=jamesking.dev&utm_medium=referral" target="_blank" rel="noopener external" aria-label="Mastodon (opens in new tab)" class="flex items-center gap-3 text-tokyo-accent underline hover:text-tokyo-accent-hover">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-tokyo-muted" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/>
+              </svg>
+              Mastodon</a><span class="text-xs text-tokyo-muted">↗</span>
           </div>
         </div>
-        
-        <div class="bg-tokyo-bg-alt border border-tokyo-border rounded-lg p-6">
-          <h2 class="text-lg font-semibold text-tokyo-fg-bright mb-2">Location</h2>
-          <p class="text-tokyo-fg">Redditch, UK</p>
-        </div>
+      </div>
+
+      <div class="bg-tokyo-bg-alt border border-tokyo-border rounded-lg p-6">
+        <h2 class="text-lg font-semibold text-tokyo-fg-bright mb-2">Location</h2>
+        <p class="text-tokyo-fg">Redditch, UK</p>
       </div>
     </div>
   </div>
-
-  <script>
-    function initContactForm() {
-      const form = document.getElementById('contact-form');
-      if (!form) return;
-
-      const submitBtn = document.getElementById('submit-btn');
-      const submitText = document.getElementById('submit-text');
-      const submitLoading = document.getElementById('submit-loading');
-      const errorMessage = document.getElementById('error-message');
-
-      form.addEventListener('submit', event => {
-        event.preventDefault();
-        errorMessage.classList.add('hidden');
-
-        submitBtn.disabled = true;
-        submitText.classList.add('hidden');
-        submitLoading.classList.remove('hidden');
-
-        const formData = new FormData(form);
-
-        fetch("/", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams(formData).toString()
-        })
-          .then(() => {
-            form.classList.add('hidden');
-            document.getElementById('success-message').classList.remove('hidden');
-          })
-          .catch(() => {
-            submitBtn.disabled = false;
-            submitText.classList.remove('hidden');
-            submitLoading.classList.add('hidden');
-            errorMessage.classList.remove('hidden');
-          });
-      });
-    }
-
-    document.addEventListener('astro:page-load', initContactForm);
-  </script>
 </Layout>

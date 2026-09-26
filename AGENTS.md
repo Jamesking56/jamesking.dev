@@ -18,7 +18,7 @@ This is James King's personal website - an AI-Augmented Software Engineer based 
 /projects            → Projects showcase
 /projects/[slug]     → Individual project pages
 /now                 → Current focus (sivers.org/now style)
-/contact             → Contact form (Netlify Forms)
+/contact             → Email and social links
 /cv.pdf              → Downloadable CV
 /humans.txt          → Human credits for AI
 ```
@@ -257,7 +257,6 @@ npm run preview # Preview build
 
 - Build command: `npm run build`
 - Publish: `dist/`
-- Forms: Enabled via `data-netlify="true"` on contact form
 - CDN caching: Configured in netlify.toml
 
 ## Troubleshooting
