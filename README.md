@@ -39,6 +39,24 @@ npm test
 
 `npm run build` also generates Markdown page exports and submits URLs to IndexNow.
 
+### Markdown exports
+
+An Astro build hook in `scripts/generate-markdown.js` converts every rendered HTML
+page's `<main>` content to a sibling `.md` file, including blog posts, projects,
+and the 404 page. The homepage is available at `/index.md`. Add
+`data-markdown-ignore` to an element to exclude it from the export.
+
+Netlify serves these files directly with Markdown content types and build-time
+token estimates. HTML pages link to their Markdown alternative. The edge function
+in `netlify/edge-functions/markdown.ts` serves the pre-built file when `Accept`
+prefers `text/markdown`, without a redirect or runtime conversion. It preserves
+canonical redirects and 404 status codes, and bypasses assets and non-GET/HEAD
+requests. Negotiated responses use `no-store` to prevent mixed HTML/Markdown caches.
+If an export cannot be fetched, the original response is returned.
+
+`npm run preview` serves the files but does not run Netlify's edge handler or
+apply its response headers. Verify those behaviours on a Netlify deploy preview.
+
 ## Project Structure
 
 ```
