@@ -21,6 +21,7 @@ const {
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const markdownPath = `${Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/index'}.md`;
 ---
 
 <!doctype html>
@@ -36,6 +37,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="title" content={`${title}${type === 'article' && Astro.url.pathname.startsWith('/blog') ? ' | Blog' : ''} | James King`} />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" type="text/markdown" href={new URL(markdownPath, Astro.site)} />
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
